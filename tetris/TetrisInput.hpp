@@ -11,10 +11,13 @@
 
 #include <thread>
 #include <atomic>
+#include <memory>
 #include "Tetris.hpp"
 
 class TetrisInput {
 public:
+    typedef std::shared_ptr<TetrisInput> Ptr;
+    
     enum Move {
         LEFT,
         RIGHT,

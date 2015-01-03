@@ -11,6 +11,7 @@
 		3511188C1A4FBC6C0041640B /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3511188B1A4FBC6C0041640B /* libncurses.dylib */; };
 		3511188F1A50F9070041640B /* TetrisInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3511188E1A50F9070041640B /* TetrisInput.cpp */; };
 		351118921A50FA770041640B /* Tetris.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 351118901A50FA770041640B /* Tetris.cpp */; };
+		3514A1BC1A57AA7E00181D35 /* KeyboardTetrisInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3514A1BA1A57AA7E00181D35 /* KeyboardTetrisInput.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +36,8 @@
 		351118911A50FA770041640B /* Tetris.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tetris.hpp; sourceTree = "<group>"; };
 		351118931A510B140041640B /* TetrisDisplay.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TetrisDisplay.hpp; sourceTree = "<group>"; };
 		351118941A510D560041640B /* TetrisPiece.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TetrisPiece.hpp; sourceTree = "<group>"; };
+		3514A1BA1A57AA7E00181D35 /* KeyboardTetrisInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardTetrisInput.cpp; sourceTree = "<group>"; };
+		3514A1BB1A57AA7E00181D35 /* KeyboardTetrisInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyboardTetrisInput.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,8 @@
 				351118911A50FA770041640B /* Tetris.hpp */,
 				351118931A510B140041640B /* TetrisDisplay.hpp */,
 				351118941A510D560041640B /* TetrisPiece.hpp */,
+				3514A1BA1A57AA7E00181D35 /* KeyboardTetrisInput.cpp */,
+				3514A1BB1A57AA7E00181D35 /* KeyboardTetrisInput.hpp */,
 			);
 			path = tetris;
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3514A1BC1A57AA7E00181D35 /* KeyboardTetrisInput.cpp in Sources */,
 				351118851A4DA4430041640B /* main.cpp in Sources */,
 				3511188F1A50F9070041640B /* TetrisInput.cpp in Sources */,
 				351118921A50FA770041640B /* Tetris.cpp in Sources */,

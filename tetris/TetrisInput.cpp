@@ -16,6 +16,7 @@ TetrisInput::~TetrisInput() {
     }
 }
 
+
 void TetrisInput::dispatchMoves() {
     while (m_isRunning.load()) {
         TetrisInput::Move move = getNextMove();

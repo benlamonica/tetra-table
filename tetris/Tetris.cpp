@@ -7,3 +7,32 @@
 //
 
 #include "Tetris.hpp"
+
+Tetris::~Tetris() {
+    
+}
+
+Tetris::Tetris(std::shared_ptr<TetrisDisplay> display, std::shared_ptr<TetrisInput> input) : m_display(display), m_input(input) {
+    
+};
+
+
+void Tetris::moveLeft() {
+    
+}
+
+void Tetris::moveRight() {
+    
+}
+
+void Tetris::moveDown() {
+    
+}
+
+void Tetris::drop() {
+    
+}
+
+void Tetris::rotate() {
+    
+}
