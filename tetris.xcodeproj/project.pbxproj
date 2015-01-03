@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		351118851A4DA4430041640B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 351118841A4DA4430041640B /* main.cpp */; };
+		3511188C1A4FBC6C0041640B /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3511188B1A4FBC6C0041640B /* libncurses.dylib */; };
+		3511188F1A50F9070041640B /* TetrisInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3511188E1A50F9070041640B /* TetrisInput.cpp */; };
+		351118921A50FA770041640B /* Tetris.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 351118901A50FA770041640B /* Tetris.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,13 @@
 /* Begin PBXFileReference section */
 		351118811A4DA4430041640B /* tetris */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tetris; sourceTree = BUILT_PRODUCTS_DIR; };
 		351118841A4DA4430041640B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3511188B1A4FBC6C0041640B /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
+		3511188D1A50F8070041640B /* TetrisInput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TetrisInput.hpp; sourceTree = "<group>"; };
+		3511188E1A50F9070041640B /* TetrisInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetrisInput.cpp; sourceTree = "<group>"; };
+		351118901A50FA770041640B /* Tetris.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tetris.cpp; sourceTree = "<group>"; };
+		351118911A50FA770041640B /* Tetris.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tetris.hpp; sourceTree = "<group>"; };
+		351118931A510B140041640B /* TetrisDisplay.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TetrisDisplay.hpp; sourceTree = "<group>"; };
+		351118941A510D560041640B /* TetrisPiece.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TetrisPiece.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3511188C1A4FBC6C0041640B /* libncurses.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +52,7 @@
 		351118781A4DA4430041640B = {
 			isa = PBXGroup;
 			children = (
+				3511188B1A4FBC6C0041640B /* libncurses.dylib */,
 				351118831A4DA4430041640B /* tetris */,
 				351118821A4DA4430041640B /* Products */,
 			);
@@ -58,6 +70,12 @@
 			isa = PBXGroup;
 			children = (
 				351118841A4DA4430041640B /* main.cpp */,
+				3511188D1A50F8070041640B /* TetrisInput.hpp */,
+				3511188E1A50F9070041640B /* TetrisInput.cpp */,
+				351118901A50FA770041640B /* Tetris.cpp */,
+				351118911A50FA770041640B /* Tetris.hpp */,
+				351118931A510B140041640B /* TetrisDisplay.hpp */,
+				351118941A510D560041640B /* TetrisPiece.hpp */,
 			);
 			path = tetris;
 			sourceTree = "<group>";
@@ -119,6 +137,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				351118851A4DA4430041640B /* main.cpp in Sources */,
+				3511188F1A50F9070041640B /* TetrisInput.cpp in Sources */,
+				351118921A50FA770041640B /* Tetris.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +252,7 @@
 				3511188A1A4DA4430041640B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
