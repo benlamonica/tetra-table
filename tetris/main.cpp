@@ -7,10 +7,18 @@
 //
 
 #include <iostream>
+#include <stdlib.h>
+#include "Tetris.hpp"
+#include "KeyboardTetrisInput.hpp"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    putenv((char *)"TERM=xterm-256color");
+    std::shared_ptr<TetrisDisplay> display;
+    Tetris game(display);
+    KeyboardTetrisInput input(&game);
+    input.run();
+    game.run();
+    input.stop();
     return 0;
 }
 

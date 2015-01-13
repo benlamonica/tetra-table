@@ -10,10 +10,18 @@
 #define __tetris__KeyboardTetrisInput__
 
 #include <stdio.h>
+
 #include "TetrisInput.hpp"
+#include "CursesUtil.hpp"
 
 class KeyboardTetrisInput : public TetrisInput {
+public:
+    KeyboardTetrisInput(Tetris *game);
+    virtual ~KeyboardTetrisInput();
+protected:
     virtual Move getNextMove() override;
- 
+private:
+    CursesUtil& m_curses;
+    typedef TetrisInput super;
 };
 #endif /* defined(__tetris__KeyboardTetrisInput__) */

@@ -11,13 +11,27 @@
 
 TetrisInput::~TetrisInput() {
     m_isRunning.store(false);
-    if (m_inputThread.joinable()) {
-        m_inputThread.join();
+    if (m_inputThread && m_inputThread->joinable()) {
+        m_inputThread->join();
     }
 }
 
+TetrisInput::TetrisInput(Tetris *game) : m_game(game), m_isRunning(false)
+{
+}
+
+void TetrisInput::run() {
+    if (!m_isRunning.exchange(true)) {
+        m_inputThread = std::make_shared<std::thread>(&TetrisInput::dispatchMoves, this);
+    }
+}
+
+void TetrisInput::stop() {
+    m_isRunning.store(false);
+}
 
 void TetrisInput::dispatchMoves() {
+
     while (m_isRunning.load()) {
         TetrisInput::Move move = getNextMove();
         switch(move) {
@@ -35,6 +49,8 @@ void TetrisInput::dispatchMoves() {
                 break;
             case ROTATE:
                 m_game->rotate();
+                break;
+            default:
                 break;
         }
     }

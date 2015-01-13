@@ -19,15 +19,18 @@ public:
     typedef std::shared_ptr<TetrisInput> Ptr;
     
     enum Move {
+        NONE,
         LEFT,
         RIGHT,
         DOWN,
         DROP,
-        ROTATE
+        ROTATE,
+        QUIT
     };
     
-    TetrisInput(Tetris *game) : m_game(game), m_isRunning(true), m_inputThread(&TetrisInput::dispatchMoves, this) { }
-    
+    TetrisInput(Tetris *game);
+    void run();
+    void stop();
     virtual ~TetrisInput();
 protected:
     virtual Move getNextMove() = 0;
@@ -35,7 +38,7 @@ private:
     void dispatchMoves();
     Tetris *m_game;
     std::atomic<bool> m_isRunning;
-    std::thread m_inputThread;
+    std::shared_ptr<std::thread> m_inputThread;
 };
 
 
