@@ -14,6 +14,14 @@
 		3514A1BC1A57AA7E00181D35 /* KeyboardTetrisInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3514A1BA1A57AA7E00181D35 /* KeyboardTetrisInput.cpp */; };
 		B5B29D861A5B5A2E008B1F2E /* CursesUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D841A5B5A2E008B1F2E /* CursesUtil.cpp */; };
 		B5B29D881A5B5BEB008B1F2E /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */; };
+		B5B29D921A65E272008B1F2E /* tetris_tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D911A65E272008B1F2E /* tetris_tests.mm */; };
+		B5B29D9F1A65E520008B1F2E /* Line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D9C1A65E520008B1F2E /* Line.cpp */; };
+		B5B29DA21A65E558008B1F2E /* T.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA01A65E558008B1F2E /* T.cpp */; };
+		B5B29DAB1A65E73C008B1F2E /* L.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA71A65E73C008B1F2E /* L.cpp */; };
+		B5B29DAC1A65E73C008B1F2E /* J.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA81A65E73C008B1F2E /* J.cpp */; };
+		B5B29DAD1A65E73C008B1F2E /* Two.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA91A65E73C008B1F2E /* Two.cpp */; };
+		B5B29DAE1A65E73C008B1F2E /* S.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DAA1A65E73C008B1F2E /* S.cpp */; };
+		B5B29DB11A66FED1008B1F2E /* Q.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB01A66FED1008B1F2E /* Q.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,12 +45,29 @@
 		351118901A50FA770041640B /* Tetris.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tetris.cpp; sourceTree = "<group>"; };
 		351118911A50FA770041640B /* Tetris.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tetris.hpp; sourceTree = "<group>"; };
 		351118931A510B140041640B /* TetrisDisplay.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TetrisDisplay.hpp; sourceTree = "<group>"; };
-		351118941A510D560041640B /* TetrisPiece.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TetrisPiece.hpp; sourceTree = "<group>"; };
 		3514A1BA1A57AA7E00181D35 /* KeyboardTetrisInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardTetrisInput.cpp; sourceTree = "<group>"; };
 		3514A1BB1A57AA7E00181D35 /* KeyboardTetrisInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyboardTetrisInput.hpp; sourceTree = "<group>"; };
 		B5B29D841A5B5A2E008B1F2E /* CursesUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CursesUtil.cpp; sourceTree = "<group>"; };
 		B5B29D851A5B5A2E008B1F2E /* CursesUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CursesUtil.hpp; sourceTree = "<group>"; };
 		B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
+		B5B29D8D1A65E272008B1F2E /* tetris-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tetris-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5B29D901A65E272008B1F2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5B29D911A65E272008B1F2E /* tetris_tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = tetris_tests.mm; sourceTree = "<group>"; };
+		B5B29D9C1A65E520008B1F2E /* Line.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Line.cpp; sourceTree = "<group>"; };
+		B5B29D9D1A65E520008B1F2E /* Line.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
+		B5B29D9E1A65E520008B1F2E /* TetrisPiece.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TetrisPiece.hpp; sourceTree = "<group>"; };
+		B5B29DA01A65E558008B1F2E /* T.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = T.cpp; sourceTree = "<group>"; };
+		B5B29DA11A65E558008B1F2E /* T.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = T.hpp; sourceTree = "<group>"; };
+		B5B29DA31A65E73C008B1F2E /* L.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = L.hpp; sourceTree = "<group>"; };
+		B5B29DA41A65E73C008B1F2E /* J.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = J.hpp; sourceTree = "<group>"; };
+		B5B29DA51A65E73C008B1F2E /* Two.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Two.hpp; sourceTree = "<group>"; };
+		B5B29DA61A65E73C008B1F2E /* S.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = S.hpp; sourceTree = "<group>"; };
+		B5B29DA71A65E73C008B1F2E /* L.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = L.cpp; sourceTree = "<group>"; };
+		B5B29DA81A65E73C008B1F2E /* J.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = J.cpp; sourceTree = "<group>"; };
+		B5B29DA91A65E73C008B1F2E /* Two.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Two.cpp; sourceTree = "<group>"; };
+		B5B29DAA1A65E73C008B1F2E /* S.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = S.cpp; sourceTree = "<group>"; };
+		B5B29DAF1A66FED1008B1F2E /* Q.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Q.hpp; sourceTree = "<group>"; };
+		B5B29DB01A66FED1008B1F2E /* Q.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Q.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +80,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5B29D8A1A65E272008B1F2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -64,6 +96,7 @@
 				B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */,
 				3511188B1A4FBC6C0041640B /* libncurses.dylib */,
 				351118831A4DA4430041640B /* tetris */,
+				B5B29D8E1A65E272008B1F2E /* tetris-tests */,
 				351118821A4DA4430041640B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				351118811A4DA4430041640B /* tetris */,
+				B5B29D8D1A65E272008B1F2E /* tetris-tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,19 +113,58 @@
 		351118831A4DA4430041640B /* tetris */ = {
 			isa = PBXGroup;
 			children = (
+				B5B29D9B1A65E520008B1F2E /* pieces */,
 				351118841A4DA4430041640B /* main.cpp */,
 				3511188D1A50F8070041640B /* TetrisInput.hpp */,
 				3511188E1A50F9070041640B /* TetrisInput.cpp */,
 				351118901A50FA770041640B /* Tetris.cpp */,
 				351118911A50FA770041640B /* Tetris.hpp */,
 				351118931A510B140041640B /* TetrisDisplay.hpp */,
-				351118941A510D560041640B /* TetrisPiece.hpp */,
 				3514A1BA1A57AA7E00181D35 /* KeyboardTetrisInput.cpp */,
 				3514A1BB1A57AA7E00181D35 /* KeyboardTetrisInput.hpp */,
 				B5B29D841A5B5A2E008B1F2E /* CursesUtil.cpp */,
 				B5B29D851A5B5A2E008B1F2E /* CursesUtil.hpp */,
 			);
 			path = tetris;
+			sourceTree = "<group>";
+		};
+		B5B29D8E1A65E272008B1F2E /* tetris-tests */ = {
+			isa = PBXGroup;
+			children = (
+				B5B29D911A65E272008B1F2E /* tetris_tests.mm */,
+				B5B29D8F1A65E272008B1F2E /* Supporting Files */,
+			);
+			path = "tetris-tests";
+			sourceTree = "<group>";
+		};
+		B5B29D8F1A65E272008B1F2E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B5B29D901A65E272008B1F2E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B5B29D9B1A65E520008B1F2E /* pieces */ = {
+			isa = PBXGroup;
+			children = (
+				B5B29DA81A65E73C008B1F2E /* J.cpp */,
+				B5B29DA41A65E73C008B1F2E /* J.hpp */,
+				B5B29DA71A65E73C008B1F2E /* L.cpp */,
+				B5B29DA31A65E73C008B1F2E /* L.hpp */,
+				B5B29D9C1A65E520008B1F2E /* Line.cpp */,
+				B5B29D9D1A65E520008B1F2E /* Line.hpp */,
+				B5B29DB01A66FED1008B1F2E /* Q.cpp */,
+				B5B29DAF1A66FED1008B1F2E /* Q.hpp */,
+				B5B29DAA1A65E73C008B1F2E /* S.cpp */,
+				B5B29DA61A65E73C008B1F2E /* S.hpp */,
+				B5B29DA01A65E558008B1F2E /* T.cpp */,
+				B5B29DA11A65E558008B1F2E /* T.hpp */,
+				B5B29D9E1A65E520008B1F2E /* TetrisPiece.hpp */,
+				B5B29DA91A65E73C008B1F2E /* Two.cpp */,
+				B5B29DA51A65E73C008B1F2E /* Two.hpp */,
+			);
+			path = pieces;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,6 +187,23 @@
 			productReference = 351118811A4DA4430041640B /* tetris */;
 			productType = "com.apple.product-type.tool";
 		};
+		B5B29D8C1A65E272008B1F2E /* tetris-tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5B29D931A65E272008B1F2E /* Build configuration list for PBXNativeTarget "tetris-tests" */;
+			buildPhases = (
+				B5B29D891A65E272008B1F2E /* Sources */,
+				B5B29D8A1A65E272008B1F2E /* Frameworks */,
+				B5B29D8B1A65E272008B1F2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "tetris-tests";
+			productName = "tetris-tests";
+			productReference = B5B29D8D1A65E272008B1F2E /* tetris-tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -125,6 +215,9 @@
 				TargetAttributes = {
 					351118801A4DA4430041640B = {
 						CreatedOnToolsVersion = 6.1.1;
+					};
+					B5B29D8C1A65E272008B1F2E = {
+						CreatedOnToolsVersion = 6.0;
 					};
 				};
 			};
@@ -141,20 +234,46 @@
 			projectRoot = "";
 			targets = (
 				351118801A4DA4430041640B /* tetris */,
+				B5B29D8C1A65E272008B1F2E /* tetris-tests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B5B29D8B1A65E272008B1F2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3511187D1A4DA4430041640B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B29DAD1A65E73C008B1F2E /* Two.cpp in Sources */,
+				B5B29DAB1A65E73C008B1F2E /* L.cpp in Sources */,
+				B5B29DAE1A65E73C008B1F2E /* S.cpp in Sources */,
+				B5B29DB11A66FED1008B1F2E /* Q.cpp in Sources */,
 				3514A1BC1A57AA7E00181D35 /* KeyboardTetrisInput.cpp in Sources */,
 				351118851A4DA4430041640B /* main.cpp in Sources */,
 				3511188F1A50F9070041640B /* TetrisInput.cpp in Sources */,
+				B5B29DA21A65E558008B1F2E /* T.cpp in Sources */,
+				B5B29D9F1A65E520008B1F2E /* Line.cpp in Sources */,
 				351118921A50FA770041640B /* Tetris.cpp in Sources */,
 				B5B29D861A5B5A2E008B1F2E /* CursesUtil.cpp in Sources */,
+				B5B29DAC1A65E73C008B1F2E /* J.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5B29D891A65E272008B1F2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5B29D921A65E272008B1F2E /* tetris_tests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +368,38 @@
 			};
 			name = Release;
 		};
+		B5B29D941A65E272008B1F2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "tetris-tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B5B29D951A65E272008B1F2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "tetris-tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -269,6 +420,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		B5B29D931A65E272008B1F2E /* Build configuration list for PBXNativeTarget "tetris-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5B29D941A65E272008B1F2E /* Debug */,
+				B5B29D951A65E272008B1F2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

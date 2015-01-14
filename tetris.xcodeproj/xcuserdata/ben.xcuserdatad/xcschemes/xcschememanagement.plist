@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>tetris-tests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>tetris.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>351118801A4DA4430041640B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B5B29D8C1A65E272008B1F2E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
