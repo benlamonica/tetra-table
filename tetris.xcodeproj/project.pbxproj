@@ -15,13 +15,15 @@
 		B5B29D861A5B5A2E008B1F2E /* CursesUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D841A5B5A2E008B1F2E /* CursesUtil.cpp */; };
 		B5B29D881A5B5BEB008B1F2E /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */; };
 		B5B29D921A65E272008B1F2E /* tetris_tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D911A65E272008B1F2E /* tetris_tests.mm */; };
-		B5B29D9F1A65E520008B1F2E /* Line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D9C1A65E520008B1F2E /* Line.cpp */; };
+		B5B29D9F1A65E520008B1F2E /* I.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D9C1A65E520008B1F2E /* I.cpp */; };
 		B5B29DA21A65E558008B1F2E /* T.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA01A65E558008B1F2E /* T.cpp */; };
 		B5B29DAB1A65E73C008B1F2E /* L.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA71A65E73C008B1F2E /* L.cpp */; };
 		B5B29DAC1A65E73C008B1F2E /* J.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA81A65E73C008B1F2E /* J.cpp */; };
-		B5B29DAD1A65E73C008B1F2E /* Two.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA91A65E73C008B1F2E /* Two.cpp */; };
+		B5B29DAD1A65E73C008B1F2E /* Z.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA91A65E73C008B1F2E /* Z.cpp */; };
 		B5B29DAE1A65E73C008B1F2E /* S.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DAA1A65E73C008B1F2E /* S.cpp */; };
-		B5B29DB11A66FED1008B1F2E /* Q.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB01A66FED1008B1F2E /* Q.cpp */; };
+		B5B29DB11A66FED1008B1F2E /* O.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB01A66FED1008B1F2E /* O.cpp */; };
+		B5B29DB31A67370B008B1F2E /* TetrisPiece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB21A67370B008B1F2E /* TetrisPiece.cpp */; };
+		B5B29DB61A674022008B1F2E /* TetrisDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB41A674022008B1F2E /* TetrisDisplay.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,21 +55,23 @@
 		B5B29D8D1A65E272008B1F2E /* tetris-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tetris-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B29D901A65E272008B1F2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5B29D911A65E272008B1F2E /* tetris_tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = tetris_tests.mm; sourceTree = "<group>"; };
-		B5B29D9C1A65E520008B1F2E /* Line.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Line.cpp; sourceTree = "<group>"; };
-		B5B29D9D1A65E520008B1F2E /* Line.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Line.hpp; sourceTree = "<group>"; };
+		B5B29D9C1A65E520008B1F2E /* I.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = I.cpp; sourceTree = "<group>"; };
+		B5B29D9D1A65E520008B1F2E /* I.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = I.hpp; sourceTree = "<group>"; };
 		B5B29D9E1A65E520008B1F2E /* TetrisPiece.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TetrisPiece.hpp; sourceTree = "<group>"; };
 		B5B29DA01A65E558008B1F2E /* T.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = T.cpp; sourceTree = "<group>"; };
 		B5B29DA11A65E558008B1F2E /* T.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = T.hpp; sourceTree = "<group>"; };
 		B5B29DA31A65E73C008B1F2E /* L.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = L.hpp; sourceTree = "<group>"; };
 		B5B29DA41A65E73C008B1F2E /* J.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = J.hpp; sourceTree = "<group>"; };
-		B5B29DA51A65E73C008B1F2E /* Two.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Two.hpp; sourceTree = "<group>"; };
+		B5B29DA51A65E73C008B1F2E /* Z.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Z.hpp; sourceTree = "<group>"; };
 		B5B29DA61A65E73C008B1F2E /* S.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = S.hpp; sourceTree = "<group>"; };
 		B5B29DA71A65E73C008B1F2E /* L.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = L.cpp; sourceTree = "<group>"; };
 		B5B29DA81A65E73C008B1F2E /* J.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = J.cpp; sourceTree = "<group>"; };
-		B5B29DA91A65E73C008B1F2E /* Two.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Two.cpp; sourceTree = "<group>"; };
+		B5B29DA91A65E73C008B1F2E /* Z.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Z.cpp; sourceTree = "<group>"; };
 		B5B29DAA1A65E73C008B1F2E /* S.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = S.cpp; sourceTree = "<group>"; };
-		B5B29DAF1A66FED1008B1F2E /* Q.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Q.hpp; sourceTree = "<group>"; };
-		B5B29DB01A66FED1008B1F2E /* Q.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Q.cpp; sourceTree = "<group>"; };
+		B5B29DAF1A66FED1008B1F2E /* O.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = O.hpp; sourceTree = "<group>"; };
+		B5B29DB01A66FED1008B1F2E /* O.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = O.cpp; sourceTree = "<group>"; };
+		B5B29DB21A67370B008B1F2E /* TetrisPiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetrisPiece.cpp; sourceTree = "<group>"; };
+		B5B29DB41A674022008B1F2E /* TetrisDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetrisDisplay.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 				351118901A50FA770041640B /* Tetris.cpp */,
 				351118911A50FA770041640B /* Tetris.hpp */,
 				351118931A510B140041640B /* TetrisDisplay.hpp */,
+				B5B29DB41A674022008B1F2E /* TetrisDisplay.cpp */,
 				3514A1BA1A57AA7E00181D35 /* KeyboardTetrisInput.cpp */,
 				3514A1BB1A57AA7E00181D35 /* KeyboardTetrisInput.hpp */,
 				B5B29D841A5B5A2E008B1F2E /* CursesUtil.cpp */,
@@ -152,17 +157,18 @@
 				B5B29DA41A65E73C008B1F2E /* J.hpp */,
 				B5B29DA71A65E73C008B1F2E /* L.cpp */,
 				B5B29DA31A65E73C008B1F2E /* L.hpp */,
-				B5B29D9C1A65E520008B1F2E /* Line.cpp */,
-				B5B29D9D1A65E520008B1F2E /* Line.hpp */,
-				B5B29DB01A66FED1008B1F2E /* Q.cpp */,
-				B5B29DAF1A66FED1008B1F2E /* Q.hpp */,
+				B5B29D9C1A65E520008B1F2E /* I.cpp */,
+				B5B29D9D1A65E520008B1F2E /* I.hpp */,
+				B5B29DB01A66FED1008B1F2E /* O.cpp */,
+				B5B29DAF1A66FED1008B1F2E /* O.hpp */,
 				B5B29DAA1A65E73C008B1F2E /* S.cpp */,
 				B5B29DA61A65E73C008B1F2E /* S.hpp */,
 				B5B29DA01A65E558008B1F2E /* T.cpp */,
 				B5B29DA11A65E558008B1F2E /* T.hpp */,
 				B5B29D9E1A65E520008B1F2E /* TetrisPiece.hpp */,
-				B5B29DA91A65E73C008B1F2E /* Two.cpp */,
-				B5B29DA51A65E73C008B1F2E /* Two.hpp */,
+				B5B29DB21A67370B008B1F2E /* TetrisPiece.cpp */,
+				B5B29DA91A65E73C008B1F2E /* Z.cpp */,
+				B5B29DA51A65E73C008B1F2E /* Z.hpp */,
 			);
 			path = pieces;
 			sourceTree = "<group>";
@@ -254,15 +260,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5B29DAD1A65E73C008B1F2E /* Two.cpp in Sources */,
+				B5B29DAD1A65E73C008B1F2E /* Z.cpp in Sources */,
 				B5B29DAB1A65E73C008B1F2E /* L.cpp in Sources */,
 				B5B29DAE1A65E73C008B1F2E /* S.cpp in Sources */,
-				B5B29DB11A66FED1008B1F2E /* Q.cpp in Sources */,
+				B5B29DB11A66FED1008B1F2E /* O.cpp in Sources */,
 				3514A1BC1A57AA7E00181D35 /* KeyboardTetrisInput.cpp in Sources */,
+				B5B29DB61A674022008B1F2E /* TetrisDisplay.cpp in Sources */,
+				B5B29DB31A67370B008B1F2E /* TetrisPiece.cpp in Sources */,
 				351118851A4DA4430041640B /* main.cpp in Sources */,
 				3511188F1A50F9070041640B /* TetrisInput.cpp in Sources */,
 				B5B29DA21A65E558008B1F2E /* T.cpp in Sources */,
-				B5B29D9F1A65E520008B1F2E /* Line.cpp in Sources */,
+				B5B29D9F1A65E520008B1F2E /* I.cpp in Sources */,
 				351118921A50FA770041640B /* Tetris.cpp in Sources */,
 				B5B29D861A5B5A2E008B1F2E /* CursesUtil.cpp in Sources */,
 				B5B29DAC1A65E73C008B1F2E /* J.cpp in Sources */,
@@ -357,6 +365,7 @@
 		351118891A4DA4430041640B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -364,6 +373,7 @@
 		3511188A1A4DA4430041640B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

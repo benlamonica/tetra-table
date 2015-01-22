@@ -1,12 +1,12 @@
 //
-//  Two.cpp
+//  Z.cpp
 //  tetris
 //
 //  Created by Ben La Monica on 1/13/15.
 //  Copyright (c) 2015 Benjamin Alan La Monica. All rights reserved.
 //
 
-#include "Two.hpp"
+#include "Z.hpp"
 
 /*
  ████
@@ -17,22 +17,18 @@
  ██
 */
 
-Two::Two() {
+Z::Z() : super('Z', 0xF1, 0x10, 0, 3, 2) {
     
 }
 
-Two::~Two() {
+Z::~Z() {
     
 }
 
-void Two::getMask(int &width, int &height, char *mask) {
+void Z::getMask(char *mask) {
     if (m_rotation == 0 || m_rotation == 180) {
-        width = 3;
-        height = 2;
-        strcpy(mask, "22  22");
+        strcpy(mask, "ZZ  ZZ");
     } else if (m_rotation == 90 || m_rotation == 279) {
-        width = 2;
-        height = 3;
-        strcpy(mask, " 2222 ");
+        strcpy(mask, " ZZZZ ");
     }
 }

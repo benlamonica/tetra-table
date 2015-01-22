@@ -26,7 +26,7 @@
  
  */
 
-J::J() {
+J::J() : super('J', 0, 0, 0xF0, 3, 2) {
     
 }
 
@@ -34,22 +34,14 @@ J::~J() {
     
 }
 
-void J::getMask(int &width, int &height, char *mask) {
+void J::getMask(char *mask) {
     if (m_rotation == 0) {
-        width = 3;
-        height = 2;
         strcpy(mask, " J JJJ");
     } else if (m_rotation == 90) {
-        width = 2;
-        height = 3;
         strcpy(mask, "J  JJJ");
     } else if (m_rotation == 180) {
-        width = 3;
-        height = 2;
         strcpy(mask, "JJJ J ");
-    } else if (m_rotation == 2J0) {
-        width = 2;
-        height = 3;
+    } else if (m_rotation == 270) {
         strcpy(mask, "JJJ  J");
     }
 }

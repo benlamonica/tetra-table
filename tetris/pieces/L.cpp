@@ -26,7 +26,7 @@
 
 */
 
-L::L() {
+L::L() : super('L', 0xF1, 0xA1, 0, 3, 2){
     
 }
 
@@ -34,22 +34,14 @@ L::~L() {
     
 }
 
-void L::getMask(int &width, int &height, char *mask) {
+void L::getMask(char *mask) {
     if (m_rotation == 0) {
-        width = 3;
-        height = 2;
         strcpy(mask, "L L LL");
     } else if (m_rotation == 90) {
-        width = 2;
-        height = 3;
         strcpy(mask, "LLLL  ");
     } else if (m_rotation == 180) {
-        width = 3;
-        height = 2;
         strcpy(mask, "LL L L");
     } else if (m_rotation == 270) {
-        width = 2;
-        height = 3;
         strcpy(mask, "  LLLL");
     }
 }

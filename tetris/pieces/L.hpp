@@ -16,7 +16,10 @@ class L : public TetrisPiece {
 public:
     L();
     virtual ~L();
-    virtual void getMask(int &width, int &height, char *mask) override;
-    
+    virtual void getMask(char *mask) override;
+
+private:
+    typedef TetrisPiece super;
+
 };
 #endif /* defined(__tetris__L__) */

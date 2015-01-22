@@ -27,9 +27,13 @@ public:
     void quit();
     
 private:
+    void draw();
+    bool isCollision(int x, int y);
     std::shared_ptr<TetrisDisplay> m_display;
     std::atomic<bool> m_isRunning;
     char m_board[10][20];
+    int m_x;
+    int m_y;
     TetrisPiece::Ptr m_currentPiece;
 };
 

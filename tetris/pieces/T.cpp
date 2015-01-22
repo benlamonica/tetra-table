@@ -27,7 +27,7 @@
 */
 
 
-T::T() {
+T::T() : super('T', 0xA1, 0, 0xF1, 3, 2){
     
 }
 
@@ -35,22 +35,14 @@ T::~T() {
     
 }
 
-void T::getMask(int &width, int &height, char *mask) {
+void T::getMask(char *mask) {
     if (m_rotation == 0) {
-        width = 3;
-        height = 2;
         strcpy(mask, " T TTT");
     } else if (m_rotation == 90) {
-        width = 2;
-        height = 3;
         strcpy(mask, "T TTT ");
     } else if (m_rotation == 180) {
-        width = 3;
-        height = 2;
         strcpy(mask, "TTT T ");
     } else if (m_rotation == 270) {
-        width = 2;
-        height = 3;
         strcpy(mask, " TTT T");
     }
 }

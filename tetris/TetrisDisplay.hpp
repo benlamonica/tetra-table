@@ -13,9 +13,9 @@
 
 class TetrisDisplay {
 public:
-    void drawBoard(char **board, TetrisPiece::Ptr currentPiece);
+    void drawBoard(char board[10][20], TetrisPiece::Ptr currentPiece);
 protected:
-    void drawPoint(int x, int y, char pointType) = 0;
+    virtual void drawPoint(int x, int y, char pointType) = 0;
 private:
     TetrisPiece::Ptr m_lastPiece;
     char m_board[10][20];

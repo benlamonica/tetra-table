@@ -18,7 +18,7 @@
  
 */
 
-S::S() {
+S::S() : super('S', 0x3B, 0xF1, 0, 3, 2) {
     
 }
 
@@ -26,14 +26,10 @@ S::~S() {
     
 }
 
-void S::getMask(int &width, int &height, char *mask) {
+void S::getMask(char *mask) {
     if (m_rotation == 0 || m_rotation == 180) {
-        width = 3;
-        height = 2;
         strcpy(mask, " SSSS ");
     } else if (m_rotation == 90 || m_rotation == 270) {
-        width = 2;
-        height = 3;
         strcpy(mask, "S SS S");
     }
 }

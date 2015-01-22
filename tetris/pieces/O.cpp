@@ -1,28 +1,26 @@
 //
-//  Q.cpp
+//  O.cpp
 //  tetris
 //
 //  Created by Ben La Monica on 1/13/15.
 //  Copyright (c) 2015 Benjamin Alan La Monica. All rights reserved.
 //
 
-#include "Q.hpp"
+#include "O.hpp"
 
 /*
  ████
  ████
 */
 
-Q::Q() {
+O::O() : super('0', 0xF1, 0xF1, 0, 2, 2) {
     
 }
 
-Q::~Q() {
+O::~O() {
     
 }
 
-void Q::getMask(int &width, int &height, char *mask) {
-    width = 2;
-    height = 2;
-    strcpy(mask, "QQQQ");
+void O::getMask(char *mask) {
+    strcpy(mask, "OOOO");
 }

@@ -7,6 +7,7 @@
 //
 
 #include "Tetris.hpp"
+#include "TetrisDisplay.hpp"
 #include <time.h>
 
 Tetris::~Tetris() {
@@ -21,27 +22,28 @@ void Tetris::run() {
     while(m_isRunning.load()) {
         struct timespec sleepTime = {1,0};
         nanosleep(&sleepTime, NULL);
+        m_display->drawBoard(m_board, m_currentPiece);
     }
 }
 
 void Tetris::moveLeft() {
-    printf("Move left.\n");
+
 }
 
 void Tetris::moveRight() {
-    printf("Move right.\n");
+
 }
 
 void Tetris::moveDown() {
-    printf("Move down.\n");
+
 }
 
 void Tetris::drop() {
-    printf("drop.\n");
+
 }
 
 void Tetris::rotate() {
-    printf("rotate\n");
+
 }
 
 void Tetris::quit() {
