@@ -12,7 +12,7 @@ TetrisPiece::~TetrisPiece() {
     
 }
 
-TetrisPiece::TetrisPiece(char rep, short red, short green, short blue, int width, int height) : m_rotation(0), m_red(red), m_green(green), m_blue(blue), m_rep(rep), m_width(width), m_height(height), m_x(4), m_y(0) {
+TetrisPiece::TetrisPiece(char rep, short red, short green, short blue, int width, int height) : m_rotation(0), m_color(red, green, blue), m_rep(rep), m_width(width), m_height(height), m_x(4), m_y(0) {
     
 }
 
@@ -32,16 +32,13 @@ void TetrisPiece::rotateRight() {
     std::swap(m_width, m_height);
 }
 
-short TetrisPiece::getRed() const {
-    return m_red;
+const Color& TetrisPiece::getColor() const {
+    return m_color;
 }
 
-short TetrisPiece::getGreen() const {
-    return m_green;
-}
-
-short TetrisPiece::getBlue() const {
-    return m_blue;
+void TetrisPiece::setLocation(int x, int y) {
+    m_x = x;
+    m_y = y;
 }
 
 char TetrisPiece::getRep() const {

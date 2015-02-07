@@ -11,6 +11,9 @@
 
 #include <stdio.h>
 #include "TetrisPiece.hpp"
+#include <deque>
+#include <memory>
+#include <random>
 
 class TetrisDisplay;
 
@@ -28,13 +31,23 @@ public:
     
 private:
     void draw();
-    bool isCollision(int x, int y);
+    void cement();
+    bool collisionAt(TetrisPiece::Ptr piece, int pieceX, int pieceY);
+    int calculateDropPosition();
+    void fillPieceBag();
+    void takeNextPiece();
+    std::deque<TetrisPiece::Ptr> m_pieces;
     std::shared_ptr<TetrisDisplay> m_display;
     std::atomic<bool> m_isRunning;
     char m_board[10][20];
-    int m_x;
-    int m_y;
     TetrisPiece::Ptr m_currentPiece;
+    char m_currentMask[6];
+    int m_shadowY;
+    int m_boardHeight;
+    int m_score;
+    int m_boardWidth;
+    long m_dropSpeed; // ms between each line dropped
+    std::mt19937 m_shuffler;
 };
 
 #endif /* defined(__tetris__Tetris__) */

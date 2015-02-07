@@ -12,6 +12,14 @@
 #include <string>
 #include <memory>
 
+class Color {
+public:
+    Color(short red, short green, short blue) : r(red), g(green), b(blue) { }
+    short r;
+    short g;
+    short b;
+};
+
 class TetrisPiece {
 public:
     typedef std::shared_ptr<TetrisPiece> Ptr;
@@ -19,9 +27,7 @@ public:
     void rotateLeft();
     void rotateRight();
     virtual void getMask(char *mask) = 0;
-    short getRed() const;
-    short getGreen() const;
-    short getBlue() const;
+    const Color& getColor() const;
     char getRep() const;
     int getX() const;
     int getY() const;
@@ -30,12 +36,11 @@ public:
     void moveRight();
     int getWidth() const;
     int getHeight() const;
+    void setLocation(int x, int y);
 protected:
     TetrisPiece(char rep, short m_red, short m_green, short m_blue, int width, int height);
     int m_rotation;
-    short m_red;
-    short m_green;
-    short m_blue;
+    Color m_color;
     char m_rep; // the character representing this piece in the board grid
     int m_x; // x pos on the board, 0 being far left
     int m_y; // y pos on the board, 0 being top of the board
