@@ -11,6 +11,9 @@
 
 #include <stdio.h>
 #include <mutex>
+#include <map>
+
+class Color;
 
 class CursesUtil {
 public:
@@ -23,10 +26,14 @@ private:
 public:
     virtual ~CursesUtil();
     int getChar();
+    void draw(int x, int y, char ch, const Color &c);
 
 private:
     std::mutex m_keyboardMutex;
     std::mutex m_screenMutex;
+    typedef std::map<int,short> ColorMap;
+    ColorMap m_colorMap;
+    short m_colorIdx;
 };
 
 #endif /* defined(__tetris__Curses__) */

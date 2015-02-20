@@ -24,6 +24,11 @@ Tetris::~Tetris() {
 }
 
 Tetris::Tetris(std::shared_ptr<TetrisDisplay> display) : m_display(display), m_isRunning(true), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(2000), m_shuffler(std::random_device()()) {
+    for (int x = 0; x < m_boardWidth; x++) {
+        for (int y = 0; y < m_boardHeight; y++) {
+            m_board[x][y] = ' ';
+        }
+    }
     takeNextPiece();
 };
 
@@ -51,7 +56,8 @@ void Tetris::fillPieceBag() {
 
 void Tetris::run() {
     while(m_isRunning.load()) {
-        struct timespec sleepTime = {0,m_dropSpeed * 1000000};
+        long sleep_time = m_dropSpeed * 1000000;
+        struct timespec sleepTime = {sleep_time / 1000000000,sleep_time % 1000000000};
         nanosleep(&sleepTime, NULL);
         moveDown();
     }
@@ -68,7 +74,7 @@ void Tetris::cement() {
     // check to see if our piece will hit another piece
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
-            if (*m_currentMask+x+(y*width) != ' ') {
+            if (m_currentMask[x+(y*width)] != ' ') {
                 m_board[m_currentPiece->getX() + x][m_currentPiece->getY() + y] = m_currentPiece->getRep();
             }
         }
@@ -110,6 +116,7 @@ void Tetris::drop() {
 
 void Tetris::rotate() {
     m_currentPiece->rotateRight();
+    strcpy(m_currentMask, "      ");
     m_currentPiece->getMask(m_currentMask);
     m_shadowY = calculateDropPosition();
     draw();

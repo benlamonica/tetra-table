@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Benjamin Alan La Monica. All rights reserved.
 //
 
+#include <syslog.h>
 #include <map>
 #include "TetrisDisplay.hpp"
 #include "pieces/TetrisPiece.hpp"
@@ -18,13 +19,29 @@
 #include "pieces/Z.hpp"
 
 void TetrisDisplay::drawBoard(char board[10][20], TetrisPiece::Ptr currentPiece, int shadowY) {
-    char mask[6];
+    char mask[7] = "      ";
+    
     currentPiece->getMask(mask);
-    
-    
+    syslog(LOG_WARNING, "drawing piece: %c with color %x at (%d,%d)", currentPiece->getRep(), currentPiece->getColor().key(), currentPiece->getX(), currentPiece->getY());
+    for (int x = 0; x < 10; x++) {
+        for (int y = 0; y < 20; y++) {
+            int maskPos = (x - currentPiece->getX())+((y - currentPiece->getY())*currentPiece->getWidth());
+            if (x >= currentPiece->getX() && x < (currentPiece->getX()+currentPiece->getWidth())) {
+                if (y >= currentPiece->getY() && y < (currentPiece->getY()+currentPiece->getHeight()) && mask[maskPos] != ' ') {
+                    drawPoint(x, y, currentPiece->getRep(), currentPiece->getColor());
+                } else if (y >= shadowY && y < shadowY+currentPiece->getHeight()) {
+//                    drawPoint(x, y, '.', getColor('.'));
+                }else {
+                    drawPoint(x, y, board[x][y], getColor(board[x][y]));
+                }
+            } else {
+                drawPoint(x, y, board[x][y], getColor(board[x][y]));
+            }
+        }
+    }
 }
 
-const Color& getColor(char pieceType) {
+const Color& TetrisDisplay::getColor(char pieceType) {
     typedef std::map<char, std::shared_ptr<Color> > PieceMap;
     static PieceMap colorMap = {
         {'L', std::make_shared<Color>(L().getColor())},

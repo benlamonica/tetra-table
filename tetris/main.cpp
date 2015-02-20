@@ -10,10 +10,15 @@
 #include <stdlib.h>
 #include "Tetris.hpp"
 #include "KeyboardTetrisInput.hpp"
+#include "TerminalTetrisDisplay.hpp"
+#include <syslog.h>
+
 
 int main(int argc, const char * argv[]) {
-    putenv((char *)"TERM=xterm-256color");
-    std::shared_ptr<TetrisDisplay> display;
+//    fclose(stderr);
+//    putenv((char *)"TERM=xterm-256color");
+    syslog(LOG_INFO, "starting tetris...");
+    std::shared_ptr<TetrisDisplay> display = std::make_shared<TerminalTetrisDisplay>();;
     Tetris game(display);
     KeyboardTetrisInput input(&game);
     input.run();

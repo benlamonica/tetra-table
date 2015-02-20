@@ -11,13 +11,14 @@
 
 #include <string>
 #include <memory>
-
+#include <syslog.h>
 class Color {
 public:
-    Color(short red, short green, short blue) : r(red), g(green), b(blue) { }
-    short r;
-    short g;
-    short b;
+    Color(uint8_t red, uint8_t green, uint8_t blue) : r(red), g(green), b(blue) { }
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
+    int key() const { return ((r << 16) | (g << 8) | b); }
 };
 
 class TetrisPiece {
