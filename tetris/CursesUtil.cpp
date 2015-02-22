@@ -11,6 +11,13 @@
 #include "CursesUtil.hpp"
 #include <curses.h>
 #include "TetrisPiece.hpp"
+#include "J.hpp"
+#include "L.hpp"
+#include "I.hpp"
+#include "O.hpp"
+#include "S.hpp"
+#include "T.hpp"
+#include "Z.hpp"
 #include <utility>
 #include <syslog.h>
 
@@ -19,8 +26,26 @@ CursesUtil::CursesUtil() : m_colorIdx(0) {
     start_color();
     cbreak();
     keypad(stdscr, TRUE);
-    nodelay(stdscr, true);
+    nodelay(stdscr, TRUE);
     curs_set(0);
+    m_colorMap.insert(std::make_pair(0,0));
+    init_pair(0,0,0);
+    m_colorMap.insert(std::make_pair(J().getColor().key(), 20));
+    init_pair(20,20,20);
+    m_colorMap.insert(std::make_pair(L().getColor().key(), 208));
+    init_pair(208,208,208);
+    m_colorMap.insert(std::make_pair(I().getColor().key(), 14));
+    init_pair(14,14,14);
+    m_colorMap.insert(std::make_pair(O().getColor().key(), 228));
+    init_pair(228,228,228);
+    m_colorMap.insert(std::make_pair(S().getColor().key(), 83));
+    init_pair(83,83,83);
+    m_colorMap.insert(std::make_pair(T().getColor().key(), 93));
+    init_pair(93,93,93);
+    m_colorMap.insert(std::make_pair(Z().getColor().key(), 9));
+    init_pair(9,9,9);
+    m_colorMap.insert(std::make_pair(Color(5,5,5).key(), 236));
+    init_pair(236,236,236);
 }
 
 CursesUtil::~CursesUtil() {
@@ -37,16 +62,13 @@ void CursesUtil::draw(int x, int y, char ch, const Color &c) {
     ColorMap::iterator it = m_colorMap.find(c.key());
     short colorIdx = m_colorIdx;
     if (it == m_colorMap.end()) {
-        syslog(LOG_WARNING, "adding color[%d] %x to color map", colorIdx, c.key());
-        init_color(colorIdx, c.r, c.g, c.b);
-        init_pair(colorIdx, colorIdx, COLOR_BLACK);
-        m_colorIdx++;
         m_colorMap.insert(std::make_pair(c.key(), colorIdx));
     } else {
         colorIdx = it->second;
     }
-    COLOR_PAIR(colorIdx);
-    mvaddch(y, x, ch);//(char)0x2588
+    attron(COLOR_PAIR(colorIdx));
+    mvaddch(y, x, ' ');//(char)0x2588
+    attroff(COLOR_PAIR(colorIdx));
 }
 
 

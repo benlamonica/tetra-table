@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Benjamin Alan La Monica. All rights reserved.
 //
 
-#include <syslog.h>
 #include <map>
 #include "TetrisDisplay.hpp"
 #include "pieces/TetrisPiece.hpp"
@@ -20,17 +19,16 @@
 
 void TetrisDisplay::drawBoard(char board[10][20], TetrisPiece::Ptr currentPiece, int shadowY) {
     char mask[7] = "      ";
-    
     currentPiece->getMask(mask);
-    syslog(LOG_WARNING, "drawing piece: %c with color %x at (%d,%d)", currentPiece->getRep(), currentPiece->getColor().key(), currentPiece->getX(), currentPiece->getY());
     for (int x = 0; x < 10; x++) {
         for (int y = 0; y < 20; y++) {
             int maskPos = (x - currentPiece->getX())+((y - currentPiece->getY())*currentPiece->getWidth());
+            int shadowMaskPos = (x - currentPiece->getX())+((y - shadowY)*currentPiece->getWidth());
             if (x >= currentPiece->getX() && x < (currentPiece->getX()+currentPiece->getWidth())) {
                 if (y >= currentPiece->getY() && y < (currentPiece->getY()+currentPiece->getHeight()) && mask[maskPos] != ' ') {
                     drawPoint(x, y, currentPiece->getRep(), currentPiece->getColor());
-                } else if (y >= shadowY && y < shadowY+currentPiece->getHeight()) {
-//                    drawPoint(x, y, '.', getColor('.'));
+                } else if ((y >= shadowY) && (y < shadowY+currentPiece->getHeight()) && mask[shadowMaskPos] != ' ') {
+                    drawPoint(x, y, '.', getColor('.'));
                 }else {
                     drawPoint(x, y, board[x][y], getColor(board[x][y]));
                 }
@@ -51,7 +49,8 @@ const Color& TetrisDisplay::getColor(char pieceType) {
         {'S', std::make_shared<Color>(S().getColor())},
         {'T', std::make_shared<Color>(T().getColor())},
         {'Z', std::make_shared<Color>(Z().getColor())},
-        {'.', std::make_shared<Color>(5,5,5)} // color of the shadow piece
+        {'.', std::make_shared<Color>(5,5,5)}, // color of the shadow piece
+        {' ', std::make_shared<Color>(0,0,0)} // color of the backdrop
     };
     
     PieceMap::const_iterator it = colorMap.find(pieceType);

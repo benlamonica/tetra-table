@@ -28,7 +28,7 @@ Z::~Z() {
 void Z::getMask(char *mask) {
     if (m_rotation == 0 || m_rotation == 180) {
         strcpy(mask, "ZZ  ZZ");
-    } else if (m_rotation == 90 || m_rotation == 279) {
+    } else if (m_rotation == 90 || m_rotation == 270) {
         strcpy(mask, " ZZZZ ");
     }
 }

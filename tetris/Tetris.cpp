@@ -29,6 +29,7 @@ Tetris::Tetris(std::shared_ptr<TetrisDisplay> display) : m_display(display), m_i
             m_board[x][y] = ' ';
         }
     }
+    
     takeNextPiece();
 };
 
@@ -37,6 +38,9 @@ void Tetris::takeNextPiece() {
     m_currentPiece = *m_pieces.begin();
     m_pieces.pop_front();
     m_currentPiece->setLocation(4, 0);
+    strcpy(m_currentMask, "      ");
+    m_currentPiece->getMask(m_currentMask);
+    m_shadowY = calculateDropPosition();
     draw();
 }
 
@@ -132,14 +136,14 @@ bool Tetris::collisionAt(TetrisPiece::Ptr piece, int pieceX, int pieceY) {
     int width = piece->getWidth();
     
     // check to see if our piece is at the bottom of the board
-    if ((piece->getHeight() + pieceY) > m_boardHeight) {
+    if ((height + pieceY) > m_boardHeight) {
         return true;
     }
     
     // check to see if our piece will hit another piece
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
-            if (m_board[pieceX + x][pieceY + y] != ' ' && (*m_currentMask+x+(y*width) != ' ')) {
+            if (m_board[pieceX + x][pieceY + y] != ' ' && (m_currentMask[x+(y*width)] != ' ')) {
                 // found a collision
                 return true;
             }
@@ -151,14 +155,9 @@ bool Tetris::collisionAt(TetrisPiece::Ptr piece, int pieceX, int pieceY) {
 
 // calculates where on the y axis the shadow should start
 int Tetris::calculateDropPosition() {
-    int height = m_currentPiece->getHeight();
     int shadowY = 0; // start at the top
-    while (shadowY <= (m_boardHeight - height)) {
-        if (collisionAt(m_currentPiece, m_currentPiece->getX(), shadowY)) {
-            shadowY--;
-            break;
-        }
+    while (!collisionAt(m_currentPiece, m_currentPiece->getX(), shadowY)) {
         shadowY++; // haven't found a collision yet, move the check down a line
     }
-    return shadowY;
+    return shadowY - 1;
 }

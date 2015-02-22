@@ -16,7 +16,7 @@
 
 int main(int argc, const char * argv[]) {
 //    fclose(stderr);
-//    putenv((char *)"TERM=xterm-256color");
+    putenv((char *)"TERM=xterm-256color");
     syslog(LOG_INFO, "starting tetris...");
     std::shared_ptr<TetrisDisplay> display = std::make_shared<TerminalTetrisDisplay>();;
     Tetris game(display);

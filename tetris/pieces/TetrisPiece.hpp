@@ -11,7 +11,6 @@
 
 #include <string>
 #include <memory>
-#include <syslog.h>
 class Color {
 public:
     Color(uint8_t red, uint8_t green, uint8_t blue) : r(red), g(green), b(blue) { }
