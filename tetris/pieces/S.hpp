@@ -16,7 +16,6 @@ class S : public TetrisPiece {
 public:
     S();
     virtual ~S();
-    virtual void getMask(char *mask) override;
   
 private:
     typedef TetrisPiece super;

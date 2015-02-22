@@ -9,10 +9,9 @@
 #include "TetrisPiece.hpp"
 
 TetrisPiece::~TetrisPiece() {
-    
 }
 
-TetrisPiece::TetrisPiece(char rep, short red, short green, short blue, int width, int height) : m_rotation(0), m_color(red, green, blue), m_rep(rep), m_width(width), m_height(height), m_x(4), m_y(0) {
+TetrisPiece::TetrisPiece(std::vector<std::string> masks, char rep, short red, short green, short blue, int width, int height) : m_rotation(0), m_masks(masks), m_color(red, green, blue), m_rep(rep), m_width(width), m_height(height), m_x(4), m_y(0) {
     
 }
 
@@ -72,6 +71,10 @@ void TetrisPiece::moveRight() {
         m_x++;
     }
     
+}
+
+const std::string& TetrisPiece::getMask() const {
+    return m_masks[m_rotation/90];
 }
 
 void TetrisPiece::moveDown() {

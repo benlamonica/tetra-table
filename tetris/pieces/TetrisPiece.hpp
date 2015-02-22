@@ -10,6 +10,7 @@
 #define tetris_TetrisPiece_hpp
 
 #include <string>
+#include <vector>
 #include <memory>
 class Color {
 public:
@@ -26,7 +27,7 @@ public:
     virtual ~TetrisPiece();
     void rotateLeft();
     void rotateRight();
-    virtual void getMask(char *mask) = 0;
+    const std::string& getMask() const;
     const Color& getColor() const;
     char getRep() const;
     int getX() const;
@@ -38,8 +39,9 @@ public:
     int getHeight() const;
     void setLocation(int x, int y);
 protected:
-    TetrisPiece(char rep, short m_red, short m_green, short m_blue, int width, int height);
+    TetrisPiece(std::vector<std::string> masks, char rep, short m_red, short m_green, short m_blue, int width, int height);
     int m_rotation;
+    std::vector<std::string> m_masks;
     Color m_color;
     char m_rep; // the character representing this piece in the board grid
     int m_x; // x pos on the board, 0 being far left

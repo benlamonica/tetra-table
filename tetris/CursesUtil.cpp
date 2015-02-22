@@ -28,6 +28,8 @@ CursesUtil::CursesUtil() : m_colorIdx(0) {
     keypad(stdscr, TRUE);
     nodelay(stdscr, TRUE);
     curs_set(0);
+    
+    // since xterm-256color doesn't actually support remapping of colors, just map the ones closest to what we want
     m_colorMap.insert(std::make_pair(0,0));
     init_pair(0,0,0);
     m_colorMap.insert(std::make_pair(J().getColor().key(), 20));
@@ -46,6 +48,7 @@ CursesUtil::CursesUtil() : m_colorIdx(0) {
     init_pair(9,9,9);
     m_colorMap.insert(std::make_pair(Color(5,5,5).key(), 236));
     init_pair(236,236,236);
+    init_pair(13,13,13); // the unmapped color
 }
 
 CursesUtil::~CursesUtil() {
@@ -62,7 +65,7 @@ void CursesUtil::draw(int x, int y, char ch, const Color &c) {
     ColorMap::iterator it = m_colorMap.find(c.key());
     short colorIdx = m_colorIdx;
     if (it == m_colorMap.end()) {
-        m_colorMap.insert(std::make_pair(c.key(), colorIdx));
+        colorIdx = 13; // no mapping, make it pink so that it stands out
     } else {
         colorIdx = it->second;
     }

@@ -26,22 +26,10 @@
 
 */
 
-L::L() : super('L', 0xF1, 0xA1, 0, 2, 3){
+L::L() : super(std::vector<std::string>({"  LLLL", "L L LL", "LLLL  ", "LL L L"}), 'L', 0xF1, 0xA1, 0, 3, 2){
     
 }
 
 L::~L() {
     
-}
-
-void L::getMask(char *mask) {
-    if (m_rotation == 0) {
-        strcpy(mask, "L L LL");
-    } else if (m_rotation == 90) {
-        strcpy(mask, "LLLL  ");
-    } else if (m_rotation == 180) {
-        strcpy(mask, "LL L L");
-    } else if (m_rotation == 270) {
-        strcpy(mask, "  LLLL");
-    }
 }

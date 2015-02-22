@@ -17,18 +17,10 @@
  ██
 */
 
-I::I() : super('I', 0x3A, 0xF0, 0xF1, 1, 4){
+I::I() : super(std::vector<std::string>({"IIII", "IIII", "IIII", "IIII"}), 'I', 0x3A, 0xF0, 0xF1, 4, 1){
     
 }
 
 I::~I() {
     
-}
-
-void I::getMask(char *mask) {
-    if (m_rotation == 0 || m_rotation == 180) {
-        strcpy(mask, "||||");
-    } else if (m_rotation == 90 || m_rotation == 270) {
-        strcpy(mask, "||||");
-    }
 }

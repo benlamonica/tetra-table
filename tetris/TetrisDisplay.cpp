@@ -18,8 +18,7 @@
 #include "pieces/Z.hpp"
 
 void TetrisDisplay::drawBoard(char board[10][20], TetrisPiece::Ptr currentPiece, int shadowY) {
-    char mask[7] = "      ";
-    currentPiece->getMask(mask);
+    std::string mask = currentPiece->getMask();
     for (int x = 0; x < 10; x++) {
         for (int y = 0; y < 20; y++) {
             int maskPos = (x - currentPiece->getX())+((y - currentPiece->getY())*currentPiece->getWidth());

@@ -27,22 +27,10 @@
 */
 
 
-T::T() : super('T', 0xA1, 0, 0xF1, 3, 2){
+T::T() : super(std::vector<std::string>({" T TTT", "T TTT ", "TTT T ", " TTT T"}), 'T', 0xA1, 0, 0xF1, 3, 2){
     
 }
 
 T::~T() {
     
-}
-
-void T::getMask(char *mask) {
-    if (m_rotation == 0) {
-        strcpy(mask, " T TTT");
-    } else if (m_rotation == 90) {
-        strcpy(mask, "T TTT ");
-    } else if (m_rotation == 180) {
-        strcpy(mask, "TTT T ");
-    } else if (m_rotation == 270) {
-        strcpy(mask, " TTT T");
-    }
 }

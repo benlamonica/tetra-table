@@ -38,8 +38,7 @@ void Tetris::takeNextPiece() {
     m_currentPiece = *m_pieces.begin();
     m_pieces.pop_front();
     m_currentPiece->setLocation(4, 0);
-    strcpy(m_currentMask, "      ");
-    m_currentPiece->getMask(m_currentMask);
+    m_currentMask = m_currentPiece->getMask();
     m_shadowY = calculateDropPosition();
     draw();
 }
@@ -78,7 +77,7 @@ void Tetris::cement() {
     // check to see if our piece will hit another piece
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
-            if (m_currentMask[x+(y*width)] != ' ') {
+            if (m_currentMask[x+(y*m_currentPiece->getWidth())] != ' ') {
                 m_board[m_currentPiece->getX() + x][m_currentPiece->getY() + y] = m_currentPiece->getRep();
             }
         }
@@ -120,8 +119,7 @@ void Tetris::drop() {
 
 void Tetris::rotate() {
     m_currentPiece->rotateRight();
-    strcpy(m_currentMask, "      ");
-    m_currentPiece->getMask(m_currentMask);
+    m_currentMask = m_currentPiece->getMask();
     m_shadowY = calculateDropPosition();
     draw();
 }
@@ -143,7 +141,7 @@ bool Tetris::collisionAt(TetrisPiece::Ptr piece, int pieceX, int pieceY) {
     // check to see if our piece will hit another piece
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
-            if (m_board[pieceX + x][pieceY + y] != ' ' && (m_currentMask[x+(y*width)] != ' ')) {
+            if (m_board[pieceX + x][pieceY + y] != ' ' && (m_currentMask[x+(y*m_currentPiece->getWidth())] != ' ')) {
                 // found a collision
                 return true;
             }

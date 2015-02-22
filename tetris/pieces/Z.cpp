@@ -17,18 +17,10 @@
  ██
 */
 
-Z::Z() : super('Z', 0xF1, 0x10, 0, 3, 2) {
+Z::Z() : super(std::vector<std::string>({"ZZ  ZZ"," ZZZZ ","ZZ  ZZ"," ZZZZ "}), 'Z', 0xF1, 0x10, 0, 3, 2) {
     
 }
 
 Z::~Z() {
     
-}
-
-void Z::getMask(char *mask) {
-    if (m_rotation == 0 || m_rotation == 180) {
-        strcpy(mask, "ZZ  ZZ");
-    } else if (m_rotation == 90 || m_rotation == 270) {
-        strcpy(mask, " ZZZZ ");
-    }
 }

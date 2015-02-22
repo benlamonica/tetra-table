@@ -26,22 +26,10 @@
  
  */
 
-J::J() : super('J', 0, 0, 0xF0, 2, 3) {
+J::J() : super(std::vector<std::string>({"J  JJJ", "JJ J J ", "JJJ  J", " J JJJ"}), 'J', 0, 0, 0xF0, 3, 2) {
     
 }
 
 J::~J() {
     
-}
-
-void J::getMask(char *mask) {
-    if (m_rotation == 0) {
-        strcpy(mask, " J JJJ");
-    } else if (m_rotation == 90) {
-        strcpy(mask, "J  JJJ");
-    } else if (m_rotation == 180) {
-        strcpy(mask, "JJJ J ");
-    } else if (m_rotation == 270) {
-        strcpy(mask, "JJJ  J");
-    }
 }

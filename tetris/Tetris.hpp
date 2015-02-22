@@ -41,7 +41,7 @@ private:
     std::atomic<bool> m_isRunning;
     char m_board[10][20];
     TetrisPiece::Ptr m_currentPiece;
-    char m_currentMask[7];
+    std::string m_currentMask;
     int m_shadowY;
     int m_boardHeight;
     int m_score;
