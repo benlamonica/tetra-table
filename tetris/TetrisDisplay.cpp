@@ -16,11 +16,12 @@
 #include "pieces/S.hpp"
 #include "pieces/T.hpp"
 #include "pieces/Z.hpp"
+#include <syslog.h>
 
-void TetrisDisplay::drawBoard(char board[10][20], TetrisPiece::Ptr currentPiece, int shadowY) {
+void TetrisDisplay::drawBoard(const std::vector<std::string> &board, TetrisPiece::Ptr currentPiece, int shadowY) {
     std::string mask = currentPiece->getMask();
-    for (int x = 0; x < 10; x++) {
-        for (int y = 0; y < 20; y++) {
+    for (int x = 0; x < board.size(); x++) {
+        for (int y = 0; y < board[x].size(); y++) {
             int maskPos = (x - currentPiece->getX())+((y - currentPiece->getY())*currentPiece->getWidth());
             int shadowMaskPos = (x - currentPiece->getX())+((y - shadowY)*currentPiece->getWidth());
             if (x >= currentPiece->getX() && x < (currentPiece->getX()+currentPiece->getWidth())) {

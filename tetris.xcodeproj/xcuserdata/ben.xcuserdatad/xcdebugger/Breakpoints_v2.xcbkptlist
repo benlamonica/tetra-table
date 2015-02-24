@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
             endingLineNumber = "23"
-            landmarkName = "TetrisDisplay::drawBoard(char board[10][20], TetrisPiece::Ptr currentPiece, int shadowY)"
+            landmarkName = "TetrisDisplay::drawBoard(const std::vector&lt;std::string&gt; &amp;board, TetrisPiece::Ptr currentPiece, int shadowY)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
             endingLineNumber = "30"
-            landmarkName = "TetrisDisplay::drawBoard(char board[10][20], TetrisPiece::Ptr currentPiece, int shadowY)"
+            landmarkName = "TetrisDisplay::drawBoard(const std::vector&lt;std::string&gt; &amp;board, TetrisPiece::Ptr currentPiece, int shadowY)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

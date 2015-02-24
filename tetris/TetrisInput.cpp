@@ -45,7 +45,7 @@ void TetrisInput::dispatchMoves() {
                 m_game->moveRight();
                 break;
             case DROP:
-                m_game->drop();
+                m_game->drop(true);
                 break;
             case ROTATE:
                 m_game->rotate();

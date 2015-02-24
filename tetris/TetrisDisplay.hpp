@@ -14,7 +14,7 @@
 
 class TetrisDisplay {
 public:
-    void drawBoard(char board[10][20], TetrisPiece::Ptr currentPiece, int shadowY);
+    void drawBoard(const std::vector<std::string> &board, TetrisPiece::Ptr currentPiece, int shadowY);
 protected:
     virtual void drawPoint(int x, int y, char ch, const Color& color) = 0;
     const Color& getColor(char pieceType);
