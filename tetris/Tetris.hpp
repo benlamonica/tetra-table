@@ -10,13 +10,15 @@
 #define __tetris__Tetris__
 
 #include <stdio.h>
-#include "TetrisPiece.hpp"
 #include <deque>
 #include <memory>
 #include <random>
 #include <chrono>
+#include "TetrisPiece.hpp"
+#include "TetrisMove.hpp"
 
 class TetrisDisplay;
+
 
 class Tetris {
 public:
@@ -38,10 +40,13 @@ private:
     void fillPieceBag();
     void takeNextPiece();
     void checkForLock();
+    void removeLines(int y);
     std::deque<TetrisPiece::Ptr> m_pieces;
     std::shared_ptr<TetrisDisplay> m_display;
     std::atomic<bool> m_isRunning;
-    std::vector<std::string> m_board;
+    void logBoard();
+    typedef std::deque<std::string> BoardType;
+    BoardType m_board;
     TetrisPiece::Ptr m_currentPiece;
     std::string m_currentMask;
     int m_shadowY;
@@ -54,6 +59,8 @@ private:
     std::atomic<int64_t> m_lockTime;
     std::atomic<bool> m_aboutToLock;
     std::atomic<int64_t> m_dropTime;
+    std::mutex m_eventMutex;
+    std::deque<tetris::Move> m_moveBuf;
 };
 
 #endif /* defined(__tetris__Tetris__) */

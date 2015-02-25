@@ -18,22 +18,26 @@
 #include "pieces/Z.hpp"
 #include <syslog.h>
 
-void TetrisDisplay::drawBoard(const std::vector<std::string> &board, TetrisPiece::Ptr currentPiece, int shadowY) {
-    std::string mask = currentPiece->getMask();
-    for (int x = 0; x < board.size(); x++) {
-        for (int y = 0; y < board[x].size(); y++) {
-            int maskPos = (x - currentPiece->getX())+((y - currentPiece->getY())*currentPiece->getWidth());
-            int shadowMaskPos = (x - currentPiece->getX())+((y - shadowY)*currentPiece->getWidth());
-            if (x >= currentPiece->getX() && x < (currentPiece->getX()+currentPiece->getWidth())) {
+void TetrisDisplay::drawBoard(const BoardType &board, TetrisPiece::Ptr currentPiece, int shadowY) {
+    std::string mask = currentPiece ? currentPiece->getMask() : "";
+    for (int y = 0; y < board.size(); y++) {
+        for (int x = 0; x < board[y].size(); x++) {
+            int maskPos = 0;
+            int shadowMaskPos = 0;
+            if (currentPiece) {
+                maskPos = (x - currentPiece->getX())+((y - currentPiece->getY())*currentPiece->getWidth());
+                shadowMaskPos = (x - currentPiece->getX())+((y - shadowY)*currentPiece->getWidth());
+            }
+            if (currentPiece && x >= currentPiece->getX() && x < (currentPiece->getX()+currentPiece->getWidth())) {
                 if (y >= currentPiece->getY() && y < (currentPiece->getY()+currentPiece->getHeight()) && mask[maskPos] != ' ') {
                     drawPoint(x, y, currentPiece->getRep(), currentPiece->getColor());
                 } else if ((y >= shadowY) && (y < shadowY+currentPiece->getHeight()) && mask[shadowMaskPos] != ' ') {
                     drawPoint(x, y, '.', getColor('.'));
                 }else {
-                    drawPoint(x, y, board[x][y], getColor(board[x][y]));
+                    drawPoint(x, y, board[y][x], getColor(board[y][x]));
                 }
             } else {
-                drawPoint(x, y, board[x][y], getColor(board[x][y]));
+                drawPoint(x, y, board[y][x], getColor(board[y][x]));
             }
         }
     }

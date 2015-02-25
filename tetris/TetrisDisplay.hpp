@@ -9,12 +9,15 @@
 #ifndef tetris_TetrisDisplay_hpp
 #define tetris_TetrisDisplay_hpp
 
+#include <deque>
 #include "TetrisPiece.hpp"
 
+typedef std::deque<std::string> BoardType;
 
 class TetrisDisplay {
 public:
-    void drawBoard(const std::vector<std::string> &board, TetrisPiece::Ptr currentPiece, int shadowY);
+    void drawBoard(const BoardType &board, TetrisPiece::Ptr currentPiece, int shadowY);
+    virtual void flush() = 0;
 protected:
     virtual void drawPoint(int x, int y, char ch, const Color& color) = 0;
     const Color& getColor(char pieceType);

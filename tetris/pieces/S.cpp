@@ -18,7 +18,7 @@
  
 */
 
-S::S() : super(std::vector<std::string>({" SSSS ", "S SS S", " SSSS ", "S SS S"}), 'S', 0x3B, 0xF1, 0, 3, 2) {
+S::S() : super(std::vector<std::string>({" SSSS    ", " S  SS  S", "    SSSS ", "S  SS  S "}), 'S', 0x3B, 0xF1, 0, 3, 3) {
     
 }
 

@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
+#include <map>
 #include "pieces/J.hpp"
 #include "pieces/L.hpp"
 #include "pieces/I.hpp"
@@ -28,8 +29,8 @@ Tetris::~Tetris() {
 Tetris::Tetris(std::shared_ptr<TetrisDisplay> display) : m_display(display), m_isRunning(true), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(2000 * 1000000), m_lockSpeed(1000 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false) {
     
     m_board.clear();
-    for (int i = 0; i < m_boardWidth; i++) {
-        m_board.push_back(std::string(m_boardHeight, ' '));
+    for (int i = 0; i < m_boardHeight; i++) {
+        m_board.push_back(std::string(m_boardWidth, ' '));
     }
     
     takeNextPiece();
@@ -39,6 +40,11 @@ namespace {
     int64_t now() {
         using namespace std::chrono;
         return duration_cast<nanoseconds>(high_resolution_clock::now().time_since_epoch()).count();
+    }
+    
+    void millisleep(int millis) {
+        struct timespec sleepTime = {(millis / 1000), (millis % 1000) * 1000000};
+        nanosleep(&sleepTime, NULL);
     }
 }
 
@@ -71,9 +77,18 @@ void Tetris::fillPieceBag() {
 
 void Tetris::run() {
     while(m_isRunning.load()) {
+        int64_t lockInNs = 0;
+        int64_t dropInNs = 0;
+        {
+//            std::lock_guard<std::mutex> guard(m_eventMutex);
+            lockInNs = m_lockTime.load();
+            dropInNs = m_dropTime.load();
+        } // unlock the mutex
+        if (dropInNs == -1) {
+            millisleep(50);
+            continue;
+        }
         int64_t nowInNs = now();
-        int64_t lockInNs = m_lockTime.load();
-        int64_t dropInNs = m_dropTime.load();
         if (lockInNs <= nowInNs || (dropInNs <= nowInNs && m_aboutToLock.load())) {
             lockPiece();
         } else if (dropInNs <= nowInNs) {
@@ -90,10 +105,15 @@ void Tetris::run() {
 
 void Tetris::draw() {
     m_display->drawBoard(m_board, m_currentPiece, m_shadowY);
+    m_display->flush();
 }
 
 void Tetris::lockPiece() {
+//    // block the event loop from running while we manipulate the playing field
+//    std::lock_guard<std::mutex> guard(m_eventMutex);
+
     m_lockTime.store(INT64_MAX);
+    m_dropTime.store(-1);
     m_aboutToLock.store(false);
     int height = m_currentPiece->getHeight();
     int width = m_currentPiece->getWidth();
@@ -101,11 +121,14 @@ void Tetris::lockPiece() {
     // check to see if our piece will hit another piece
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
-            if (m_currentMask[x+(y*m_currentPiece->getWidth())] != ' ') {
-                m_board[m_currentPiece->getX() + x][m_currentPiece->getY() + y] = m_currentPiece->getRep();
+            if (m_currentMask.at(x+(y*m_currentPiece->getWidth())) != ' ') {
+                m_board.at(m_currentPiece->getY() + y).at(m_currentPiece->getX() + x) = m_currentPiece->getRep();
             }
         }
     }
+    int y = m_currentPiece->getY();
+    m_currentPiece.reset(); // make this null, so that when we draw the screen for animations, it doesn't draw the piece again
+    removeLines(y);
     takeNextPiece();
 }
 
@@ -120,7 +143,7 @@ void Tetris::checkForLock() {
 }
 
 void Tetris::moveLeft() {
-    if (m_currentPiece->getX() > 0 && !collisionAt(m_currentPiece, m_currentPiece->getX()-1, m_currentPiece->getY())) {
+    if (!collisionAt(m_currentPiece, m_currentPiece->getX()-1, m_currentPiece->getY())) {
         m_currentPiece->moveLeft();
         m_shadowY = calculateDropPosition();
         checkForLock();
@@ -129,7 +152,7 @@ void Tetris::moveLeft() {
 }
 
 void Tetris::moveRight() {
-    if (((m_currentPiece->getX() + m_currentPiece->getWidth()) < m_boardWidth) && !collisionAt(m_currentPiece, m_currentPiece->getX()+1, m_currentPiece->getY())) {
+    if (!collisionAt(m_currentPiece, m_currentPiece->getX()+1, m_currentPiece->getY())) {
         m_currentPiece->moveRight();
         m_shadowY = calculateDropPosition();
         checkForLock();
@@ -167,8 +190,26 @@ void Tetris::drop(bool hard) {
 void Tetris::rotate() {
     m_currentPiece->rotateRight();
     m_currentMask = m_currentPiece->getMask();
-    m_shadowY = calculateDropPosition();
-    draw();
+
+    bool isRotateSuccessful = false;
+    int offsets[] = {0,1,2,-1,-2};
+    // if we can't rotate, see if we can nudge it to the right or left
+    for (int i = 0; i < 4; i++) {
+        if (!collisionAt(m_currentPiece, m_currentPiece->getX()+offsets[i], m_currentPiece->getY())) {
+            m_currentPiece->setLocation(m_currentPiece->getX()+offsets[i], m_currentPiece->getY());
+            isRotateSuccessful = true;
+            break;
+        }
+    }
+
+    if (isRotateSuccessful) {
+        m_shadowY = calculateDropPosition();
+        checkForLock();
+        draw();
+    } else {
+        m_currentPiece->rotateLeft();
+        m_currentMask = m_currentPiece->getMask();
+    }
 }
 
 void Tetris::quit() {
@@ -176,24 +217,75 @@ void Tetris::quit() {
     exit(1);
 }
 
+void Tetris::logBoard() {
+    std::string board;
+    for (int y = 0; y < m_boardHeight; y++) {
+        board.append(m_board[y]).append("\n");
+    }
+    
+    syslog(LOG_WARNING, "%s", board.c_str());
+}
+
+void Tetris::removeLines(int y) {
+    typedef std::map<int,std::string> LineMap;
+    LineMap lines;
+    // first, find the completed lines
+    while (y < m_boardHeight) {
+        int filledBlocks = 0;
+        for (int x = 0; x < m_boardWidth; x++) {
+            if (m_board[y][x] != ' ') {
+                filledBlocks++;
+            }
+        }
+        if (filledBlocks == m_boardWidth) {
+            lines.insert(std::make_pair(y,m_board[y]));
+        }
+        y++;
+    }
+    
+    if (!lines.empty()) {
+        // now animate them, as they are about to go away
+        for (int i = 0; i < 6; i++) {
+            for (LineMap::iterator lineIter = lines.begin(); lineIter != lines.end(); ++lineIter) {
+                BoardType::iterator boardIter = m_board.begin() + lineIter->first;
+                if (i % 2 == 0) {
+                    *boardIter = std::string(m_boardWidth, ' ');
+                } else {
+                    *boardIter = lineIter->second;
+                }
+            }
+            logBoard();
+            draw();
+            millisleep(75);
+        }
+        
+        // and then remove them
+        
+        for (LineMap::iterator lineIter = lines.begin(); lineIter != lines.end(); ++lineIter) {
+            BoardType::iterator boardIter = m_board.begin() + lineIter->first;
+            m_board.erase(boardIter);
+            m_board.push_front(std::string(m_boardWidth, ' '));
+        }
+    }
+    // add to the score
+}
+
+
 // check to see if we have a collision at a given spot
 bool Tetris::collisionAt(TetrisPiece::Ptr piece, int pieceX, int pieceY) {
     int height = piece->getHeight();
     int width = piece->getWidth();
     
-    // check to see if our piece is at the bottom of the board
-    if ((height + pieceY) > m_boardHeight) {
-        return true;
-    }
-    
     // check to see if our piece will hit another piece
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < height; y++) {
-            syslog(LOG_WARNING, "m_board[%d][%d] != '%c' %d", pieceX+x, pieceY+y, m_board[pieceX+x][pieceY+y], m_board[pieceX+x][pieceY+y] != ' ');
-            syslog(LOG_WARNING, "m_currentMask[%d] != '%c' %d", x+(y*m_currentPiece->getWidth()), m_currentMask[x+(y*m_currentPiece->getWidth())], m_currentMask[x+(y*m_currentPiece->getWidth())] != ' ');
-            if (m_board[pieceX + x][pieceY + y] != ' ' && (m_currentMask[x+(y*m_currentPiece->getWidth())] != ' ')) {
-                // found a collision
-                return true;
+            if (m_currentMask.at(x+(y*m_currentPiece->getWidth())) != ' ') {
+                if ((pieceX + x) < 0 || (pieceX + x) >= m_boardWidth) {
+                    return true;
+                }
+                if ((pieceY + y) >= m_boardHeight || m_board.at(pieceY + y).at(pieceX + x) != ' ') {
+                    return true;
+                }
             }
         }
     }

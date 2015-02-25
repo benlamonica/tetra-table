@@ -27,6 +27,7 @@ public:
     virtual ~CursesUtil();
     int getChar();
     void draw(int x, int y, char ch, const Color &c);
+    void flush();
 
 private:
     std::mutex m_keyboardMutex;

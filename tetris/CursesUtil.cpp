@@ -48,6 +48,9 @@ CursesUtil::CursesUtil() : m_colorIdx(0) {
     init_pair(9,9,9);
     m_colorMap.insert(std::make_pair(Color(5,5,5).key(), 236));
     init_pair(236,236,236);
+    m_colorMap.insert(std::make_pair(Color(0x30,0x30,0x30).key(), 244)); // border color
+    init_pair(244,244,244);
+    
     init_pair(13,13,13); // the unmapped color
 }
 
@@ -58,6 +61,11 @@ CursesUtil::~CursesUtil() {
 int CursesUtil::getChar() {
     std::lock_guard<std::mutex> guard(m_keyboardMutex);
     return getch();
+}
+
+void CursesUtil::flush() {
+    std::lock_guard<std::mutex> guard(m_screenMutex);
+    refresh();
 }
 
 void CursesUtil::draw(int x, int y, char ch, const Color &c) {

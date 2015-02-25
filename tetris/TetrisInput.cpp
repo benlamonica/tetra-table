@@ -33,7 +33,8 @@ void TetrisInput::stop() {
 void TetrisInput::dispatchMoves() {
 
     while (m_isRunning.load()) {
-        TetrisInput::Move move = getNextMove();
+        using namespace tetris;
+        Move move = getNextMove();
         switch(move) {
             case DOWN:
                 m_game->moveDown();

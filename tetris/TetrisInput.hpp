@@ -13,27 +13,18 @@
 #include <atomic>
 #include <memory>
 #include "Tetris.hpp"
+#include "TetrisMove.hpp"
 
 class TetrisInput {
 public:
     typedef std::shared_ptr<TetrisInput> Ptr;
-    
-    enum Move {
-        NONE,
-        LEFT,
-        RIGHT,
-        DOWN,
-        DROP,
-        ROTATE,
-        QUIT
-    };
     
     TetrisInput(Tetris *game);
     void run();
     void stop();
     virtual ~TetrisInput();
 protected:
-    virtual Move getNextMove() = 0;
+    virtual tetris::Move getNextMove() = 0;
 private:
     void dispatchMoves();
     Tetris *m_game;

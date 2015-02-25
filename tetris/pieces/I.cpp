@@ -17,7 +17,7 @@
  ██
 */
 
-I::I() : super(std::vector<std::string>({"IIII", "IIII", "IIII", "IIII"}), 'I', 0x3A, 0xF0, 0xF1, 4, 1){
+I::I() : super(std::vector<std::string>({"    IIII        ", "  I   I   I   I ", "        IIII    ", " I   I   I   I  "}), 'I', 0x3A, 0xF0, 0xF1, 4, 4){
     
 }
 

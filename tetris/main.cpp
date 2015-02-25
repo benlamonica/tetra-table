@@ -15,10 +15,13 @@
 
 
 int main(int argc, const char * argv[]) {
-//    fclose(stderr);
-    putenv((char *)"TERM=xterm-256color");
+//    fclose(stdin);
+//    fclose(stdout);
+//    stdin = fopen("/dev/ttyS000", "r");
+//    stdout = fopen("/dev/ttyS000", "w");
+//    putenv((char *)"TERM=xterm-256color");
     syslog(LOG_INFO, "starting tetris...");
-    std::shared_ptr<TetrisDisplay> display = std::make_shared<TerminalTetrisDisplay>();;
+    std::shared_ptr<TetrisDisplay> display = std::make_shared<TerminalTetrisDisplay>(20,20);;
     Tetris game(display);
     KeyboardTetrisInput input(&game);
     input.run();

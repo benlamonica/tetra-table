@@ -10,6 +10,7 @@
 #include "CursesUtil.hpp"
 #include <curses.h>
 #include <time.h>
+#include "TetrisMove.hpp"
 
 KeyboardTetrisInput::KeyboardTetrisInput(Tetris *game) : m_curses(CursesUtil::instance()), super(game) {
 
@@ -19,7 +20,8 @@ KeyboardTetrisInput::~KeyboardTetrisInput() {
     
 }
 
-TetrisInput::Move KeyboardTetrisInput::getNextMove() {
+tetris::Move KeyboardTetrisInput::getNextMove() {
+    using namespace tetris;
     int ch = m_curses.getChar();
     if (ch != -1) {
         switch(ch) {

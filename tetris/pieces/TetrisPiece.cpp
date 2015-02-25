@@ -61,20 +61,15 @@ int TetrisPiece::getY() const {
 }
 
 void TetrisPiece::moveLeft() {
-    if (m_x > 0) {
-        m_x--;
-    }
+    m_x--;
 }
 
 void TetrisPiece::moveRight() {
-    if ((m_x + getWidth()) < 10) {
-        m_x++;
-    }
-    
+    m_x++;
 }
 
 const std::string& TetrisPiece::getMask() const {
-    return m_masks[m_rotation/90];
+    return m_masks[(m_rotation/90) % m_masks.size()];
 }
 
 void TetrisPiece::moveDown() {

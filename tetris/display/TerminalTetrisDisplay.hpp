@@ -15,12 +15,15 @@
 
 class TerminalTetrisDisplay : public TetrisDisplay {
 public:
-    TerminalTetrisDisplay();
+    TerminalTetrisDisplay(int boardWidth, int boardHeight);
     virtual ~TerminalTetrisDisplay();
+    virtual void flush() override;
 protected:
     virtual void drawPoint(int x, int y, char ch, const Color& color) override;
 private:
     CursesUtil &m_curses;
+    int m_xOffset;
+    int m_yOffset;
 };
 
 #endif /* defined(__tetris__TerminalTetrisDisplay__) */

@@ -19,7 +19,7 @@ public:
     KeyboardTetrisInput(Tetris *game);
     virtual ~KeyboardTetrisInput();
 protected:
-    virtual Move getNextMove() override;
+    virtual tetris::Move getNextMove() override;
 private:
     CursesUtil& m_curses;
     typedef TetrisInput super;
