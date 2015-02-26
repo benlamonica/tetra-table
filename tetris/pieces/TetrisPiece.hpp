@@ -29,6 +29,7 @@ public:
     void rotateRight();
     const std::string& getMask() const;
     const Color& getColor() const;
+    const Color& getGrayColor() const;
     char getRep() const;
     int getX() const;
     int getY() const;
@@ -36,18 +37,17 @@ public:
     void moveLeft();
     void moveRight();
     int getWidth() const;
-    int getHeight() const;
     void setLocation(int x, int y);
 protected:
-    TetrisPiece(std::vector<std::string> masks, char rep, short m_red, short m_green, short m_blue, int width, int height);
+    TetrisPiece(std::vector<std::string> masks, char rep, const Color &color, const Color &grayColor, int width);
     int m_rotation;
     std::vector<std::string> m_masks;
     Color m_color;
+    Color m_grayColor;
     char m_rep; // the character representing this piece in the board grid
     int m_x; // x pos on the board, 0 being far left
     int m_y; // y pos on the board, 0 being top of the board
     int m_width;
-    int m_height;
 };
 
 #endif

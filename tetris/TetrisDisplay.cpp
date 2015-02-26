@@ -29,9 +29,9 @@ void TetrisDisplay::drawBoard(const BoardType &board, TetrisPiece::Ptr currentPi
                 shadowMaskPos = (x - currentPiece->getX())+((y - shadowY)*currentPiece->getWidth());
             }
             if (currentPiece && x >= currentPiece->getX() && x < (currentPiece->getX()+currentPiece->getWidth())) {
-                if (y >= currentPiece->getY() && y < (currentPiece->getY()+currentPiece->getHeight()) && mask[maskPos] != ' ') {
+                if (y >= currentPiece->getY() && y < (currentPiece->getY()+currentPiece->getWidth()) && mask[maskPos] != ' ') {
                     drawPoint(x, y, currentPiece->getRep(), currentPiece->getColor());
-                } else if ((y >= shadowY) && (y < shadowY+currentPiece->getHeight()) && mask[shadowMaskPos] != ' ') {
+                } else if ((y >= shadowY) && (y < shadowY+currentPiece->getWidth()) && mask[shadowMaskPos] != ' ') {
                     drawPoint(x, y, '.', getColor('.'));
                 }else {
                     drawPoint(x, y, board[y][x], getColor(board[y][x]));
@@ -53,6 +53,13 @@ const Color& TetrisDisplay::getColor(char pieceType) {
         {'S', std::make_shared<Color>(S().getColor())},
         {'T', std::make_shared<Color>(T().getColor())},
         {'Z', std::make_shared<Color>(Z().getColor())},
+        {'l', std::make_shared<Color>(L().getGrayColor())},
+        {'j', std::make_shared<Color>(J().getGrayColor())},
+        {'i', std::make_shared<Color>(I().getGrayColor())},
+        {'o', std::make_shared<Color>(O().getGrayColor())},
+        {'s', std::make_shared<Color>(S().getGrayColor())},
+        {'t', std::make_shared<Color>(T().getGrayColor())},
+        {'z', std::make_shared<Color>(Z().getGrayColor())},
         {'.', std::make_shared<Color>(5,5,5)}, // color of the shadow piece
         {' ', std::make_shared<Color>(0,0,0)} // color of the backdrop
     };

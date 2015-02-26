@@ -17,7 +17,7 @@
  ██
 */
 
-I::I() : super(std::vector<std::string>({"    IIII        ", "  I   I   I   I ", "        IIII    ", " I   I   I   I  "}), 'I', 0x3A, 0xF0, 0xF1, 4, 4){
+I::I() : super(std::vector<std::string>({"    IIII        ", "  I   I   I   I ", "        IIII    ", " I   I   I   I  "}), 'I', Color(0x3A, 0xF0, 0xF1), Color(0x62,0x62,0x62), 4){
     
 }
 

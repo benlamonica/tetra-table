@@ -13,7 +13,7 @@
  ████
 */
 
-O::O() : super(std::vector<std::string>({"OOOO"}), 'O', 0xF1, 0xF1, 0, 2, 2) {
+O::O() : super(std::vector<std::string>({"OOOO"}), 'O', Color(0xF1, 0xF1, 0), Color(0x76,0x76,0x76), 2) {
     
 }
 

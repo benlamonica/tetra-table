@@ -21,35 +21,41 @@
 #include <utility>
 #include <syslog.h>
 
+namespace {
+    void addColor(CursesUtil::ColorMap &map, const Color &color, int colorIdx) {
+        map.insert(std::make_pair(color.key(),colorIdx));
+        init_pair(colorIdx,colorIdx,colorIdx);
+    }
+}
+
 CursesUtil::CursesUtil() : m_colorIdx(0) {
     initscr();
     start_color();
     cbreak();
+    noecho();
     keypad(stdscr, TRUE);
     nodelay(stdscr, TRUE);
     curs_set(0);
     
     // since xterm-256color doesn't actually support remapping of colors, just map the ones closest to what we want
-    m_colorMap.insert(std::make_pair(0,0));
-    init_pair(0,0,0);
-    m_colorMap.insert(std::make_pair(J().getColor().key(), 20));
-    init_pair(20,20,20);
-    m_colorMap.insert(std::make_pair(L().getColor().key(), 208));
-    init_pair(208,208,208);
-    m_colorMap.insert(std::make_pair(I().getColor().key(), 14));
-    init_pair(14,14,14);
-    m_colorMap.insert(std::make_pair(O().getColor().key(), 228));
-    init_pair(228,228,228);
-    m_colorMap.insert(std::make_pair(S().getColor().key(), 83));
-    init_pair(83,83,83);
-    m_colorMap.insert(std::make_pair(T().getColor().key(), 93));
-    init_pair(93,93,93);
-    m_colorMap.insert(std::make_pair(Z().getColor().key(), 9));
-    init_pair(9,9,9);
-    m_colorMap.insert(std::make_pair(Color(5,5,5).key(), 236));
-    init_pair(236,236,236);
-    m_colorMap.insert(std::make_pair(Color(0x30,0x30,0x30).key(), 244)); // border color
-    init_pair(244,244,244);
+    addColor(m_colorMap, Color(0,0,0), 0);
+    addColor(m_colorMap, J().getColor(), 20);
+    addColor(m_colorMap, L().getColor(), 208);
+    addColor(m_colorMap, I().getColor(), 14);
+    addColor(m_colorMap, O().getColor(), 228);
+    addColor(m_colorMap, S().getColor(), 83);
+    addColor(m_colorMap, T().getColor(), 93);
+    addColor(m_colorMap, Z().getColor(), 9);
+    addColor(m_colorMap, Color(5,5,5), 236);
+    addColor(m_colorMap, Color(0x30,0x30,0x30), 244);
+
+    addColor(m_colorMap, J().getGrayColor(), 237);
+    addColor(m_colorMap, L().getGrayColor(), 239);
+    addColor(m_colorMap, I().getGrayColor(), 241);
+    addColor(m_colorMap, O().getGrayColor(), 243);
+    addColor(m_colorMap, S().getGrayColor(), 245);
+    addColor(m_colorMap, T().getGrayColor(), 247);
+    addColor(m_colorMap, Z().getGrayColor(), 249);
     
     init_pair(13,13,13); // the unmapped color
 }

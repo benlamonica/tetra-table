@@ -18,6 +18,7 @@ class Color;
 class CursesUtil {
 public:
     static CursesUtil& instance();
+    typedef std::map<int,short> ColorMap;
 private:
     CursesUtil();
     CursesUtil( const CursesUtil& other ) = delete; // non construction-copyable
@@ -32,7 +33,6 @@ public:
 private:
     std::mutex m_keyboardMutex;
     std::mutex m_screenMutex;
-    typedef std::map<int,short> ColorMap;
     ColorMap m_colorMap;
     short m_colorIdx;
 };

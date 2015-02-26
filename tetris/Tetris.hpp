@@ -41,6 +41,9 @@ private:
     void takeNextPiece();
     void checkForLock();
     void removeLines(int y);
+    void gameover();
+    void resetGame();
+
     std::deque<TetrisPiece::Ptr> m_pieces;
     std::shared_ptr<TetrisDisplay> m_display;
     std::atomic<bool> m_isRunning;
@@ -59,8 +62,9 @@ private:
     std::atomic<int64_t> m_lockTime;
     std::atomic<bool> m_aboutToLock;
     std::atomic<int64_t> m_dropTime;
-    std::mutex m_eventMutex;
-    std::deque<tetris::Move> m_moveBuf;
+    std::recursive_mutex m_eventMutex;
+    std::atomic<bool> m_isGameOver;
+    std::shared_ptr<std::lock_guard<std::recursive_mutex> > m_pauseTimerLock;
 };
 
 #endif /* defined(__tetris__Tetris__) */

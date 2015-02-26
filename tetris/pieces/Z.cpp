@@ -17,7 +17,7 @@
  ██
 */
 
-Z::Z() : super(std::vector<std::string>({"ZZ  ZZ   ","  Z ZZ Z ","   ZZ  ZZ"," Z ZZ Z  "}), 'Z', 0xF1, 0x10, 0, 3, 3) {
+Z::Z() : super(std::vector<std::string>({"ZZ  ZZ   ","  Z ZZ Z ","   ZZ  ZZ"," Z ZZ Z  "}), 'Z', Color(0xF1, 0x10, 0), Color(0xb2,0xb2,0xb2), 3) {
     
 }
 

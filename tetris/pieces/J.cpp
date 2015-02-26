@@ -27,7 +27,7 @@
  
  */
 
-J::J() : super(std::vector<std::string>({"J  JJJ   ", " JJ J  J ", "   JJJ  J", " J  J JJ "}), 'J', 0, 0, 0xF0, 3, 3) {
+J::J() : super(std::vector<std::string>({"J  JJJ   ", " JJ J  J ", "   JJJ  J", " J  J JJ "}), 'J', Color(0, 0, 0xF0), Color(0x3a, 0x3a, 0x3a), 3) {
     
 }
 

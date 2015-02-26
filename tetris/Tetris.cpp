@@ -22,20 +22,6 @@
 #include "pieces/Z.hpp"
 #include <syslog.h>
 
-Tetris::~Tetris() {
-    
-}
-
-Tetris::Tetris(std::shared_ptr<TetrisDisplay> display) : m_display(display), m_isRunning(true), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(2000 * 1000000), m_lockSpeed(1000 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false) {
-    
-    m_board.clear();
-    for (int i = 0; i < m_boardHeight; i++) {
-        m_board.push_back(std::string(m_boardWidth, ' '));
-    }
-    
-    takeNextPiece();
-};
-
 namespace {
     int64_t now() {
         using namespace std::chrono;
@@ -48,6 +34,44 @@ namespace {
     }
 }
 
+Tetris::~Tetris() {
+    
+}
+
+Tetris::Tetris(std::shared_ptr<TetrisDisplay> display) : m_display(display), m_isRunning(true), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(2000 * 1000000), m_lockSpeed(1000 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false) {
+
+    resetGame();
+};
+
+void Tetris::resetGame() {
+    m_board.clear();
+    m_pieces.clear();
+    m_dropSpeed = 2000 * 1000000;
+    m_lockSpeed = 1000 * 1000000;
+    m_dropTime.store(m_dropSpeed * 1000000);
+    m_lockTime.store(INT64_MAX);
+    m_aboutToLock.store(false);
+    for (int i = 0; i < m_boardHeight; i++) {
+        m_board.push_back(std::string(m_boardWidth, ' '));
+    }
+  
+    m_isGameOver.store(false);
+    m_pauseTimerLock.reset(); // allow the event thread to continue on
+    takeNextPiece();
+    
+}
+
+void Tetris::gameover() {
+    m_isGameOver.store(true);
+    m_currentPiece.reset();
+    
+    for (int y = m_boardHeight-1; y >= 0; y--) {
+        std::transform(m_board[y].begin(), m_board[y].end(), m_board[y].begin(), ::tolower);
+        draw();
+        millisleep(100);
+    }
+}
+
 void Tetris::takeNextPiece() {
     fillPieceBag();
     m_dropTime.store(now() + m_dropSpeed);
@@ -57,6 +81,10 @@ void Tetris::takeNextPiece() {
     m_pieces.pop_front();
     m_currentPiece->setLocation(4, 0);
     m_currentMask = m_currentPiece->getMask();
+    if (collisionAt(m_currentPiece, 4, 0)) {
+        gameover();
+        return;
+    }
     m_shadowY = calculateDropPosition();
     draw();
 }
@@ -77,10 +105,14 @@ void Tetris::fillPieceBag() {
 
 void Tetris::run() {
     while(m_isRunning.load()) {
+        if (m_isGameOver.load()) {
+            millisleep(50);
+            continue;
+        }
         int64_t lockInNs = 0;
         int64_t dropInNs = 0;
         {
-//            std::lock_guard<std::mutex> guard(m_eventMutex);
+            std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
             lockInNs = m_lockTime.load();
             dropInNs = m_dropTime.load();
         } // unlock the mutex
@@ -109,18 +141,17 @@ void Tetris::draw() {
 }
 
 void Tetris::lockPiece() {
-//    // block the event loop from running while we manipulate the playing field
-//    std::lock_guard<std::mutex> guard(m_eventMutex);
+    // block the event loop from running while we manipulate the playing field
+    std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
 
     m_lockTime.store(INT64_MAX);
     m_dropTime.store(-1);
     m_aboutToLock.store(false);
-    int height = m_currentPiece->getHeight();
     int width = m_currentPiece->getWidth();
     
     // check to see if our piece will hit another piece
     for (int x = 0; x < width; x++) {
-        for (int y = 0; y < height; y++) {
+        for (int y = 0; y < width; y++) {
             if (m_currentMask.at(x+(y*m_currentPiece->getWidth())) != ' ') {
                 m_board.at(m_currentPiece->getY() + y).at(m_currentPiece->getX() + x) = m_currentPiece->getRep();
             }
@@ -176,6 +207,11 @@ void Tetris::moveDown() {
 }
 
 void Tetris::drop(bool hard) {
+    if (m_isGameOver.load()) {
+        resetGame();
+        return;
+    }
+    
     while (m_currentPiece->getY() < m_shadowY) {
         m_currentPiece->moveDown();
     }
@@ -273,12 +309,11 @@ void Tetris::removeLines(int y) {
 
 // check to see if we have a collision at a given spot
 bool Tetris::collisionAt(TetrisPiece::Ptr piece, int pieceX, int pieceY) {
-    int height = piece->getHeight();
     int width = piece->getWidth();
     
     // check to see if our piece will hit another piece
     for (int x = 0; x < width; x++) {
-        for (int y = 0; y < height; y++) {
+        for (int y = 0; y < width; y++) {
             if (m_currentMask.at(x+(y*m_currentPiece->getWidth())) != ' ') {
                 if ((pieceX + x) < 0 || (pieceX + x) >= m_boardWidth) {
                     return true;

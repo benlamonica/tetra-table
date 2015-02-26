@@ -27,7 +27,7 @@
 */
 
 
-T::T() : super(std::vector<std::string>({" T TTT   ", " T  TT T ", "   TTT T ", " T TT  T "}), 'T', 0xA1, 0, 0xF1, 3, 3){
+T::T() : super(std::vector<std::string>({" T TTT   ", " T  TT T ", "   TTT T ", " T TT  T "}), 'T', Color(0xA1, 0, 0xF1), Color(0x9e,0x9e,0x9e), 3){
     
 }
 
