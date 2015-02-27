@@ -75,6 +75,7 @@ void CursesUtil::flush() {
 }
 
 void CursesUtil::print(int x, int y, const std::string &s) {
+    std::lock_guard<std::mutex> guard(m_screenMutex);
     move(y,x);
     printw(s.c_str());
 }

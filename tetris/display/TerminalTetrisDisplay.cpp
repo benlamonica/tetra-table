@@ -47,7 +47,7 @@ void TerminalTetrisDisplay::drawNextPiece(TetrisPiece::Ptr nextPiece) {
     for (int x = 0; x < 4; x++) {
         for (int y = 0; y < 4; y++) {
             int pos = x+(y*width);
-            if (pos < mask.size() && mask[pos] != ' ') {
+            if (pos < mask.size() && mask.at(pos) != ' ') {
                 drawPoint(x+11, y+2, ' ', c);
             } else {
                 drawPoint(x+11, y+2, ' ', Color(0,0,0));

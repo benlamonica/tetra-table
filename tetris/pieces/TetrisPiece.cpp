@@ -67,7 +67,7 @@ void TetrisPiece::moveRight() {
 }
 
 const std::string& TetrisPiece::getMask() const {
-    return m_masks[(m_rotation/90) % m_masks.size()];
+    return m_masks.at((m_rotation/90) % m_masks.size());
 }
 
 void TetrisPiece::moveDown() {

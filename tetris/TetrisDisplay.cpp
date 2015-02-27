@@ -21,7 +21,7 @@
 void TetrisDisplay::drawBoard(const BoardType &board, TetrisPiece::Ptr currentPiece, int shadowY) {
     std::string mask = currentPiece ? currentPiece->getMask() : "";
     for (int y = 0; y < board.size(); y++) {
-        for (int x = 0; x < board[y].size(); x++) {
+        for (int x = 0; x < board.at(y).size(); x++) {
             int maskPos = 0;
             int shadowMaskPos = 0;
             if (currentPiece) {
@@ -29,15 +29,15 @@ void TetrisDisplay::drawBoard(const BoardType &board, TetrisPiece::Ptr currentPi
                 shadowMaskPos = (x - currentPiece->getX())+((y - shadowY)*currentPiece->getWidth());
             }
             if (currentPiece && x >= currentPiece->getX() && x < (currentPiece->getX()+currentPiece->getWidth())) {
-                if (y >= currentPiece->getY() && y < (currentPiece->getY()+currentPiece->getWidth()) && mask[maskPos] != ' ') {
+                if (y >= currentPiece->getY() && y < (currentPiece->getY()+currentPiece->getWidth()) && mask.at(maskPos) != ' ') {
                     drawPoint(x, y, currentPiece->getRep(), currentPiece->getColor());
-                } else if ((y >= shadowY) && (y < shadowY+currentPiece->getWidth()) && mask[shadowMaskPos] != ' ') {
+                } else if ((y >= shadowY) && (y < shadowY+currentPiece->getWidth()) && mask.at(shadowMaskPos) != ' ') {
                     drawPoint(x, y, '.', getColor('.'));
                 }else {
-                    drawPoint(x, y, board[y][x], getColor(board[y][x]));
+                    drawPoint(x, y, board.at(y).at(x), getColor(board.at(y).at(x)));
                 }
             } else {
-                drawPoint(x, y, board[y][x], getColor(board[y][x]));
+                drawPoint(x, y, board.at(y).at(x), getColor(board.at(y).at(x)));
             }
         }
     }

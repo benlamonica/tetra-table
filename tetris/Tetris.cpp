@@ -38,7 +38,7 @@ Tetris::~Tetris() {
     
 }
 
-Tetris::Tetris(std::shared_ptr<TetrisDisplay> display) : m_display(display), m_isRunning(true), m_score(0), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(2000 * 1000000), m_lockSpeed(1000 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false) {
+Tetris::Tetris(std::shared_ptr<TetrisDisplay> display) : m_display(display), m_isRunning(true), m_score(0), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(1000 * 1000000), m_lockSpeed(1000 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false) {
 
     resetGame();
 };
@@ -46,7 +46,7 @@ Tetris::Tetris(std::shared_ptr<TetrisDisplay> display) : m_display(display), m_i
 void Tetris::resetGame() {
     m_board.clear();
     m_pieces.clear();
-    m_dropSpeed = 2000 * 1000000;
+    m_dropSpeed = 1000 * 1000000;
     m_lockSpeed = 1000 * 1000000;
     m_dropTime.store(m_dropSpeed * 1000000);
     m_lockTime.store(INT64_MAX);
@@ -69,7 +69,7 @@ void Tetris::gameover() {
     m_currentPiece.reset();
     
     for (int y = m_boardHeight-1; y >= 0; y--) {
-        std::transform(m_board[y].begin(), m_board[y].end(), m_board[y].begin(), ::tolower);
+        std::transform(m_board.at(y).begin(), m_board.at(y).end(), m_board.at(y).begin(), ::tolower);
         draw();
         millisleep(100);
     }
@@ -281,7 +281,7 @@ void Tetris::quit() {
 void Tetris::logBoard() {
     std::string board;
     for (int y = 0; y < m_boardHeight; y++) {
-        board.append(m_board[y]).append("\n");
+        board.append(m_board.at(y)).append("\n");
     }
     
     syslog(LOG_WARNING, "%s", board.c_str());
@@ -291,8 +291,8 @@ void Tetris::checkForLevelUp() {
     if (m_linesLeft <= 0) {
         m_level++;
         m_linesLeft = m_level * 5;
-        m_dropSpeed -= (m_dropSpeed*.1);
-        m_lockSpeed -= (m_lockSpeed*.05);
+        m_dropSpeed -= (m_dropSpeed*.25);
+        m_lockSpeed -= (m_lockSpeed*.25);
     }
 }
 
@@ -303,12 +303,12 @@ void Tetris::removeLines(int y) {
     while (y < m_boardHeight) {
         int filledBlocks = 0;
         for (int x = 0; x < m_boardWidth; x++) {
-            if (m_board[y][x] != ' ') {
+            if (m_board.at(y).at(x) != ' ') {
                 filledBlocks++;
             }
         }
         if (filledBlocks == m_boardWidth) {
-            lines.insert(std::make_pair(y,m_board[y]));
+            lines.insert(std::make_pair(y,m_board.at(y)));
         }
         y++;
     }
@@ -338,7 +338,7 @@ void Tetris::removeLines(int y) {
         }
         
         static const int scoreForLines[] = {100, 300, 500, 800};
-        int score = scoreForLines[lines.size()-1] * m_level;;
+        int score = scoreForLines[lines.size()-1] * m_level;
         if (lines.size() == 4) {
             if (m_wasLastLineClearDifficult) {
                 score *= 1.5;
