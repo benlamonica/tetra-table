@@ -18,6 +18,11 @@ public:
     TerminalTetrisDisplay(int boardWidth, int boardHeight);
     virtual ~TerminalTetrisDisplay();
     virtual void flush() override;
+    virtual void drawNextPiece(TetrisPiece::Ptr nextPiece) override;
+    virtual void drawScore(int score) override;
+    virtual void drawLevel(int level) override;
+    virtual void drawRemainingLines(int remainingLines) override;
+
 protected:
     virtual void drawPoint(int x, int y, char ch, const Color& color) override;
 private:

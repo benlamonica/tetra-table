@@ -32,6 +32,42 @@ TerminalTetrisDisplay::~TerminalTetrisDisplay() {
     
 }
 
+void TerminalTetrisDisplay::drawNextPiece(TetrisPiece::Ptr nextPiece) {
+    int width = 3;
+    std::string mask = "         ";
+    Color c(0,0,0);
+    if (nextPiece) {
+        TetrisPiece p = *nextPiece; // make a copy
+        p.rotateLeft();
+        mask = p.getMask();
+        width = p.getWidth();
+        c = p.getColor();
+    }
+    
+    for (int x = 0; x < 4; x++) {
+        for (int y = 0; y < 4; y++) {
+            int pos = x+(y*width);
+            if (pos < mask.size() && mask[pos] != ' ') {
+                drawPoint(x+11, y+2, ' ', c);
+            } else {
+                drawPoint(x+11, y+2, ' ', Color(0,0,0));
+            }
+        }
+    }
+}
+
+void TerminalTetrisDisplay::drawScore(int score) {
+    m_curses.print(25,21,"Score : " + std::to_string(score));
+}
+
+void TerminalTetrisDisplay::drawLevel(int level) {
+    m_curses.print(25,20,"Level : " + std::to_string(level) + "     ");
+}
+
+void TerminalTetrisDisplay::drawRemainingLines(int remainingLines) {
+    m_curses.print(25, 19, "Lines Remaining : " + std::to_string(remainingLines) + "     ");
+}
+
 void TerminalTetrisDisplay::flush() {
     m_curses.flush();
 }

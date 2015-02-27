@@ -17,6 +17,10 @@ typedef std::deque<std::string> BoardType;
 class TetrisDisplay {
 public:
     void drawBoard(const BoardType &board, TetrisPiece::Ptr currentPiece, int shadowY);
+    virtual void drawNextPiece(TetrisPiece::Ptr nextPiece) = 0;
+    virtual void drawScore(int score) = 0;
+    virtual void drawLevel(int level) = 0;
+    virtual void drawRemainingLines(int remainingLines) = 0;
     virtual void flush() = 0;
 protected:
     virtual void drawPoint(int x, int y, char ch, const Color& color) = 0;

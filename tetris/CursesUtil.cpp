@@ -74,6 +74,11 @@ void CursesUtil::flush() {
     refresh();
 }
 
+void CursesUtil::print(int x, int y, const std::string &s) {
+    move(y,x);
+    printw(s.c_str());
+}
+
 void CursesUtil::draw(int x, int y, char ch, const Color &c) {
     std::lock_guard<std::mutex> guard(m_screenMutex);
     ColorMap::iterator it = m_colorMap.find(c.key());

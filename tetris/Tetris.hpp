@@ -26,8 +26,8 @@ public:
     Tetris(std::shared_ptr<TetrisDisplay> display);
     void moveLeft();
     void moveRight();
-    void moveDown();
-    void drop(bool hard);
+    void moveDown(bool autoDrop = false);
+    void drop(bool hard = false);
     void rotate();
     void run();
     void quit();
@@ -43,6 +43,7 @@ private:
     void removeLines(int y);
     void gameover();
     void resetGame();
+    void checkForLevelUp();
 
     std::deque<TetrisPiece::Ptr> m_pieces;
     std::shared_ptr<TetrisDisplay> m_display;
@@ -51,20 +52,23 @@ private:
     typedef std::deque<std::string> BoardType;
     BoardType m_board;
     TetrisPiece::Ptr m_currentPiece;
+    TetrisPiece::Ptr m_nextPiece;
     std::string m_currentMask;
     int m_shadowY;
     int m_boardHeight;
-    int m_score;
+    std::atomic<int> m_score;
     int m_boardWidth;
     long m_dropSpeed; // ms between each line dropped
     long m_lockSpeed;
+    int m_level;
+    int m_linesLeft;
     std::mt19937 m_shuffler;
     std::atomic<int64_t> m_lockTime;
     std::atomic<bool> m_aboutToLock;
     std::atomic<int64_t> m_dropTime;
     std::recursive_mutex m_eventMutex;
     std::atomic<bool> m_isGameOver;
-    std::shared_ptr<std::lock_guard<std::recursive_mutex> > m_pauseTimerLock;
+    std::atomic<bool> m_wasLastLineClearDifficult;
 };
 
 #endif /* defined(__tetris__Tetris__) */

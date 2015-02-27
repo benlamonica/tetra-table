@@ -38,7 +38,7 @@ Tetris::~Tetris() {
     
 }
 
-Tetris::Tetris(std::shared_ptr<TetrisDisplay> display) : m_display(display), m_isRunning(true), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(2000 * 1000000), m_lockSpeed(1000 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false) {
+Tetris::Tetris(std::shared_ptr<TetrisDisplay> display) : m_display(display), m_isRunning(true), m_score(0), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(2000 * 1000000), m_lockSpeed(1000 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false) {
 
     resetGame();
 };
@@ -51,12 +51,15 @@ void Tetris::resetGame() {
     m_dropTime.store(m_dropSpeed * 1000000);
     m_lockTime.store(INT64_MAX);
     m_aboutToLock.store(false);
+    m_level = 1;
+    m_linesLeft = 5;
+    m_nextPiece.reset();
+    m_score = 0;
     for (int i = 0; i < m_boardHeight; i++) {
         m_board.push_back(std::string(m_boardWidth, ' '));
     }
   
     m_isGameOver.store(false);
-    m_pauseTimerLock.reset(); // allow the event thread to continue on
     takeNextPiece();
     
 }
@@ -77,7 +80,13 @@ void Tetris::takeNextPiece() {
     m_dropTime.store(now() + m_dropSpeed);
     m_lockTime.store(INT64_MAX);
     m_aboutToLock.store(false);
-    m_currentPiece = *m_pieces.begin();
+    if (!m_nextPiece) {
+        m_nextPiece = m_pieces.front();
+        m_pieces.pop_front();
+    }
+    fillPieceBag();
+    m_currentPiece = m_nextPiece;
+    m_nextPiece = m_pieces.front();
     m_pieces.pop_front();
     m_currentPiece->setLocation(4, 0);
     m_currentMask = m_currentPiece->getMask();
@@ -124,7 +133,7 @@ void Tetris::run() {
         if (lockInNs <= nowInNs || (dropInNs <= nowInNs && m_aboutToLock.load())) {
             lockPiece();
         } else if (dropInNs <= nowInNs) {
-            moveDown();
+            moveDown(true);
         } else {
             int64_t timeToSleep = std::min(std::min(lockInNs,dropInNs) - nowInNs, (int64_t)m_lockSpeed);
             struct timespec sleepTime = {(timeToSleep / 1000000000), timeToSleep % 1000000000};
@@ -136,6 +145,10 @@ void Tetris::run() {
 }
 
 void Tetris::draw() {
+    m_display->drawNextPiece(m_nextPiece);
+    m_display->drawLevel(m_level);
+    m_display->drawScore(m_score);
+    m_display->drawRemainingLines(m_linesLeft);
     m_display->drawBoard(m_board, m_currentPiece, m_shadowY);
     m_display->flush();
 }
@@ -174,7 +187,7 @@ void Tetris::checkForLock() {
 }
 
 void Tetris::moveLeft() {
-    if (!collisionAt(m_currentPiece, m_currentPiece->getX()-1, m_currentPiece->getY())) {
+    if (m_currentPiece && !collisionAt(m_currentPiece, m_currentPiece->getX()-1, m_currentPiece->getY())) {
         m_currentPiece->moveLeft();
         m_shadowY = calculateDropPosition();
         checkForLock();
@@ -183,7 +196,7 @@ void Tetris::moveLeft() {
 }
 
 void Tetris::moveRight() {
-    if (!collisionAt(m_currentPiece, m_currentPiece->getX()+1, m_currentPiece->getY())) {
+    if (m_currentPiece && !collisionAt(m_currentPiece, m_currentPiece->getX()+1, m_currentPiece->getY())) {
         m_currentPiece->moveRight();
         m_shadowY = calculateDropPosition();
         checkForLock();
@@ -191,19 +204,25 @@ void Tetris::moveRight() {
     }
 }
 
-void Tetris::moveDown() {
-    m_dropTime.store(now()+m_dropSpeed);
-    if (m_currentPiece->getY() >= m_shadowY) {
-        drop(true);
-        return;
-    }
-    
-    m_currentPiece->moveDown();
+void Tetris::moveDown(bool autoDrop) {
+    if (m_currentPiece) {
+        if (!autoDrop) {
+            m_score++;
+        }
+        
+        m_dropTime.store(now()+m_dropSpeed);
+        if (m_currentPiece->getY() >= m_shadowY) {
+            drop(true);
+            return;
+        }
+        
+        m_currentPiece->moveDown();
 
-    if (m_currentPiece->getY() == m_shadowY) {
-        checkForLock();
+        if (m_currentPiece->getY() == m_shadowY) {
+            checkForLock();
+        }
+        draw();
     }
-    draw();
 }
 
 void Tetris::drop(bool hard) {
@@ -212,39 +231,45 @@ void Tetris::drop(bool hard) {
         return;
     }
     
-    while (m_currentPiece->getY() < m_shadowY) {
-        m_currentPiece->moveDown();
+    if (m_currentPiece) {
+        while (m_currentPiece->getY() < m_shadowY) {
+            m_currentPiece->moveDown();
+            m_score+=2;
+        }
+        
+        if(hard) {
+            lockPiece();
+        } else {
+            checkForLock();
+        }
+        draw();
     }
-    if(hard) {
-        lockPiece();
-    } else {
-        checkForLock();
-    }
-    draw();
 }
 
 void Tetris::rotate() {
-    m_currentPiece->rotateRight();
-    m_currentMask = m_currentPiece->getMask();
-
-    bool isRotateSuccessful = false;
-    int offsets[] = {0,1,2,-1,-2};
-    // if we can't rotate, see if we can nudge it to the right or left
-    for (int i = 0; i < 4; i++) {
-        if (!collisionAt(m_currentPiece, m_currentPiece->getX()+offsets[i], m_currentPiece->getY())) {
-            m_currentPiece->setLocation(m_currentPiece->getX()+offsets[i], m_currentPiece->getY());
-            isRotateSuccessful = true;
-            break;
-        }
-    }
-
-    if (isRotateSuccessful) {
-        m_shadowY = calculateDropPosition();
-        checkForLock();
-        draw();
-    } else {
-        m_currentPiece->rotateLeft();
+    if (m_currentPiece) {
+        m_currentPiece->rotateRight();
         m_currentMask = m_currentPiece->getMask();
+
+        bool isRotateSuccessful = false;
+        int offsets[] = {0,1,2,-1,-2};
+        // if we can't rotate, see if we can nudge it to the right or left
+        for (int i = 0; i < 4; i++) {
+            if (!collisionAt(m_currentPiece, m_currentPiece->getX()+offsets[i], m_currentPiece->getY())) {
+                m_currentPiece->setLocation(m_currentPiece->getX()+offsets[i], m_currentPiece->getY());
+                isRotateSuccessful = true;
+                break;
+            }
+        }
+
+        if (isRotateSuccessful) {
+            m_shadowY = calculateDropPosition();
+            checkForLock();
+            draw();
+        } else {
+            m_currentPiece->rotateLeft();
+            m_currentMask = m_currentPiece->getMask();
+        }
     }
 }
 
@@ -260,6 +285,15 @@ void Tetris::logBoard() {
     }
     
     syslog(LOG_WARNING, "%s", board.c_str());
+}
+
+void Tetris::checkForLevelUp() {
+    if (m_linesLeft <= 0) {
+        m_level++;
+        m_linesLeft = m_level * 5;
+        m_dropSpeed -= (m_dropSpeed*.1);
+        m_lockSpeed -= (m_lockSpeed*.05);
+    }
 }
 
 void Tetris::removeLines(int y) {
@@ -302,6 +336,20 @@ void Tetris::removeLines(int y) {
             m_board.erase(boardIter);
             m_board.push_front(std::string(m_boardWidth, ' '));
         }
+        
+        static const int scoreForLines[] = {100, 300, 500, 800};
+        int score = scoreForLines[lines.size()-1] * m_level;;
+        if (lines.size() == 4) {
+            if (m_wasLastLineClearDifficult) {
+                score *= 1.5;
+            }
+            m_wasLastLineClearDifficult = true;
+        }
+        
+        m_linesLeft -= lines.size();
+        m_score += score;
+        
+        checkForLevelUp();
     }
     // add to the score
 }

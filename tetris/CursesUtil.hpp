@@ -28,6 +28,7 @@ public:
     virtual ~CursesUtil();
     int getChar();
     void draw(int x, int y, char ch, const Color &c);
+    void print(int x, int y, const std::string &s);
     void flush();
 
 private:
