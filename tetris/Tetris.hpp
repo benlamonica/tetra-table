@@ -14,6 +14,8 @@
 #include <memory>
 #include <random>
 #include <chrono>
+#include <mutex>
+#include <atomic>
 #include "pieces/TetrisPiece.hpp"
 #include "pieces/TetrisMove.hpp"
 

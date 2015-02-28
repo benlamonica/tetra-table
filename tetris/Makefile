@@ -1,4 +1,4 @@
-CC=clang++
+CC=g++-4.8
 SOURCES=display/TerminalTetrisDisplay.cpp \
 	display/TetrisDisplay.cpp \
 	input/KeyboardTetrisInput.cpp \
@@ -15,8 +15,8 @@ SOURCES=display/TerminalTetrisDisplay.cpp \
 	Tetris.cpp \
 	util/CursesUtil.cpp
 EXECUTABLE=tetra-table
-CFLAGS=-std=c++11 -stdlib=libc++
-LDFLAGS=-lcurses
+CFLAGS=-std=c++11
+LDFLAGS=-lcurses -pthread
 OBJECTS=$(SOURCES:.cpp=.o)
  
 all: $(SOURCES) $(EXECUTABLE)
