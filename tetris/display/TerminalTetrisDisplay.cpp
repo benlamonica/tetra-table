@@ -7,7 +7,7 @@
 //
 
 #include "TerminalTetrisDisplay.hpp"
-#include "CursesUtil.hpp"
+#include "../util/CursesUtil.hpp"
 #include <curses.h>
 #include <exception>
 
@@ -57,11 +57,11 @@ void TerminalTetrisDisplay::drawNextPiece(TetrisPiece::Ptr nextPiece) {
 }
 
 void TerminalTetrisDisplay::drawScore(int score) {
-    m_curses.print(25,21,"Score : " + std::to_string(score));
+    m_curses.print(25,21,"Score : " + std::to_string(score) + "           ");
 }
 
 void TerminalTetrisDisplay::drawLevel(int level) {
-    m_curses.print(25,20,"Level : " + std::to_string(level) + "     ");
+    m_curses.print(25,20,"Level : " + std::to_string(level) + "   ");
 }
 
 void TerminalTetrisDisplay::drawRemainingLines(int remainingLines) {

@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		351118851A4DA4430041640B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 351118841A4DA4430041640B /* main.cpp */; };
 		3511188C1A4FBC6C0041640B /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3511188B1A4FBC6C0041640B /* libncurses.dylib */; };
-		3511188F1A50F9070041640B /* TetrisInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3511188E1A50F9070041640B /* TetrisInput.cpp */; };
 		351118921A50FA770041640B /* Tetris.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 351118901A50FA770041640B /* Tetris.cpp */; };
-		3514A1BC1A57AA7E00181D35 /* KeyboardTetrisInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3514A1BA1A57AA7E00181D35 /* KeyboardTetrisInput.cpp */; };
 		B57E8E0C1A9F7BB1008BF0F6 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57E8E0B1A9F7BB1008BF0F6 /* OpenAL.framework */; };
-		B5B29D861A5B5A2E008B1F2E /* CursesUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D841A5B5A2E008B1F2E /* CursesUtil.cpp */; };
+		B57E8E0F1AA14CCE008BF0F6 /* TetrisDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E0D1AA14CCE008BF0F6 /* TetrisDisplay.cpp */; };
+		B57E8E151AA14D1F008BF0F6 /* KeyboardTetrisInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E111AA14D1F008BF0F6 /* KeyboardTetrisInput.cpp */; };
+		B57E8E161AA14D1F008BF0F6 /* TetrisInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E131AA14D1F008BF0F6 /* TetrisInput.cpp */; };
+		B57E8E1B1AA14D51008BF0F6 /* CursesUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E191AA14D51008BF0F6 /* CursesUtil.cpp */; };
 		B5B29D881A5B5BEB008B1F2E /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */; };
 		B5B29D921A65E272008B1F2E /* tetris_tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D911A65E272008B1F2E /* tetris_tests.mm */; };
 		B5B29D9F1A65E520008B1F2E /* I.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D9C1A65E520008B1F2E /* I.cpp */; };
@@ -24,7 +25,6 @@
 		B5B29DAE1A65E73C008B1F2E /* S.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DAA1A65E73C008B1F2E /* S.cpp */; };
 		B5B29DB11A66FED1008B1F2E /* O.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB01A66FED1008B1F2E /* O.cpp */; };
 		B5B29DB31A67370B008B1F2E /* TetrisPiece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB21A67370B008B1F2E /* TetrisPiece.cpp */; };
-		B5B29DB61A674022008B1F2E /* TetrisDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB41A674022008B1F2E /* TetrisDisplay.cpp */; };
 		B5E35FCA1A940CBD00192096 /* TerminalTetrisDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5E35FC81A940CBD00192096 /* TerminalTetrisDisplay.cpp */; };
 /* End PBXBuildFile section */
 
@@ -44,17 +44,18 @@
 		351118811A4DA4430041640B /* tetris */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tetris; sourceTree = BUILT_PRODUCTS_DIR; };
 		351118841A4DA4430041640B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3511188B1A4FBC6C0041640B /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
-		3511188D1A50F8070041640B /* TetrisInput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TetrisInput.hpp; sourceTree = "<group>"; };
-		3511188E1A50F9070041640B /* TetrisInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetrisInput.cpp; sourceTree = "<group>"; };
 		351118901A50FA770041640B /* Tetris.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tetris.cpp; sourceTree = "<group>"; };
 		351118911A50FA770041640B /* Tetris.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tetris.hpp; sourceTree = "<group>"; };
-		351118931A510B140041640B /* TetrisDisplay.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TetrisDisplay.hpp; sourceTree = "<group>"; };
-		3514A1BA1A57AA7E00181D35 /* KeyboardTetrisInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardTetrisInput.cpp; sourceTree = "<group>"; };
-		3514A1BB1A57AA7E00181D35 /* KeyboardTetrisInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyboardTetrisInput.hpp; sourceTree = "<group>"; };
-		B57E8E0A1A9D4149008BF0F6 /* TetrisMove.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TetrisMove.hpp; sourceTree = "<group>"; };
 		B57E8E0B1A9F7BB1008BF0F6 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
-		B5B29D841A5B5A2E008B1F2E /* CursesUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CursesUtil.cpp; sourceTree = "<group>"; };
-		B5B29D851A5B5A2E008B1F2E /* CursesUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CursesUtil.hpp; sourceTree = "<group>"; };
+		B57E8E0D1AA14CCE008BF0F6 /* TetrisDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TetrisDisplay.cpp; path = display/TetrisDisplay.cpp; sourceTree = "<group>"; };
+		B57E8E0E1AA14CCE008BF0F6 /* TetrisDisplay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TetrisDisplay.hpp; path = display/TetrisDisplay.hpp; sourceTree = "<group>"; };
+		B57E8E111AA14D1F008BF0F6 /* KeyboardTetrisInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardTetrisInput.cpp; sourceTree = "<group>"; };
+		B57E8E121AA14D1F008BF0F6 /* KeyboardTetrisInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyboardTetrisInput.hpp; sourceTree = "<group>"; };
+		B57E8E131AA14D1F008BF0F6 /* TetrisInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetrisInput.cpp; sourceTree = "<group>"; };
+		B57E8E141AA14D1F008BF0F6 /* TetrisInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TetrisInput.hpp; sourceTree = "<group>"; };
+		B57E8E171AA14D37008BF0F6 /* TetrisMove.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TetrisMove.hpp; sourceTree = "<group>"; };
+		B57E8E191AA14D51008BF0F6 /* CursesUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CursesUtil.cpp; sourceTree = "<group>"; };
+		B57E8E1A1AA14D51008BF0F6 /* CursesUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CursesUtil.hpp; sourceTree = "<group>"; };
 		B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 		B5B29D8D1A65E272008B1F2E /* tetris-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tetris-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B29D901A65E272008B1F2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		B5B29DAF1A66FED1008B1F2E /* O.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = O.hpp; sourceTree = "<group>"; };
 		B5B29DB01A66FED1008B1F2E /* O.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = O.cpp; sourceTree = "<group>"; };
 		B5B29DB21A67370B008B1F2E /* TetrisPiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetrisPiece.cpp; sourceTree = "<group>"; };
-		B5B29DB41A674022008B1F2E /* TetrisDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetrisDisplay.cpp; sourceTree = "<group>"; };
 		B5E35FC81A940CBD00192096 /* TerminalTetrisDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TerminalTetrisDisplay.cpp; path = display/TerminalTetrisDisplay.cpp; sourceTree = "<group>"; };
 		B5E35FC91A940CBD00192096 /* TerminalTetrisDisplay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TerminalTetrisDisplay.hpp; path = display/TerminalTetrisDisplay.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,20 +125,35 @@
 		351118831A4DA4430041640B /* tetris */ = {
 			isa = PBXGroup;
 			children = (
+				B57E8E181AA14D51008BF0F6 /* util */,
+				B57E8E101AA14D1F008BF0F6 /* input */,
 				B5E35FC71A940C9200192096 /* display */,
 				B5B29D9B1A65E520008B1F2E /* pieces */,
 				351118841A4DA4430041640B /* main.cpp */,
-				3511188D1A50F8070041640B /* TetrisInput.hpp */,
-				3511188E1A50F9070041640B /* TetrisInput.cpp */,
 				351118901A50FA770041640B /* Tetris.cpp */,
 				351118911A50FA770041640B /* Tetris.hpp */,
-				3514A1BA1A57AA7E00181D35 /* KeyboardTetrisInput.cpp */,
-				3514A1BB1A57AA7E00181D35 /* KeyboardTetrisInput.hpp */,
-				B5B29D841A5B5A2E008B1F2E /* CursesUtil.cpp */,
-				B5B29D851A5B5A2E008B1F2E /* CursesUtil.hpp */,
-				B57E8E0A1A9D4149008BF0F6 /* TetrisMove.hpp */,
 			);
 			path = tetris;
+			sourceTree = "<group>";
+		};
+		B57E8E101AA14D1F008BF0F6 /* input */ = {
+			isa = PBXGroup;
+			children = (
+				B57E8E111AA14D1F008BF0F6 /* KeyboardTetrisInput.cpp */,
+				B57E8E121AA14D1F008BF0F6 /* KeyboardTetrisInput.hpp */,
+				B57E8E131AA14D1F008BF0F6 /* TetrisInput.cpp */,
+				B57E8E141AA14D1F008BF0F6 /* TetrisInput.hpp */,
+			);
+			path = input;
+			sourceTree = "<group>";
+		};
+		B57E8E181AA14D51008BF0F6 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				B57E8E191AA14D51008BF0F6 /* CursesUtil.cpp */,
+				B57E8E1A1AA14D51008BF0F6 /* CursesUtil.hpp */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 		B5B29D8E1A65E272008B1F2E /* tetris-tests */ = {
@@ -161,6 +176,7 @@
 		B5B29D9B1A65E520008B1F2E /* pieces */ = {
 			isa = PBXGroup;
 			children = (
+				B57E8E171AA14D37008BF0F6 /* TetrisMove.hpp */,
 				B5B29DA81A65E73C008B1F2E /* J.cpp */,
 				B5B29DA41A65E73C008B1F2E /* J.hpp */,
 				B5B29DA71A65E73C008B1F2E /* L.cpp */,
@@ -184,8 +200,8 @@
 		B5E35FC71A940C9200192096 /* display */ = {
 			isa = PBXGroup;
 			children = (
-				351118931A510B140041640B /* TetrisDisplay.hpp */,
-				B5B29DB41A674022008B1F2E /* TetrisDisplay.cpp */,
+				B57E8E0D1AA14CCE008BF0F6 /* TetrisDisplay.cpp */,
+				B57E8E0E1AA14CCE008BF0F6 /* TetrisDisplay.hpp */,
 				B5E35FC81A940CBD00192096 /* TerminalTetrisDisplay.cpp */,
 				B5E35FC91A940CBD00192096 /* TerminalTetrisDisplay.hpp */,
 			);
@@ -279,19 +295,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B57E8E151AA14D1F008BF0F6 /* KeyboardTetrisInput.cpp in Sources */,
+				B57E8E0F1AA14CCE008BF0F6 /* TetrisDisplay.cpp in Sources */,
+				B57E8E1B1AA14D51008BF0F6 /* CursesUtil.cpp in Sources */,
 				B5B29DAD1A65E73C008B1F2E /* Z.cpp in Sources */,
 				B5B29DAB1A65E73C008B1F2E /* L.cpp in Sources */,
 				B5B29DAE1A65E73C008B1F2E /* S.cpp in Sources */,
 				B5B29DB11A66FED1008B1F2E /* O.cpp in Sources */,
-				3514A1BC1A57AA7E00181D35 /* KeyboardTetrisInput.cpp in Sources */,
-				B5B29DB61A674022008B1F2E /* TetrisDisplay.cpp in Sources */,
 				B5B29DB31A67370B008B1F2E /* TetrisPiece.cpp in Sources */,
 				351118851A4DA4430041640B /* main.cpp in Sources */,
-				3511188F1A50F9070041640B /* TetrisInput.cpp in Sources */,
 				B5B29DA21A65E558008B1F2E /* T.cpp in Sources */,
 				B5B29D9F1A65E520008B1F2E /* I.cpp in Sources */,
 				351118921A50FA770041640B /* Tetris.cpp in Sources */,
-				B5B29D861A5B5A2E008B1F2E /* CursesUtil.cpp in Sources */,
+				B57E8E161AA14D1F008BF0F6 /* TetrisInput.cpp in Sources */,
 				B5E35FCA1A940CBD00192096 /* TerminalTetrisDisplay.cpp in Sources */,
 				B5B29DAC1A65E73C008B1F2E /* J.cpp in Sources */,
 			);

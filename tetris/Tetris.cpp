@@ -6,13 +6,14 @@
 //  Copyright (c) 2014 Benjamin Alan La Monica. All rights reserved.
 //
 
-#include "Tetris.hpp"
-#include "TetrisDisplay.hpp"
 #include <time.h>
 #include <algorithm>
 #include <random>
 #include <chrono>
 #include <map>
+#include <syslog.h>
+#include "Tetris.hpp"
+#include "display/TetrisDisplay.hpp"
 #include "pieces/J.hpp"
 #include "pieces/L.hpp"
 #include "pieces/I.hpp"
@@ -20,7 +21,6 @@
 #include "pieces/S.hpp"
 #include "pieces/T.hpp"
 #include "pieces/Z.hpp"
-#include <syslog.h>
 
 namespace {
     int64_t now() {

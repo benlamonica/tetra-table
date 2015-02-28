@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "TetrisDisplay.hpp"
-#include "CursesUtil.hpp"
+#include "../util/CursesUtil.hpp"
 
 class TerminalTetrisDisplay : public TetrisDisplay {
 public:

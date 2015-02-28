@@ -12,8 +12,8 @@
 #include <thread>
 #include <atomic>
 #include <memory>
-#include "Tetris.hpp"
-#include "TetrisMove.hpp"
+#include "../Tetris.hpp"
+#include "../pieces/TetrisMove.hpp"
 
 class TetrisInput {
 public:

@@ -14,8 +14,8 @@
 #include <memory>
 #include <random>
 #include <chrono>
-#include "TetrisPiece.hpp"
-#include "TetrisMove.hpp"
+#include "pieces/TetrisPiece.hpp"
+#include "pieces/TetrisMove.hpp"
 
 class TetrisDisplay;
 

@@ -8,14 +8,14 @@
 
 #include <map>
 #include "TetrisDisplay.hpp"
-#include "pieces/TetrisPiece.hpp"
-#include "pieces/J.hpp"
-#include "pieces/L.hpp"
-#include "pieces/I.hpp"
-#include "pieces/O.hpp"
-#include "pieces/S.hpp"
-#include "pieces/T.hpp"
-#include "pieces/Z.hpp"
+#include "../pieces/TetrisPiece.hpp"
+#include "../pieces/J.hpp"
+#include "../pieces/L.hpp"
+#include "../pieces/I.hpp"
+#include "../pieces/O.hpp"
+#include "../pieces/S.hpp"
+#include "../pieces/T.hpp"
+#include "../pieces/Z.hpp"
 #include <syslog.h>
 
 void TetrisDisplay::drawBoard(const BoardType &board, TetrisPiece::Ptr currentPiece, int shadowY) {

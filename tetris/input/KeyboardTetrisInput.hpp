@@ -12,7 +12,7 @@
 #include <stdio.h>
 
 #include "TetrisInput.hpp"
-#include "CursesUtil.hpp"
+#include "../util/CursesUtil.hpp"
 
 class KeyboardTetrisInput : public TetrisInput {
 public:

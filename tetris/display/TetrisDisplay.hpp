@@ -10,7 +10,7 @@
 #define tetris_TetrisDisplay_hpp
 
 #include <deque>
-#include "TetrisPiece.hpp"
+#include "../pieces/TetrisPiece.hpp"
 
 typedef std::deque<std::string> BoardType;
 

@@ -8,10 +8,10 @@
 
 #include <iostream>
 #include <stdlib.h>
-#include "Tetris.hpp"
-#include "KeyboardTetrisInput.hpp"
-#include "TerminalTetrisDisplay.hpp"
 #include <syslog.h>
+#include "Tetris.hpp"
+#include "input/KeyboardTetrisInput.hpp"
+#include "display/TerminalTetrisDisplay.hpp"
 
 
 int main(int argc, const char * argv[]) {

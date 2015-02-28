@@ -8,18 +8,18 @@
 
 #define _XOPEN_SOURCE_EXTENDED 1
 
-#include "CursesUtil.hpp"
 #include <curses.h>
-#include "TetrisPiece.hpp"
-#include "J.hpp"
-#include "L.hpp"
-#include "I.hpp"
-#include "O.hpp"
-#include "S.hpp"
-#include "T.hpp"
-#include "Z.hpp"
 #include <utility>
 #include <syslog.h>
+#include "CursesUtil.hpp"
+#include "../pieces/TetrisPiece.hpp"
+#include "../pieces/J.hpp"
+#include "../pieces/L.hpp"
+#include "../pieces/I.hpp"
+#include "../pieces/O.hpp"
+#include "../pieces/S.hpp"
+#include "../pieces/T.hpp"
+#include "../pieces/Z.hpp"
 
 namespace {
     void addColor(CursesUtil::ColorMap &map, const Color &color, int colorIdx) {

@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Benjamin Alan La Monica. All rights reserved.
 //
 
-#include "KeyboardTetrisInput.hpp"
-#include "CursesUtil.hpp"
 #include <curses.h>
 #include <time.h>
-#include "TetrisMove.hpp"
+#include "KeyboardTetrisInput.hpp"
+#include "../util/CursesUtil.hpp"
+#include "../pieces/TetrisMove.hpp"
 
 KeyboardTetrisInput::KeyboardTetrisInput(Tetris *game) : m_curses(CursesUtil::instance()), super(game) {
 
