@@ -20,12 +20,12 @@
 #include "pieces/TetrisMove.hpp"
 
 class TetrisDisplay;
-
+class TetrisAudio;
 
 class Tetris {
 public:
     virtual ~Tetris();
-    Tetris(std::shared_ptr<TetrisDisplay> display);
+    Tetris(std::shared_ptr<TetrisDisplay> display, std::shared_ptr<TetrisAudio> audio);
     void moveLeft();
     void moveRight();
     void moveDown(bool autoDrop = false);
@@ -42,7 +42,7 @@ private:
     void fillPieceBag();
     void takeNextPiece();
     void checkForLock();
-    void removeLines(int y);
+    int removeLines(int y);
     void gameover();
     void resetGame();
     void checkForLevelUp();
@@ -71,6 +71,7 @@ private:
     std::recursive_mutex m_eventMutex;
     std::atomic<bool> m_isGameOver;
     std::atomic<bool> m_wasLastLineClearDifficult;
+    std::shared_ptr<TetrisAudio> m_audio;
 };
 
 #endif /* defined(__tetris__Tetris__) */

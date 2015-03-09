@@ -1,19 +1,23 @@
-CC=g++-4.8
-SOURCES=display/TerminalTetrisDisplay.cpp \
-	display/TetrisDisplay.cpp \
-	input/KeyboardTetrisInput.cpp \
-	input/TetrisInput.cpp \
-	main.cpp \
+CC=clang++
+SOURCES= \
+	audio/TetrisAudio.cpp \
+	audio/NoSoundAudio.cpp \
+	pieces/TetrisPiece.cpp \
 	pieces/I.cpp \
 	pieces/J.cpp \
 	pieces/L.cpp \
 	pieces/O.cpp \
 	pieces/S.cpp \
 	pieces/T.cpp \
-	pieces/TetrisPiece.cpp \
 	pieces/Z.cpp \
-	Tetris.cpp \
-	util/CursesUtil.cpp
+	util/CursesUtil.cpp \
+	display/TerminalTetrisDisplay.cpp \
+	display/TetrisDisplay.cpp \
+	input/KeyboardTetrisInput.cpp \
+	input/TetrisInput.cpp \
+	main.cpp \
+	Tetris.cpp 
+
 EXECUTABLE=tetra-table
 CFLAGS=-std=c++11
 LDFLAGS=-lcurses -pthread
@@ -21,9 +25,12 @@ OBJECTS=$(SOURCES:.cpp=.o)
  
 all: $(SOURCES) $(EXECUTABLE)
 
-$(EXECUTABLE): 
-	$(CC) $(CFLAGS) $(LDFLAGS) $(SOURCES) -o $@
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) -o $@
 
 .cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@
+
+clean:
+	find . -name '*.o' -delete && find . -name '$(EXECUTABLE)' -delete 
 

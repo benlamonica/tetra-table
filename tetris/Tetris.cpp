@@ -21,6 +21,7 @@
 #include "pieces/S.hpp"
 #include "pieces/T.hpp"
 #include "pieces/Z.hpp"
+#include "audio/TetrisAudio.hpp"
 
 namespace {
     int64_t now() {
@@ -38,7 +39,7 @@ Tetris::~Tetris() {
     
 }
 
-Tetris::Tetris(std::shared_ptr<TetrisDisplay> display) : m_display(display), m_isRunning(true), m_score(0), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(1000 * 1000000), m_lockSpeed(1000 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false) {
+Tetris::Tetris(std::shared_ptr<TetrisDisplay> display, std::shared_ptr<TetrisAudio> audio) : m_display(display), m_isRunning(true), m_score(0), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(1000 * 1000000), m_lockSpeed(1000 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false), m_audio(audio) {
 
     resetGame();
 };
@@ -60,6 +61,7 @@ void Tetris::resetGame() {
     }
   
     m_isGameOver.store(false);
+    m_audio->playMusic();
     takeNextPiece();
     
 }
@@ -71,8 +73,11 @@ void Tetris::gameover() {
     for (int y = m_boardHeight-1; y >= 0; y--) {
         std::transform(m_board.at(y).begin(), m_board.at(y).end(), m_board.at(y).begin(), ::tolower);
         draw();
+        m_audio->playSound(TetrisAudio::PIECE_FREEZE);
         millisleep(100);
     }
+    
+    m_audio->playSound(TetrisAudio::GAME_OVER);
 }
 
 void Tetris::takeNextPiece() {
@@ -96,6 +101,7 @@ void Tetris::takeNextPiece() {
     }
     m_shadowY = calculateDropPosition();
     draw();
+    m_audio->playSound(TetrisAudio::NEW_PIECE);
 }
 
 void Tetris::fillPieceBag() {
@@ -172,7 +178,9 @@ void Tetris::lockPiece() {
     }
     int y = m_currentPiece->getY();
     m_currentPiece.reset(); // make this null, so that when we draw the screen for animations, it doesn't draw the piece again
-    removeLines(y);
+    if (removeLines(y) == 0) {
+        m_audio->playSound(TetrisAudio::LOCK);
+    }
     takeNextPiece();
 }
 
@@ -238,8 +246,10 @@ void Tetris::drop(bool hard) {
         }
         
         if(hard) {
+            m_audio->playSound(TetrisAudio::HARD_DROP);
             lockPiece();
         } else {
+            m_audio->playSound(TetrisAudio::SOFT_DROP);
             checkForLock();
         }
         draw();
@@ -248,6 +258,7 @@ void Tetris::drop(bool hard) {
 
 void Tetris::rotate() {
     if (m_currentPiece) {
+        m_audio->playSound(TetrisAudio::ROTATE);
         m_currentPiece->rotateRight();
         m_currentMask = m_currentPiece->getMask();
 
@@ -296,7 +307,7 @@ void Tetris::checkForLevelUp() {
     }
 }
 
-void Tetris::removeLines(int y) {
+int Tetris::removeLines(int y) {
     typedef std::map<int,std::string> LineMap;
     LineMap lines;
     // first, find the completed lines
@@ -314,6 +325,7 @@ void Tetris::removeLines(int y) {
     }
     
     if (!lines.empty()) {
+        m_audio->playSound(TetrisAudio::REMOVE_LINE);
         // now animate them, as they are about to go away
         for (int i = 0; i < 6; i++) {
             for (LineMap::iterator lineIter = lines.begin(); lineIter != lines.end(); ++lineIter) {
@@ -340,6 +352,7 @@ void Tetris::removeLines(int y) {
         static const int scoreForLines[] = {100, 300, 500, 800};
         int score = scoreForLines[lines.size()-1] * m_level;
         if (lines.size() == 4) {
+            m_audio->playSound(TetrisAudio::TETRIS);
             if (m_wasLastLineClearDifficult) {
                 score *= 1.5;
             }
@@ -351,7 +364,8 @@ void Tetris::removeLines(int y) {
         
         checkForLevelUp();
     }
-    // add to the score
+    
+    return (int) lines.size(); // cast: we'll never have more than 4 lines removed
 }
 
 
