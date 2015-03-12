@@ -17,6 +17,8 @@
 		B57E8E1E1AA29726008BF0F6 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57E8E1D1AA29726008BF0F6 /* GameController.framework */; };
 		B57E8E211AA7CA40008BF0F6 /* TetrisAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E1F1AA7CA40008BF0F6 /* TetrisAudio.cpp */; };
 		B57E8E241AA7CBD3008BF0F6 /* NoSoundAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E221AA7CBD3008BF0F6 /* NoSoundAudio.cpp */; };
+		B57E8E271AAE5BA7008BF0F6 /* MacAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E251AAE5BA7008BF0F6 /* MacAudio.cpp */; };
+		B57E8E2B1AAFA77B008BF0F6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57E8E2A1AAFA77B008BF0F6 /* AVFoundation.framework */; };
 		B5B29D881A5B5BEB008B1F2E /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */; };
 		B5B29D921A65E272008B1F2E /* tetris_tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D911A65E272008B1F2E /* tetris_tests.mm */; };
 		B5B29D9F1A65E520008B1F2E /* I.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D9C1A65E520008B1F2E /* I.cpp */; };
@@ -28,6 +30,7 @@
 		B5B29DB11A66FED1008B1F2E /* O.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB01A66FED1008B1F2E /* O.cpp */; };
 		B5B29DB31A67370B008B1F2E /* TetrisPiece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB21A67370B008B1F2E /* TetrisPiece.cpp */; };
 		B5E35FCA1A940CBD00192096 /* TerminalTetrisDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5E35FC81A940CBD00192096 /* TerminalTetrisDisplay.cpp */; };
+		B5E92A911AB0F89700FBFF9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E92A901AB0F89700FBFF9D /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,7 +47,7 @@
 
 /* Begin PBXFileReference section */
 		351118811A4DA4430041640B /* tetris */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tetris; sourceTree = BUILT_PRODUCTS_DIR; };
-		351118841A4DA4430041640B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		351118841A4DA4430041640B /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = main.cpp; sourceTree = "<group>"; };
 		3511188B1A4FBC6C0041640B /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
 		351118901A50FA770041640B /* Tetris.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tetris.cpp; sourceTree = "<group>"; };
 		351118911A50FA770041640B /* Tetris.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tetris.hpp; sourceTree = "<group>"; };
@@ -62,6 +65,10 @@
 		B57E8E201AA7CA40008BF0F6 /* TetrisAudio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TetrisAudio.hpp; path = audio/TetrisAudio.hpp; sourceTree = "<group>"; };
 		B57E8E221AA7CBD3008BF0F6 /* NoSoundAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NoSoundAudio.cpp; path = audio/NoSoundAudio.cpp; sourceTree = "<group>"; };
 		B57E8E231AA7CBD3008BF0F6 /* NoSoundAudio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = NoSoundAudio.hpp; path = audio/NoSoundAudio.hpp; sourceTree = "<group>"; };
+		B57E8E251AAE5BA7008BF0F6 /* MacAudio.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = MacAudio.cpp; path = audio/MacAudio.cpp; sourceTree = "<group>"; };
+		B57E8E261AAE5BA7008BF0F6 /* MacAudio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MacAudio.hpp; path = audio/MacAudio.hpp; sourceTree = "<group>"; };
+		B57E8E281AAE5BF4008BF0F6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		B57E8E2A1AAFA77B008BF0F6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 		B5B29D8D1A65E272008B1F2E /* tetris-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "tetris-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B29D901A65E272008B1F2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +91,7 @@
 		B5B29DB21A67370B008B1F2E /* TetrisPiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetrisPiece.cpp; sourceTree = "<group>"; };
 		B5E35FC81A940CBD00192096 /* TerminalTetrisDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TerminalTetrisDisplay.cpp; path = display/TerminalTetrisDisplay.cpp; sourceTree = "<group>"; };
 		B5E35FC91A940CBD00192096 /* TerminalTetrisDisplay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TerminalTetrisDisplay.hpp; path = display/TerminalTetrisDisplay.hpp; sourceTree = "<group>"; };
+		B5E92A901AB0F89700FBFF9D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5E92A911AB0F89700FBFF9D /* Foundation.framework in Frameworks */,
+				B57E8E2B1AAFA77B008BF0F6 /* AVFoundation.framework in Frameworks */,
 				B57E8E1E1AA29726008BF0F6 /* GameController.framework in Frameworks */,
 				B5B29D881A5B5BEB008B1F2E /* libpthread.dylib in Frameworks */,
 				3511188C1A4FBC6C0041640B /* libncurses.dylib in Frameworks */,
@@ -110,6 +120,9 @@
 		351118781A4DA4430041640B = {
 			isa = PBXGroup;
 			children = (
+				B5E92A901AB0F89700FBFF9D /* Foundation.framework */,
+				B57E8E2A1AAFA77B008BF0F6 /* AVFoundation.framework */,
+				B57E8E281AAE5BF4008BF0F6 /* CoreAudio.framework */,
 				B57E8E1D1AA29726008BF0F6 /* GameController.framework */,
 				B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */,
 				3511188B1A4FBC6C0041640B /* libncurses.dylib */,
@@ -170,6 +183,8 @@
 				B57E8E201AA7CA40008BF0F6 /* TetrisAudio.hpp */,
 				B57E8E221AA7CBD3008BF0F6 /* NoSoundAudio.cpp */,
 				B57E8E231AA7CBD3008BF0F6 /* NoSoundAudio.hpp */,
+				B57E8E251AAE5BA7008BF0F6 /* MacAudio.cpp */,
+				B57E8E261AAE5BA7008BF0F6 /* MacAudio.hpp */,
 			);
 			name = audio;
 			sourceTree = "<group>";
@@ -317,6 +332,7 @@
 				B57E8E0F1AA14CCE008BF0F6 /* TetrisDisplay.cpp in Sources */,
 				B57E8E1B1AA14D51008BF0F6 /* CursesUtil.cpp in Sources */,
 				B5B29DAD1A65E73C008B1F2E /* Z.cpp in Sources */,
+				B57E8E271AAE5BA7008BF0F6 /* MacAudio.cpp in Sources */,
 				B57E8E241AA7CBD3008BF0F6 /* NoSoundAudio.cpp in Sources */,
 				B5B29DAB1A65E73C008B1F2E /* L.cpp in Sources */,
 				B5B29DAE1A65E73C008B1F2E /* S.cpp in Sources */,
@@ -421,7 +437,10 @@
 		351118891A4DA4430041640B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "-ObjC++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -429,7 +448,10 @@
 		3511188A1A4DA4430041640B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "-ObjC++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

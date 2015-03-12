@@ -2,6 +2,7 @@ CC=clang++
 SOURCES= \
 	audio/TetrisAudio.cpp \
 	audio/NoSoundAudio.cpp \
+	audio/MacAudio.cpp \
 	pieces/TetrisPiece.cpp \
 	pieces/I.cpp \
 	pieces/J.cpp \
@@ -19,13 +20,13 @@ SOURCES= \
 	Tetris.cpp 
 
 EXECUTABLE=tetra-table
-CFLAGS=-std=c++11
-LDFLAGS=-lcurses -pthread
+CFLAGS=-std=c++11 -Oz -ObjC++
+LDFLAGS=-lcurses -lpthread -framework Foundation -framework AVFoundation -framework CoreAudio -framework GameController
 OBJECTS=$(SOURCES:.cpp=.o)
  
 all: $(SOURCES) $(EXECUTABLE)
 
-$(EXECUTABLE): $(OBJECTS)
+$(EXECUTABLE): $(OBJECTS) 
 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJECTS) -o $@
 
 .cpp.o:

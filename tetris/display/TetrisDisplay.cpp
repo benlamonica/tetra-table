@@ -18,6 +18,10 @@
 #include "../pieces/Z.hpp"
 #include <syslog.h>
 
+TetrisDisplay::~TetrisDisplay() {
+    
+}
+
 void TetrisDisplay::drawBoard(const BoardType &board, TetrisPiece::Ptr currentPiece, int shadowY) {
     std::string mask = currentPiece ? currentPiece->getMask() : "";
     for (int y = 0; y < board.size(); y++) {

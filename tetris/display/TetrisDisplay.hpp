@@ -22,6 +22,7 @@ public:
     virtual void drawLevel(int level) = 0;
     virtual void drawRemainingLines(int remainingLines) = 0;
     virtual void flush() = 0;
+    virtual ~TetrisDisplay();
 protected:
     virtual void drawPoint(int x, int y, char ch, const Color& color) = 0;
     const Color& getColor(char pieceType);
