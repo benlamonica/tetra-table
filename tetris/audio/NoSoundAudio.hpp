@@ -16,6 +16,7 @@
 class NoSoundAudio : public TetrisAudio {
 public:
     virtual void playMusic();
+    virtual void stopMusic();
     virtual void playSound(Sounds sound);
     NoSoundAudio();
     virtual ~NoSoundAudio();

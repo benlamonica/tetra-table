@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "TetrisAudio.hpp"
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
+
 
 class MacAudio : public TetrisAudio {
     public:
@@ -19,9 +21,11 @@ class MacAudio : public TetrisAudio {
     virtual ~MacAudio();
 
     virtual void playMusic();
+    virtual void stopMusic();
     virtual void playSound(Sounds sound);
 private:
-    NSMutableArray *m_avPlayers;
+    AVAudioPlayer* getAvailablePlayer(Sounds sound);
+    NSMutableDictionary *m_avPlayers;
 };
 
 

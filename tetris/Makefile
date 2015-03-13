@@ -20,7 +20,7 @@ SOURCES= \
 	Tetris.cpp 
 
 EXECUTABLE=tetra-table
-CFLAGS=-std=c++11 -Oz -ObjC++
+CFLAGS=-std=c++11 -ObjC++
 LDFLAGS=-lcurses -lpthread -framework Foundation -framework AVFoundation -framework CoreAudio -framework GameController
 OBJECTS=$(SOURCES:.cpp=.o)
  

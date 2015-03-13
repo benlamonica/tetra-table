@@ -17,7 +17,7 @@
 		B57E8E1E1AA29726008BF0F6 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57E8E1D1AA29726008BF0F6 /* GameController.framework */; };
 		B57E8E211AA7CA40008BF0F6 /* TetrisAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E1F1AA7CA40008BF0F6 /* TetrisAudio.cpp */; };
 		B57E8E241AA7CBD3008BF0F6 /* NoSoundAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E221AA7CBD3008BF0F6 /* NoSoundAudio.cpp */; };
-		B57E8E271AAE5BA7008BF0F6 /* MacAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E251AAE5BA7008BF0F6 /* MacAudio.cpp */; };
+		B57E8E271AAE5BA7008BF0F6 /* MacAudio.mm in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E251AAE5BA7008BF0F6 /* MacAudio.mm */; };
 		B57E8E2B1AAFA77B008BF0F6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57E8E2A1AAFA77B008BF0F6 /* AVFoundation.framework */; };
 		B5B29D881A5B5BEB008B1F2E /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */; };
 		B5B29D921A65E272008B1F2E /* tetris_tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D911A65E272008B1F2E /* tetris_tests.mm */; };
@@ -65,7 +65,7 @@
 		B57E8E201AA7CA40008BF0F6 /* TetrisAudio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TetrisAudio.hpp; path = audio/TetrisAudio.hpp; sourceTree = "<group>"; };
 		B57E8E221AA7CBD3008BF0F6 /* NoSoundAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NoSoundAudio.cpp; path = audio/NoSoundAudio.cpp; sourceTree = "<group>"; };
 		B57E8E231AA7CBD3008BF0F6 /* NoSoundAudio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = NoSoundAudio.hpp; path = audio/NoSoundAudio.hpp; sourceTree = "<group>"; };
-		B57E8E251AAE5BA7008BF0F6 /* MacAudio.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = MacAudio.cpp; path = audio/MacAudio.cpp; sourceTree = "<group>"; };
+		B57E8E251AAE5BA7008BF0F6 /* MacAudio.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = MacAudio.mm; path = audio/MacAudio.mm; sourceTree = "<group>"; };
 		B57E8E261AAE5BA7008BF0F6 /* MacAudio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MacAudio.hpp; path = audio/MacAudio.hpp; sourceTree = "<group>"; };
 		B57E8E281AAE5BF4008BF0F6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		B57E8E2A1AAFA77B008BF0F6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -183,7 +183,7 @@
 				B57E8E201AA7CA40008BF0F6 /* TetrisAudio.hpp */,
 				B57E8E221AA7CBD3008BF0F6 /* NoSoundAudio.cpp */,
 				B57E8E231AA7CBD3008BF0F6 /* NoSoundAudio.hpp */,
-				B57E8E251AAE5BA7008BF0F6 /* MacAudio.cpp */,
+				B57E8E251AAE5BA7008BF0F6 /* MacAudio.mm */,
 				B57E8E261AAE5BA7008BF0F6 /* MacAudio.hpp */,
 			);
 			name = audio;
@@ -332,7 +332,7 @@
 				B57E8E0F1AA14CCE008BF0F6 /* TetrisDisplay.cpp in Sources */,
 				B57E8E1B1AA14D51008BF0F6 /* CursesUtil.cpp in Sources */,
 				B5B29DAD1A65E73C008B1F2E /* Z.cpp in Sources */,
-				B57E8E271AAE5BA7008BF0F6 /* MacAudio.cpp in Sources */,
+				B57E8E271AAE5BA7008BF0F6 /* MacAudio.mm in Sources */,
 				B57E8E241AA7CBD3008BF0F6 /* NoSoundAudio.cpp in Sources */,
 				B5B29DAB1A65E73C008B1F2E /* L.cpp in Sources */,
 				B5B29DAE1A65E73C008B1F2E /* S.cpp in Sources */,

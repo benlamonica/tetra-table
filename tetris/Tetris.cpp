@@ -69,6 +69,7 @@ void Tetris::resetGame() {
 void Tetris::gameover() {
     m_isGameOver.store(true);
     m_currentPiece.reset();
+    m_audio->stopMusic();
     
     for (int y = m_boardHeight-1; y >= 0; y--) {
         std::transform(m_board.at(y).begin(), m_board.at(y).end(), m_board.at(y).begin(), ::tolower);

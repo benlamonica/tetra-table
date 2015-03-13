@@ -16,6 +16,10 @@ void NoSoundAudio::playSound(Sounds sound) {
     // no-op
 }
 
+void NoSoundAudio::stopMusic() {
+    // no-op
+}
+
 NoSoundAudio::NoSoundAudio() {
     
 }

@@ -14,19 +14,21 @@
 class TetrisAudio {
 public:
     enum Sounds {
-        ROTATE,
-        SOFT_DROP,
-        HARD_DROP,
-        LOCK,
-        REMOVE_LINE,
-        NEW_PIECE,
-        TETRIS,
-        LEVEL_UP,
-        PIECE_FREEZE,
-        GAME_OVER
+        MUSIC,
+        ROTATE, // nuh
+        SOFT_DROP, // shhh
+        HARD_DROP, // tss
+        LOCK, // click
+        REMOVE_LINE, // bloop
+        NEW_PIECE, // boop
+        TETRIS, // ba-la-la-la-la
+        LEVEL_UP, // ba-doop ^
+        PIECE_FREEZE, // tsh
+        GAME_OVER // wah-wah
     };
     
     virtual void playMusic() = 0;
+    virtual void stopMusic() = 0;
     virtual void playSound(Sounds sound) = 0;
     virtual ~TetrisAudio();
 protected:
