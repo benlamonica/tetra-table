@@ -39,7 +39,7 @@ Tetris::~Tetris() {
     
 }
 
-Tetris::Tetris(std::shared_ptr<TetrisDisplay> display, std::shared_ptr<TetrisAudio> audio) : m_display(display), m_isRunning(true), m_score(0), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(1000 * 1000000), m_lockSpeed(1000 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false), m_audio(audio) {
+Tetris::Tetris(std::shared_ptr<TetrisDisplay> display, std::shared_ptr<TetrisAudio> audio) : m_display(display), m_isRunning(true), m_score(0), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(1000 * 1000000), m_lockSpeed(1000 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false), m_audio(audio), m_locking(false) {
 
     resetGame();
 };
@@ -82,6 +82,7 @@ void Tetris::gameover() {
 }
 
 void Tetris::takeNextPiece() {
+    syslog(LOG_WARNING, "take next piece at: %lld", now());
     fillPieceBag();
     m_dropTime.store(now() + m_dropSpeed);
     m_lockTime.store(INT64_MAX);
@@ -96,8 +97,9 @@ void Tetris::takeNextPiece() {
     m_pieces.pop_front();
     m_currentPiece->setLocation(4, 0);
     m_currentMask = m_currentPiece->getMask();
-    if (collisionAt(m_currentPiece, 4, 0)) {
+    if (collisionAtLog(m_currentPiece, 4, 0)) {
         gameover();
+        logBoard();
         return;
     }
     m_shadowY = calculateDropPosition();
@@ -138,8 +140,10 @@ void Tetris::run() {
         }
         int64_t nowInNs = now();
         if (lockInNs <= nowInNs || (dropInNs <= nowInNs && m_aboutToLock.load())) {
+            syslog(LOG_WARNING, "dropInNs: %lld lockInNs: %lld nowInNs: %lld aboutToLock: %s", dropInNs, lockInNs, nowInNs, m_aboutToLock.load() ? "true" : "false");
             lockPiece();
         } else if (dropInNs <= nowInNs) {
+            syslog(LOG_WARNING, "dropInNs: %lld nowInNs: %lld", dropInNs, nowInNs);
             moveDown(true);
         } else {
             int64_t timeToSleep = std::min(std::min(lockInNs,dropInNs) - nowInNs, (int64_t)m_lockSpeed);
@@ -164,12 +168,14 @@ void Tetris::lockPiece() {
     // block the event loop from running while we manipulate the playing field
     std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
 
+    syslog(LOG_WARNING, "Locking piece : %c at [%d,%d]", m_currentPiece->getRep(), m_currentPiece->getX(), m_currentPiece->getY());
+
     m_lockTime.store(INT64_MAX);
     m_dropTime.store(-1);
     m_aboutToLock.store(false);
+    m_locking.store(true);
     int width = m_currentPiece->getWidth();
     
-    // check to see if our piece will hit another piece
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < width; y++) {
             if (m_currentMask.at(x+(y*m_currentPiece->getWidth())) != ' ') {
@@ -177,12 +183,15 @@ void Tetris::lockPiece() {
             }
         }
     }
+
     int y = m_currentPiece->getY();
     m_currentPiece.reset(); // make this null, so that when we draw the screen for animations, it doesn't draw the piece again
+
     if (removeLines(y) == 0) {
         m_audio->playSound(TetrisAudio::LOCK);
     }
     takeNextPiece();
+    m_locking = false;
 }
 
 void Tetris::checkForLock() {
@@ -239,8 +248,9 @@ void Tetris::drop(bool hard) {
         resetGame();
         return;
     }
-    
-    if (m_currentPiece) {
+
+    bool isLocked = false;
+    if (m_locking.compare_exchange_strong(isLocked, true) && m_currentPiece) {
         while (m_currentPiece->getY() < m_shadowY) {
             m_currentPiece->moveDown();
             m_score+=2;
@@ -248,6 +258,7 @@ void Tetris::drop(bool hard) {
         
         if(hard) {
             m_audio->playSound(TetrisAudio::HARD_DROP);
+            syslog(LOG_WARNING, "Hard Drop Lock");
             lockPiece();
         } else {
             m_audio->playSound(TetrisAudio::SOFT_DROP);
@@ -369,6 +380,30 @@ int Tetris::removeLines(int y) {
     return (int) lines.size(); // cast: we'll never have more than 4 lines removed
 }
 
+// check to see if we have a collision at a given spot
+bool Tetris::collisionAtLog(TetrisPiece::Ptr piece, int pieceX, int pieceY) {
+    int width = piece->getWidth();
+    syslog(LOG_WARNING, "width: %d", width);
+    
+    // check to see if our piece will hit another piece
+    for (int x = 0; x < width; x++) {
+        for (int y = 0; y < width; y++) {
+            if (m_currentMask.at(x+(y*m_currentPiece->getWidth())) != ' ') {
+                if ((pieceX + x) < 0 || (pieceX + x) >= m_boardWidth) {
+                    syslog(LOG_WARNING, "COLLISION: pieceX + x is %d, out of bounds", (pieceX + x));
+                    return true;
+                }
+                if ((pieceY + y) >= m_boardHeight || m_board.at(pieceY + y).at(pieceX + x) != ' ') {
+                    syslog(LOG_WARNING, "COLLISION: pieceY + y is %d, board val at [%d,%d] is %c", (pieceY + y), (pieceX + x), (pieceY + y), m_board.at(pieceY + y).at(pieceX + x));
+                    return true;
+                }
+            }
+        }
+    }
+    syslog(LOG_WARNING, "no collision.");
+    return false;
+}
+
 
 // check to see if we have a collision at a given spot
 bool Tetris::collisionAt(TetrisPiece::Ptr piece, int pieceX, int pieceY) {
@@ -398,6 +433,5 @@ int Tetris::calculateDropPosition() {
         shadowY++; // haven't found a collision yet, move the check down a line
     }
     
-    syslog(LOG_WARNING, "drop pos: %d", shadowY - 1);
     return shadowY - 1;
 }

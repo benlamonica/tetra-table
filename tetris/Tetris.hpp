@@ -37,6 +37,7 @@ public:
 private:
     void draw();
     void lockPiece();
+    bool collisionAtLog(TetrisPiece::Ptr piece, int pieceX, int pieceY);
     bool collisionAt(TetrisPiece::Ptr piece, int pieceX, int pieceY);
     int calculateDropPosition();
     void fillPieceBag();
@@ -72,6 +73,7 @@ private:
     std::atomic<bool> m_isGameOver;
     std::atomic<bool> m_wasLastLineClearDifficult;
     std::shared_ptr<TetrisAudio> m_audio;
+    std::atomic<bool> m_locking; // true while performing a lock
 };
 
 #endif /* defined(__tetris__Tetris__) */
