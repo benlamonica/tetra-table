@@ -30,7 +30,8 @@ public:
     void moveRight();
     void moveDown(bool autoDrop = false);
     void drop(bool hard = false);
-    void rotate();
+    void rotate(tetris::Move move);
+    void holdPiece();
     void run();
     void quit();
     
@@ -56,6 +57,7 @@ private:
     BoardType m_board;
     TetrisPiece::Ptr m_currentPiece;
     TetrisPiece::Ptr m_nextPiece;
+    TetrisPiece::Ptr m_heldPiece;
     std::string m_currentMask;
     int m_shadowY;
     int m_boardHeight;
@@ -74,6 +76,7 @@ private:
     std::atomic<bool> m_wasLastLineClearDifficult;
     std::shared_ptr<TetrisAudio> m_audio;
     std::atomic<bool> m_locking; // true while performing a lock
+    std::atomic<bool> m_swapped;
 };
 
 #endif /* defined(__tetris__Tetris__) */

@@ -32,7 +32,13 @@ tetris::Move KeyboardTetrisInput::getNextMove() {
             case KEY_DOWN:
                 return DOWN;
             case KEY_UP:
-                return ROTATE;
+                return HOLD_PIECE;
+            case ((int)'z'):
+            case ((int)'Z'):
+                return ROTATE_LEFT;
+            case ((int)'x'):
+            case ((int)'X'):
+                return ROTATE_RIGHT;
             case ((int)' '):
                 return DROP;
             case ((int) 'q'):

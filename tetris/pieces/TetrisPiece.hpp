@@ -38,6 +38,7 @@ public:
     void moveRight();
     int getWidth() const;
     void setLocation(int x, int y);
+    void setRotation(int rotation);
 protected:
     TetrisPiece(std::vector<std::string> masks, char rep, const Color &color, const Color &grayColor, int width);
     int m_rotation;

@@ -19,6 +19,7 @@ public:
     virtual ~TerminalTetrisDisplay();
     virtual void flush() override;
     virtual void drawNextPiece(TetrisPiece::Ptr nextPiece) override;
+    virtual void drawHeldPiece(TetrisPiece::Ptr heldPiece) override;
     virtual void drawScore(int score) override;
     virtual void drawLevel(int level) override;
     virtual void drawRemainingLines(int remainingLines) override;
@@ -26,6 +27,7 @@ public:
 protected:
     virtual void drawPoint(int x, int y, char ch, const Color& color) override;
 private:
+    void drawPiece(TetrisPiece::Ptr piece, int x, int y);
     CursesUtil &m_curses;
     int m_xOffset;
     int m_yOffset;

@@ -105,6 +105,7 @@ void Tetris::takeNextPiece() {
     m_shadowY = calculateDropPosition();
     draw();
     m_audio->playSound(TetrisAudio::NEW_PIECE);
+    m_swapped = false;
 }
 
 void Tetris::fillPieceBag() {
@@ -157,6 +158,7 @@ void Tetris::run() {
 
 void Tetris::draw() {
     m_display->drawNextPiece(m_nextPiece);
+    m_display->drawHeldPiece(m_heldPiece);
     m_display->drawLevel(m_level);
     m_display->drawScore(m_score);
     m_display->drawRemainingLines(m_linesLeft);
@@ -268,10 +270,39 @@ void Tetris::drop(bool hard) {
     }
 }
 
-void Tetris::rotate() {
+void Tetris::holdPiece() {
+    // only allow 1 swap per drop... this variable is reset after we get a new piece from the bag
+    if (m_swapped) {
+        return;
+    }
+    
+    syslog(LOG_WARNING, "swapping piece");
+    std::swap(m_heldPiece, m_currentPiece);
+    if (!m_currentPiece) {
+        takeNextPiece();
+    } else {
+        m_currentPiece->setLocation(4, 0);
+        m_currentMask = m_currentPiece->getMask();
+        if (collisionAtLog(m_currentPiece, 4, 0)) {
+            gameover();
+            logBoard();
+            return;
+        }
+        m_shadowY = calculateDropPosition();
+        draw();
+    }
+    m_swapped = true;
+}
+void Tetris::rotate(tetris::Move move) {
     if (m_currentPiece) {
         m_audio->playSound(TetrisAudio::ROTATE);
-        m_currentPiece->rotateRight();
+        
+        if (move == tetris::Move::ROTATE_RIGHT) {
+            m_currentPiece->rotateRight();
+        } else {
+            m_currentPiece->rotateLeft();
+        }
+        
         m_currentMask = m_currentPiece->getMask();
 
         bool isRotateSuccessful = false;
@@ -290,15 +321,19 @@ void Tetris::rotate() {
             checkForLock();
             draw();
         } else {
-            m_currentPiece->rotateLeft();
+            if (move == tetris::Move::ROTATE_RIGHT) {
+                m_currentPiece->rotateLeft();
+            } else {
+                m_currentPiece->rotateRight();
+            }
             m_currentMask = m_currentPiece->getMask();
         }
     }
 }
 
 void Tetris::quit() {
+    syslog(LOG_WARNING, "exiting tetris");
     m_isRunning.store(false);
-    exit(1);
 }
 
 void Tetris::logBoard() {

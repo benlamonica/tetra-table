@@ -15,14 +15,20 @@ TetrisPiece::TetrisPiece(std::vector<std::string> masks, char rep, const Color &
     
 }
 
-void TetrisPiece::rotateLeft() {
+void TetrisPiece::setRotation(int rotation) {
+    if (rotation < 360 && rotation % 90 == 0) {
+        m_rotation = rotation;
+    }
+}
+
+void TetrisPiece::rotateRight() {
     m_rotation += 90;
     if (m_rotation > 360) {
         m_rotation -= 360;
     }
 }
 
-void TetrisPiece::rotateRight() {
+void TetrisPiece::rotateLeft() {
     m_rotation -= 90;
     if (m_rotation < 0) {
         m_rotation += 360;
