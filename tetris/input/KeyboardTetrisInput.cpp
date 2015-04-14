@@ -20,36 +20,42 @@ KeyboardTetrisInput::~KeyboardTetrisInput() {
     
 }
 
-tetris::Move KeyboardTetrisInput::getNextMove() {
+void KeyboardTetrisInput::getNextMove(std::vector<tetris::Move> &moves) {
     using namespace tetris;
     int ch = m_curses.getChar();
     if (ch != -1) {
         switch(ch) {
             case KEY_LEFT:
-                return LEFT;
+                moves.push_back(LEFT);
+                break;
             case KEY_RIGHT:
-                return RIGHT;
+                moves.push_back(RIGHT);
+                break;
             case KEY_DOWN:
-                return DOWN;
+                moves.push_back(DOWN);
+                break;
             case KEY_UP:
-                return HOLD_PIECE;
+                moves.push_back(HOLD_PIECE);
+                break;
             case ((int)'z'):
             case ((int)'Z'):
-                return ROTATE_LEFT;
+                moves.push_back(ROTATE_LEFT);
+                break;
             case ((int)'x'):
             case ((int)'X'):
-                return ROTATE_RIGHT;
+                moves.push_back(ROTATE_RIGHT);
+                break;
             case ((int)' '):
-                return DROP;
+                moves.push_back(DROP);
+                break;
             case ((int) 'q'):
             case ((int) 'Q'):
-                return QUIT;
+                moves.push_back(QUIT);
+                break;
         }
     } else {
         // sleep for 50 ms
         struct timespec sleepTime = {0,50000000};
         nanosleep(&sleepTime, NULL);
     }
-    
-    return NONE;
 }

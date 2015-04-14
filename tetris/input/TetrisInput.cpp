@@ -32,33 +32,38 @@ void TetrisInput::stop() {
 
 void TetrisInput::dispatchMoves() {
 
+    typedef std::vector<tetris::Move> MoveVec;
+    MoveVec moves;
     while (m_isRunning.load()) {
         using namespace tetris;
-        Move move = getNextMove();
-        switch(move) {
-            case DOWN:
-                m_game->moveDown();
-                break;
-            case LEFT:
-                m_game->moveLeft();
-                break;
-            case RIGHT:
-                m_game->moveRight();
-                break;
-            case DROP:
-                m_game->drop(true);
-                break;
-            case ROTATE_LEFT:
-            case ROTATE_RIGHT:
-                m_game->rotate(move);
-                break;
-            case HOLD_PIECE:
-                m_game->holdPiece();
-                break;
-            case QUIT:
-                m_game->quit();
-            default:
-                break;
+        moves.clear();
+        getNextMove(moves);
+        for (MoveVec::const_iterator it = moves.begin(); it != moves.end(); ++it) {
+            switch(*it) {
+                case DOWN:
+                    m_game->moveDown();
+                    break;
+                case LEFT:
+                    m_game->moveLeft();
+                    break;
+                case RIGHT:
+                    m_game->moveRight();
+                    break;
+                case DROP:
+                    m_game->drop(true);
+                    break;
+                case ROTATE_LEFT:
+                case ROTATE_RIGHT:
+                    m_game->rotate(*it);
+                    break;
+                case HOLD_PIECE:
+                    m_game->holdPiece();
+                    break;
+                case QUIT:
+                    m_game->quit();
+                default:
+                    break;
+            }
         }
     }
 }

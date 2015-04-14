@@ -3,6 +3,7 @@ SOURCES= \
 	audio/TetrisAudio.cpp \
 	audio/NoSoundAudio.cpp \
 	audio/MacAudio.cpp \
+	audio/SDLAudio.cpp \
 	pieces/TetrisPiece.cpp \
 	pieces/I.cpp \
 	pieces/J.cpp \
@@ -12,16 +13,18 @@ SOURCES= \
 	pieces/T.cpp \
 	pieces/Z.cpp \
 	util/CursesUtil.cpp \
+	util/SDLUtil.cpp \
 	display/TerminalTetrisDisplay.cpp \
 	display/TetrisDisplay.cpp \
 	input/KeyboardTetrisInput.cpp \
 	input/TetrisInput.cpp \
+	input/SDLJoystickTetrisInput.cpp \
 	main.cpp \
 	Tetris.cpp 
 
 EXECUTABLE=tetra-table
-CFLAGS=-std=c++11 -ObjC++
-LDFLAGS=-lcurses -lpthread -framework Foundation -framework AVFoundation -framework CoreAudio -framework GameController
+CFLAGS=-std=c++11 -ObjC++ -F /Library/Frameworks
+LDFLAGS=-lcurses -lpthread -framework SDL2 -framework Foundation -framework AVFoundation -framework CoreAudio -framework GameController
 OBJECTS=$(SOURCES:.cpp=.o)
  
 all: $(SOURCES) $(EXECUTABLE)

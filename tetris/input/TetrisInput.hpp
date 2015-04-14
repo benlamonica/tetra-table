@@ -24,7 +24,7 @@ public:
     void stop();
     virtual ~TetrisInput();
 protected:
-    virtual tetris::Move getNextMove() = 0;
+    virtual void getNextMove(std::vector<tetris::Move> &moves) = 0;
 private:
     void dispatchMoves();
     Tetris *m_game;

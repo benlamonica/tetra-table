@@ -11,19 +11,25 @@
 #include <syslog.h>
 #include "Tetris.hpp"
 #include "input/KeyboardTetrisInput.hpp"
+#include "input/SDLJoystickTetrisInput.hpp"
 #include "audio/MacAudio.hpp"
+#include "util/SDLUtil.hpp"
 #include "display/TerminalTetrisDisplay.hpp"
 
 
 int main(int argc, const char * argv[]) {
     syslog(LOG_INFO, "starting tetris...");
+    SDLUtil::instance();
     std::shared_ptr<TetrisAudio> audio = std::make_shared<MacAudio>();
     std::shared_ptr<TetrisDisplay> display = std::make_shared<TerminalTetrisDisplay>(20,20);
     Tetris game(display, audio);
-    KeyboardTetrisInput input(&game);
-    input.run();
+    KeyboardTetrisInput keyboard(&game);
+    SDLJoystickTetrisInput joystick(&game);
+    keyboard.run();
+    joystick.run();
     game.run();
-    input.stop();
+    keyboard.stop();
+    joystick.stop();
     return 0;
 }
 

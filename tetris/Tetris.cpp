@@ -141,10 +141,10 @@ void Tetris::run() {
         }
         int64_t nowInNs = now();
         if (lockInNs <= nowInNs || (dropInNs <= nowInNs && m_aboutToLock.load())) {
-            syslog(LOG_WARNING, "dropInNs: %lld lockInNs: %lld nowInNs: %lld aboutToLock: %s", dropInNs, lockInNs, nowInNs, m_aboutToLock.load() ? "true" : "false");
+//            syslog(LOG_WARNING, "dropInNs: %lld lockInNs: %lld nowInNs: %lld aboutToLock: %s", dropInNs, lockInNs, nowInNs, m_aboutToLock.load() ? "true" : "false");
             lockPiece();
         } else if (dropInNs <= nowInNs) {
-            syslog(LOG_WARNING, "dropInNs: %lld nowInNs: %lld", dropInNs, nowInNs);
+//            syslog(LOG_WARNING, "dropInNs: %lld nowInNs: %lld", dropInNs, nowInNs);
             moveDown(true);
         } else {
             int64_t timeToSleep = std::min(std::min(lockInNs,dropInNs) - nowInNs, (int64_t)m_lockSpeed);
@@ -207,6 +207,7 @@ void Tetris::checkForLock() {
 }
 
 void Tetris::moveLeft() {
+    std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
     if (m_currentPiece && !collisionAt(m_currentPiece, m_currentPiece->getX()-1, m_currentPiece->getY())) {
         m_currentPiece->moveLeft();
         m_shadowY = calculateDropPosition();
@@ -216,6 +217,7 @@ void Tetris::moveLeft() {
 }
 
 void Tetris::moveRight() {
+    std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
     if (m_currentPiece && !collisionAt(m_currentPiece, m_currentPiece->getX()+1, m_currentPiece->getY())) {
         m_currentPiece->moveRight();
         m_shadowY = calculateDropPosition();
@@ -225,6 +227,8 @@ void Tetris::moveRight() {
 }
 
 void Tetris::moveDown(bool autoDrop) {
+    std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
+
     if (m_currentPiece) {
         if (!autoDrop) {
             m_score++;
@@ -246,6 +250,8 @@ void Tetris::moveDown(bool autoDrop) {
 }
 
 void Tetris::drop(bool hard) {
+    std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
+
     if (m_isGameOver.load()) {
         resetGame();
         return;
@@ -271,6 +277,8 @@ void Tetris::drop(bool hard) {
 }
 
 void Tetris::holdPiece() {
+    std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
+
     // only allow 1 swap per drop... this variable is reset after we get a new piece from the bag
     if (m_swapped) {
         return;
@@ -294,6 +302,8 @@ void Tetris::holdPiece() {
     m_swapped = true;
 }
 void Tetris::rotate(tetris::Move move) {
+    std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
+
     if (m_currentPiece) {
         m_audio->playSound(TetrisAudio::ROTATE);
         
@@ -332,6 +342,8 @@ void Tetris::rotate(tetris::Move move) {
 }
 
 void Tetris::quit() {
+    std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
+
     syslog(LOG_WARNING, "exiting tetris");
     m_isRunning.store(false);
 }

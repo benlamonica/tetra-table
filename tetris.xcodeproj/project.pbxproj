@@ -31,6 +31,10 @@
 		B5B29DB31A67370B008B1F2E /* TetrisPiece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB21A67370B008B1F2E /* TetrisPiece.cpp */; };
 		B5E35FCA1A940CBD00192096 /* TerminalTetrisDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5E35FC81A940CBD00192096 /* TerminalTetrisDisplay.cpp */; };
 		B5E92A911AB0F89700FBFF9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E92A901AB0F89700FBFF9D /* Foundation.framework */; };
+		B5EB73F31AC0CA1600F19E8F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EB73F21AC0CA1600F19E8F /* SDL2.framework */; };
+		B5EB73F61AC0CA8800F19E8F /* SDLAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EB73F41AC0CA8800F19E8F /* SDLAudio.cpp */; };
+		B5EB73F91AC0CAB400F19E8F /* SDLJoystickTetrisInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EB73F71AC0CAB400F19E8F /* SDLJoystickTetrisInput.cpp */; };
+		B5EB73FC1AC0CACA00F19E8F /* SDLUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EB73FA1AC0CACA00F19E8F /* SDLUtil.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,9 +93,17 @@
 		B5B29DAF1A66FED1008B1F2E /* O.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = O.hpp; sourceTree = "<group>"; };
 		B5B29DB01A66FED1008B1F2E /* O.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = O.cpp; sourceTree = "<group>"; };
 		B5B29DB21A67370B008B1F2E /* TetrisPiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetrisPiece.cpp; sourceTree = "<group>"; };
+		B5DA9E4C1ADC807B00B11CB3 /* TimeUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeUtil.hpp; sourceTree = "<group>"; };
 		B5E35FC81A940CBD00192096 /* TerminalTetrisDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TerminalTetrisDisplay.cpp; path = display/TerminalTetrisDisplay.cpp; sourceTree = "<group>"; };
 		B5E35FC91A940CBD00192096 /* TerminalTetrisDisplay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TerminalTetrisDisplay.hpp; path = display/TerminalTetrisDisplay.hpp; sourceTree = "<group>"; };
 		B5E92A901AB0F89700FBFF9D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B5EB73F21AC0CA1600F19E8F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		B5EB73F41AC0CA8800F19E8F /* SDLAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SDLAudio.cpp; path = audio/SDLAudio.cpp; sourceTree = "<group>"; };
+		B5EB73F51AC0CA8800F19E8F /* SDLAudio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SDLAudio.hpp; path = audio/SDLAudio.hpp; sourceTree = "<group>"; };
+		B5EB73F71AC0CAB400F19E8F /* SDLJoystickTetrisInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLJoystickTetrisInput.cpp; sourceTree = "<group>"; };
+		B5EB73F81AC0CAB400F19E8F /* SDLJoystickTetrisInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLJoystickTetrisInput.hpp; sourceTree = "<group>"; };
+		B5EB73FA1AC0CACA00F19E8F /* SDLUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLUtil.cpp; sourceTree = "<group>"; };
+		B5EB73FB1AC0CACA00F19E8F /* SDLUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLUtil.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5EB73F31AC0CA1600F19E8F /* SDL2.framework in Frameworks */,
 				B5E92A911AB0F89700FBFF9D /* Foundation.framework in Frameworks */,
 				B57E8E2B1AAFA77B008BF0F6 /* AVFoundation.framework in Frameworks */,
 				B57E8E1E1AA29726008BF0F6 /* GameController.framework in Frameworks */,
@@ -120,6 +133,7 @@
 		351118781A4DA4430041640B = {
 			isa = PBXGroup;
 			children = (
+				B5EB73F21AC0CA1600F19E8F /* SDL2.framework */,
 				B5E92A901AB0F89700FBFF9D /* Foundation.framework */,
 				B57E8E2A1AAFA77B008BF0F6 /* AVFoundation.framework */,
 				B57E8E281AAE5BF4008BF0F6 /* CoreAudio.framework */,
@@ -163,6 +177,8 @@
 				B57E8E121AA14D1F008BF0F6 /* KeyboardTetrisInput.hpp */,
 				B57E8E131AA14D1F008BF0F6 /* TetrisInput.cpp */,
 				B57E8E141AA14D1F008BF0F6 /* TetrisInput.hpp */,
+				B5EB73F71AC0CAB400F19E8F /* SDLJoystickTetrisInput.cpp */,
+				B5EB73F81AC0CAB400F19E8F /* SDLJoystickTetrisInput.hpp */,
 			);
 			path = input;
 			sourceTree = "<group>";
@@ -172,6 +188,9 @@
 			children = (
 				B57E8E191AA14D51008BF0F6 /* CursesUtil.cpp */,
 				B57E8E1A1AA14D51008BF0F6 /* CursesUtil.hpp */,
+				B5EB73FA1AC0CACA00F19E8F /* SDLUtil.cpp */,
+				B5EB73FB1AC0CACA00F19E8F /* SDLUtil.hpp */,
+				B5DA9E4C1ADC807B00B11CB3 /* TimeUtil.hpp */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -185,6 +204,8 @@
 				B57E8E231AA7CBD3008BF0F6 /* NoSoundAudio.hpp */,
 				B57E8E251AAE5BA7008BF0F6 /* MacAudio.mm */,
 				B57E8E261AAE5BA7008BF0F6 /* MacAudio.hpp */,
+				B5EB73F41AC0CA8800F19E8F /* SDLAudio.cpp */,
+				B5EB73F51AC0CA8800F19E8F /* SDLAudio.hpp */,
 			);
 			name = audio;
 			sourceTree = "<group>";
@@ -339,11 +360,14 @@
 				B5B29DB11A66FED1008B1F2E /* O.cpp in Sources */,
 				B5B29DB31A67370B008B1F2E /* TetrisPiece.cpp in Sources */,
 				351118851A4DA4430041640B /* main.cpp in Sources */,
+				B5EB73FC1AC0CACA00F19E8F /* SDLUtil.cpp in Sources */,
 				B5B29DA21A65E558008B1F2E /* T.cpp in Sources */,
 				B5B29D9F1A65E520008B1F2E /* I.cpp in Sources */,
 				351118921A50FA770041640B /* Tetris.cpp in Sources */,
 				B57E8E161AA14D1F008BF0F6 /* TetrisInput.cpp in Sources */,
+				B5EB73F61AC0CA8800F19E8F /* SDLAudio.cpp in Sources */,
 				B57E8E211AA7CA40008BF0F6 /* TetrisAudio.cpp in Sources */,
+				B5EB73F91AC0CAB400F19E8F /* SDLJoystickTetrisInput.cpp in Sources */,
 				B5E35FCA1A940CBD00192096 /* TerminalTetrisDisplay.cpp in Sources */,
 				B5B29DAC1A65E73C008B1F2E /* J.cpp in Sources */,
 			);
@@ -437,6 +461,10 @@
 		351118891A4DA4430041640B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
@@ -448,6 +476,10 @@
 		3511188A1A4DA4430041640B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
