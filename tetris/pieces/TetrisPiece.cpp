@@ -11,7 +11,7 @@
 TetrisPiece::~TetrisPiece() {
 }
 
-TetrisPiece::TetrisPiece(std::vector<std::string> masks, char rep, const Color &color, const Color &grayColor, int width) : m_rotation(0), m_masks(masks), m_color(color), m_grayColor(grayColor), m_rep(rep), m_width(width), m_x(4), m_y(0) {
+TetrisPiece::TetrisPiece(std::vector<std::string> masks, char rep, const Color &color, const Color &grayColor, int width) : m_rotation(90), m_masks(masks), m_color(color), m_grayColor(grayColor), m_rep(rep), m_width(width), m_x(4), m_y(0) {
     
 }
 

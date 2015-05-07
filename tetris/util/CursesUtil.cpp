@@ -20,6 +20,7 @@
 #include "../pieces/S.hpp"
 #include "../pieces/T.hpp"
 #include "../pieces/Z.hpp"
+#include "TimeUtil.hpp"
 
 namespace {
     void addColor(CursesUtil::ColorMap &map, const Color &color, int colorIdx) {
@@ -67,6 +68,11 @@ CursesUtil::~CursesUtil() {
 int CursesUtil::getChar() {
     std::lock_guard<std::mutex> guard(m_keyboardMutex);
     return getch();
+}
+
+void CursesUtil::redraw() {
+    std::lock_guard<std::mutex> guard(m_screenMutex);
+    redrawwin(stdscr);
 }
 
 void CursesUtil::flush() {

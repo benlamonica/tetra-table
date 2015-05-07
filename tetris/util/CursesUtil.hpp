@@ -30,6 +30,7 @@ public:
     void draw(int x, int y, char ch, const Color &c);
     void print(int x, int y, const std::string &s);
     void flush();
+    void redraw();
 
 private:
     std::mutex m_keyboardMutex;

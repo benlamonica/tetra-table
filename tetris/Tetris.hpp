@@ -36,7 +36,7 @@ public:
     void quit();
     
 private:
-    void draw();
+    void draw(bool redraw = false);
     void lockPiece();
     bool collisionAtLog(TetrisPiece::Ptr piece, int pieceX, int pieceY);
     bool collisionAt(TetrisPiece::Ptr piece, int pieceX, int pieceY);
@@ -48,11 +48,11 @@ private:
     void gameover();
     void resetGame();
     void checkForLevelUp();
+    void levelUp();
 
     std::deque<TetrisPiece::Ptr> m_pieces;
     std::shared_ptr<TetrisDisplay> m_display;
     std::atomic<bool> m_isRunning;
-    void logBoard();
     typedef std::deque<std::string> BoardType;
     BoardType m_board;
     TetrisPiece::Ptr m_currentPiece;

@@ -14,6 +14,7 @@ SOURCES= \
 	pieces/Z.cpp \
 	util/CursesUtil.cpp \
 	util/SDLUtil.cpp \
+	util/TimeUtil.cpp \
 	display/TerminalTetrisDisplay.cpp \
 	display/TetrisDisplay.cpp \
 	input/KeyboardTetrisInput.cpp \

@@ -9,17 +9,12 @@
 #ifndef tetris_TimeUtil_hpp
 #define tetris_TimeUtil_hpp
 
+#include <chrono>
+
 namespace tetris {
     namespace TimeUtil {
-        int64_t now() {
-            using namespace std::chrono;
-            return duration_cast<milliseconds>(high_resolution_clock::now().time_since_epoch()).count();
-        }
-        
-        void millisleep(int millis) {
-            struct timespec sleepTime = {(millis / 1000), (millis % 1000) * 1000000};
-            nanosleep(&sleepTime, NULL);
-        }
+        int64_t now();
+        void millisleep(int millis);
     }
 }
 

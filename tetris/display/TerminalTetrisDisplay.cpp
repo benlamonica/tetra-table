@@ -32,6 +32,10 @@ TerminalTetrisDisplay::~TerminalTetrisDisplay() {
     
 }
 
+void TerminalTetrisDisplay::redraw() {
+    m_curses.redraw();
+}
+
 void TerminalTetrisDisplay::drawPiece(TetrisPiece::Ptr piece, int xOffset, int yOffset) {
     int width = 3;
     std::string mask = "         ";

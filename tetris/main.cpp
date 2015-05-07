@@ -18,7 +18,7 @@
 
 
 int main(int argc, const char * argv[]) {
-    syslog(LOG_INFO, "starting tetris...");
+    syslog(LOG_INFO, "starting");
     SDLUtil::instance();
     std::shared_ptr<TetrisAudio> audio = std::make_shared<MacAudio>();
     std::shared_ptr<TetrisDisplay> display = std::make_shared<TerminalTetrisDisplay>(20,20);

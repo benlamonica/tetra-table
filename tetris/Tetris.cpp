@@ -22,24 +22,15 @@
 #include "pieces/T.hpp"
 #include "pieces/Z.hpp"
 #include "audio/TetrisAudio.hpp"
-
-namespace {
-    int64_t now() {
-        using namespace std::chrono;
-        return duration_cast<nanoseconds>(high_resolution_clock::now().time_since_epoch()).count();
-    }
-    
-    void millisleep(int millis) {
-        struct timespec sleepTime = {(millis / 1000), (millis % 1000) * 1000000};
-        nanosleep(&sleepTime, NULL);
-    }
-}
+#include "util/TimeUtil.hpp"
 
 Tetris::~Tetris() {
     
 }
 
-Tetris::Tetris(std::shared_ptr<TetrisDisplay> display, std::shared_ptr<TetrisAudio> audio) : m_display(display), m_isRunning(true), m_score(0), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(1000 * 1000000), m_lockSpeed(1000 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false), m_audio(audio), m_locking(false) {
+using namespace tetris::TimeUtil;
+
+Tetris::Tetris(std::shared_ptr<TetrisDisplay> display, std::shared_ptr<TetrisAudio> audio) : m_display(display), m_isRunning(true), m_score(0), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(1000 * 1000000), m_lockSpeed(1500 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false), m_audio(audio), m_locking(false) {
 
     resetGame();
 };
@@ -47,6 +38,7 @@ Tetris::Tetris(std::shared_ptr<TetrisDisplay> display, std::shared_ptr<TetrisAud
 void Tetris::resetGame() {
     m_board.clear();
     m_pieces.clear();
+    m_heldPiece.reset();
     m_dropSpeed = 1000 * 1000000;
     m_lockSpeed = 1000 * 1000000;
     m_dropTime.store(m_dropSpeed * 1000000);
@@ -63,7 +55,6 @@ void Tetris::resetGame() {
     m_isGameOver.store(false);
     m_audio->playMusic();
     takeNextPiece();
-    
 }
 
 void Tetris::gameover() {
@@ -82,7 +73,6 @@ void Tetris::gameover() {
 }
 
 void Tetris::takeNextPiece() {
-    syslog(LOG_WARNING, "take next piece at: %lld", now());
     fillPieceBag();
     m_dropTime.store(now() + m_dropSpeed);
     m_lockTime.store(INT64_MAX);
@@ -99,7 +89,6 @@ void Tetris::takeNextPiece() {
     m_currentMask = m_currentPiece->getMask();
     if (collisionAtLog(m_currentPiece, 4, 0)) {
         gameover();
-        logBoard();
         return;
     }
     m_shadowY = calculateDropPosition();
@@ -140,11 +129,9 @@ void Tetris::run() {
             continue;
         }
         int64_t nowInNs = now();
-        if (lockInNs <= nowInNs || (dropInNs <= nowInNs && m_aboutToLock.load())) {
-//            syslog(LOG_WARNING, "dropInNs: %lld lockInNs: %lld nowInNs: %lld aboutToLock: %s", dropInNs, lockInNs, nowInNs, m_aboutToLock.load() ? "true" : "false");
+        if (lockInNs <= nowInNs) {
             lockPiece();
-        } else if (dropInNs <= nowInNs) {
-//            syslog(LOG_WARNING, "dropInNs: %lld nowInNs: %lld", dropInNs, nowInNs);
+        } else if (!m_aboutToLock.load() && dropInNs <= nowInNs) {
             moveDown(true);
         } else {
             int64_t timeToSleep = std::min(std::min(lockInNs,dropInNs) - nowInNs, (int64_t)m_lockSpeed);
@@ -156,21 +143,25 @@ void Tetris::run() {
     }
 }
 
-void Tetris::draw() {
+void Tetris::draw(bool redraw) {
+    // prevent draws from being called at the same time from different threads
+    std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
     m_display->drawNextPiece(m_nextPiece);
     m_display->drawHeldPiece(m_heldPiece);
     m_display->drawLevel(m_level);
     m_display->drawScore(m_score);
     m_display->drawRemainingLines(m_linesLeft);
     m_display->drawBoard(m_board, m_currentPiece, m_shadowY);
-    m_display->flush();
+    if (redraw) {
+        m_display->redraw();
+    } else {
+        m_display->flush();
+    }
 }
 
 void Tetris::lockPiece() {
     // block the event loop from running while we manipulate the playing field
     std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
-
-    syslog(LOG_WARNING, "Locking piece : %c at [%d,%d]", m_currentPiece->getRep(), m_currentPiece->getX(), m_currentPiece->getY());
 
     m_lockTime.store(INT64_MAX);
     m_dropTime.store(-1);
@@ -245,7 +236,8 @@ void Tetris::moveDown(bool autoDrop) {
         if (m_currentPiece->getY() == m_shadowY) {
             checkForLock();
         }
-        draw();
+        
+        draw(autoDrop);
     }
 }
 
@@ -266,7 +258,6 @@ void Tetris::drop(bool hard) {
         
         if(hard) {
             m_audio->playSound(TetrisAudio::HARD_DROP);
-            syslog(LOG_WARNING, "Hard Drop Lock");
             lockPiece();
         } else {
             m_audio->playSound(TetrisAudio::SOFT_DROP);
@@ -284,7 +275,6 @@ void Tetris::holdPiece() {
         return;
     }
     
-    syslog(LOG_WARNING, "swapping piece");
     std::swap(m_heldPiece, m_currentPiece);
     if (!m_currentPiece) {
         takeNextPiece();
@@ -293,7 +283,6 @@ void Tetris::holdPiece() {
         m_currentMask = m_currentPiece->getMask();
         if (collisionAtLog(m_currentPiece, 4, 0)) {
             gameover();
-            logBoard();
             return;
         }
         m_shadowY = calculateDropPosition();
@@ -343,26 +332,20 @@ void Tetris::rotate(tetris::Move move) {
 
 void Tetris::quit() {
     std::lock_guard<std::recursive_mutex> guard(m_eventMutex);
-
     syslog(LOG_WARNING, "exiting tetris");
     m_isRunning.store(false);
 }
 
-void Tetris::logBoard() {
-    std::string board;
-    for (int y = 0; y < m_boardHeight; y++) {
-        board.append(m_board.at(y)).append("\n");
-    }
-    
-    syslog(LOG_WARNING, "%s", board.c_str());
+void Tetris::levelUp() {
+    m_level++;
+    m_linesLeft = m_level * 5;
+    m_dropSpeed -= (m_dropSpeed*.25);
+    m_lockSpeed -= (m_lockSpeed*.10);
 }
 
 void Tetris::checkForLevelUp() {
     if (m_linesLeft <= 0) {
-        m_level++;
-        m_linesLeft = m_level * 5;
-        m_dropSpeed -= (m_dropSpeed*.25);
-        m_lockSpeed -= (m_lockSpeed*.25);
+        levelUp();
     }
 }
 
@@ -395,7 +378,6 @@ int Tetris::removeLines(int y) {
                     *boardIter = lineIter->second;
                 }
             }
-            logBoard();
             draw();
             millisleep(75);
         }
@@ -408,8 +390,16 @@ int Tetris::removeLines(int y) {
             m_board.push_front(std::string(m_boardWidth, ' '));
         }
         
-        static const int scoreForLines[] = {100, 300, 500, 800};
-        int score = scoreForLines[lines.size()-1] * m_level;
+        static const int scoreForLines[] = {1, 3, 5, 8};
+        
+        // is this line clear difficult?
+        bool isDifficult = lines.size() == 4; // tetris! yes. We don't support t-spins yet, so nothing else to check yet.
+        
+        double difficultMultiplier = 1.0;
+        if (isDifficult && m_wasLastLineClearDifficult) {
+            difficultMultiplier = 1.5;
+        }
+        int score = scoreForLines[lines.size()-1] * 100 * m_level * difficultMultiplier;
         if (lines.size() == 4) {
             m_audio->playSound(TetrisAudio::TETRIS);
             if (m_wasLastLineClearDifficult) {
@@ -418,7 +408,7 @@ int Tetris::removeLines(int y) {
             m_wasLastLineClearDifficult = true;
         }
         
-        m_linesLeft -= lines.size();
+        m_linesLeft -= scoreForLines[lines.size()] * difficultMultiplier;
         m_score += score;
         
         checkForLevelUp();
@@ -430,24 +420,20 @@ int Tetris::removeLines(int y) {
 // check to see if we have a collision at a given spot
 bool Tetris::collisionAtLog(TetrisPiece::Ptr piece, int pieceX, int pieceY) {
     int width = piece->getWidth();
-    syslog(LOG_WARNING, "width: %d", width);
     
     // check to see if our piece will hit another piece
     for (int x = 0; x < width; x++) {
         for (int y = 0; y < width; y++) {
             if (m_currentMask.at(x+(y*m_currentPiece->getWidth())) != ' ') {
                 if ((pieceX + x) < 0 || (pieceX + x) >= m_boardWidth) {
-                    syslog(LOG_WARNING, "COLLISION: pieceX + x is %d, out of bounds", (pieceX + x));
                     return true;
                 }
                 if ((pieceY + y) >= m_boardHeight || m_board.at(pieceY + y).at(pieceX + x) != ' ') {
-                    syslog(LOG_WARNING, "COLLISION: pieceY + y is %d, board val at [%d,%d] is %c", (pieceY + y), (pieceX + x), (pieceY + y), m_board.at(pieceY + y).at(pieceX + x));
                     return true;
                 }
             }
         }
     }
-    syslog(LOG_WARNING, "no collision.");
     return false;
 }
 

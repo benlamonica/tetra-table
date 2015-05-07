@@ -23,6 +23,7 @@ public:
     virtual void drawScore(int score) override;
     virtual void drawLevel(int level) override;
     virtual void drawRemainingLines(int remainingLines) override;
+    virtual void redraw() override;
 
 protected:
     virtual void drawPoint(int x, int y, char ch, const Color& color) override;
