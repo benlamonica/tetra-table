@@ -19,9 +19,9 @@ MacAudio::~MacAudio() {
 }
 
 void MacAudio::playMusic() {
-    NSURL *musicUrl = [[NSURL alloc] initWithString:@"file:///Users/ben/Documents/code/tetra-table/tetris/audio/music.m4a"];
+    NSURL *musicUrl = [[NSURL alloc] initWithString:@"file:///Users/ben/Documents/code/tetra-table/tetris/audio/music.mp3"];
     NSError *err;
-    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:musicUrl fileTypeHint:@"m4a" error:&err];
+    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:musicUrl fileTypeHint:@"mp3" error:&err];
     if (err != nil) {
         NSLog(@"%@", err);
     } else {
@@ -42,9 +42,9 @@ void MacAudio::stopMusic() {
 AVAudioPlayer* MacAudio::getAvailablePlayer(Sounds sound) {
     AVAudioPlayer *player = [m_avPlayers objectForKey:[NSNumber numberWithInt:sound]];
     if (player == nil) {
-        NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"file:///Users/ben/Documents/code/tetra-table/tetris/audio/%d.m4a", sound]];
+        NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"file:///Users/ben/Documents/code/tetra-table/tetris/audio/%d.mp3", sound]];
         NSError *err;
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:url fileTypeHint: @"m4a" error:&err];
+        player = [[AVAudioPlayer alloc] initWithContentsOfURL:url fileTypeHint: @"mp3" error:&err];
         
         if (err != nil) {
             NSLog(@"%@", err);

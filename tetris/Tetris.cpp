@@ -408,7 +408,7 @@ int Tetris::removeLines(int y) {
             m_wasLastLineClearDifficult = true;
         }
         
-        m_linesLeft -= scoreForLines[lines.size()] * difficultMultiplier;
+        m_linesLeft -= scoreForLines[lines.size()-1] * difficultMultiplier;
         m_score += score;
         
         checkForLevelUp();

@@ -7,3 +7,23 @@
 //
 
 #include "SDLAudio.hpp"
+
+SDLAudio::SDLAudio() {
+    
+}
+
+SDLAudio::~SDLAudio() {
+    
+}
+
+void SDLAudio::playMusic() {
+    
+}
+
+void SDLAudio::stopMusic() {
+    
+}
+
+void SDLAudio::playSound(Sounds sound) {
+
+}
