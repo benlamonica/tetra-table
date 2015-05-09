@@ -32,15 +32,15 @@ void SDLJoystickTetrisInput::getNextMove(std::vector<tetris::Move>& moves) {
                 syslog(LOG_WARNING, "axis event: x,y (%d,%d)", x, y);
                 if (x < 128) {
                     m_direction.store(LEFT);
-                    m_repeatingStarts.store(tetris::TimeUtil::now() + 250);
+                    m_repeatingStarts.store(tetris::TimeUtil::now() + 200000000);
                     syslog(LOG_WARNING, "LEFT %lld (%lld)", m_repeatingStarts.load(), tetris::TimeUtil::now());
                 } else if (x > 128) {
                     m_direction.store(RIGHT);
-                    m_repeatingStarts.store(tetris::TimeUtil::now() + 250);
+                    m_repeatingStarts.store(tetris::TimeUtil::now() + 200000000);
                     syslog(LOG_WARNING, "RIGHT");
                 } else if (y > 128) {
                     syslog(LOG_WARNING, "DOWN");
-                    m_repeatingStarts.store(tetris::TimeUtil::now() + 250);
+                    m_repeatingStarts.store(tetris::TimeUtil::now() + 200000000);
                     m_direction.store(DOWN);
                 } else {
                     m_repeatingStarts.store(INT64_MAX);
@@ -60,7 +60,7 @@ void SDLJoystickTetrisInput::getNextMove(std::vector<tetris::Move>& moves) {
                 } else if (button == 3) {
                     moves.push_back(ROTATE_RIGHT);
                 } else if (button == 4) {
-                    moves.push_back(QUIT);
+                    //moves.push_back(QUIT);
                 }
                 break;
             }
