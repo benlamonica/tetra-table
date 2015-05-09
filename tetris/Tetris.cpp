@@ -66,7 +66,7 @@ void Tetris::gameover() {
         std::transform(m_board.at(y).begin(), m_board.at(y).end(), m_board.at(y).begin(), ::tolower);
         draw();
         m_audio->playSound(TetrisAudio::PIECE_FREEZE);
-        millisleep(100);
+        millisleep(160);
     }
     
     m_audio->playSound(TetrisAudio::GAME_OVER);
