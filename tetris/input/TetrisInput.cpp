@@ -7,6 +7,7 @@
 //
 
 #include <stdio.h>
+#include <syslog.h>
 #include "TetrisInput.hpp"
 
 TetrisInput::~TetrisInput() {
@@ -16,8 +17,9 @@ TetrisInput::~TetrisInput() {
     }
 }
 
-TetrisInput::TetrisInput(Tetris *game) : m_game(game), m_isRunning(false)
+TetrisInput::TetrisInput(Tetris *game, TetrisInput::Ptr delegate) : m_game(game), m_isRunning(false), m_delegate(delegate)
 {
+    
 }
 
 void TetrisInput::run() {
@@ -30,40 +32,61 @@ void TetrisInput::stop() {
     m_isRunning.store(false);
 }
 
-void TetrisInput::dispatchMoves() {
+void TetrisInput::addMove(tetris::Move move) {
+    if (m_delegate) {
+        m_delegate->addMove(move);
+    } else {
+        std::lock_guard<std::mutex> lock(m_movesMutex);
+        m_moves.push_back(move);
+        syslog(LOG_WARNING, "addMove : %d", move);
+    }
+}
 
-    typedef std::vector<tetris::Move> MoveVec;
-    MoveVec moves;
+void TetrisInput::dispatchMoves() {
     while (m_isRunning.load()) {
+        std::lock_guard<std::mutex> lock(m_movesMutex);
         using namespace tetris;
-        moves.clear();
-        getNextMove(moves);
-        for (MoveVec::const_iterator it = moves.begin(); it != moves.end(); ++it) {
-            switch(*it) {
-                case DOWN:
-                    m_game->moveDown();
-                    break;
-                case LEFT:
-                    m_game->moveLeft();
-                    break;
-                case RIGHT:
-                    m_game->moveRight();
-                    break;
-                case DROP:
-                    m_game->drop(true);
-                    break;
-                case ROTATE_LEFT:
-                case ROTATE_RIGHT:
-                    m_game->rotate(*it);
-                    break;
-                case HOLD_PIECE:
-                    m_game->holdPiece();
-                    break;
-                case QUIT:
-                    m_game->quit();
-                default:
-                    break;
+        getNextMove(m_moves);
+        if (!m_moves.empty()) {
+            bool hasAutoDrop = false;
+            for (MoveVec::const_iterator it = m_moves.begin(); it != m_moves.end(); ++it) {
+                // if there is a delegate, delegate all of the moves to the other TetrisInput
+                if (m_delegate) {
+                    m_delegate->addMove(*it);
+                    continue;
+                }
+                switch(*it) {
+                    case DOWN:
+                        m_game->moveDown();
+                        break;
+                    case DOWN_AUTODROP:
+                        m_game->moveDown(true);
+                        hasAutoDrop = true;
+                        break;
+                    case LEFT:
+                        m_game->moveLeft();
+                        break;
+                    case RIGHT:
+                        m_game->moveRight();
+                        break;
+                    case DROP:
+                        m_game->drop(true);
+                        break;
+                    case ROTATE_LEFT:
+                    case ROTATE_RIGHT:
+                        m_game->rotate(*it);
+                        break;
+                    case HOLD_PIECE:
+                        m_game->holdPiece();
+                        break;
+                    case QUIT:
+                        m_game->quit();
+                    default:
+                        break;
+                }
             }
+            m_moves.clear();
+            m_game->draw(hasAutoDrop);
         }
     }
 }

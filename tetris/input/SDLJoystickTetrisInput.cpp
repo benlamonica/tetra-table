@@ -12,7 +12,7 @@
 #include <SDL2/SDL.h>
 #include "../util/TimeUtil.hpp"
 
-SDLJoystickTetrisInput::SDLJoystickTetrisInput(Tetris *game) : TetrisInput(game), m_direction(tetris::NONE){
+SDLJoystickTetrisInput::SDLJoystickTetrisInput(Tetris *game, TetrisInput::Ptr delegate) : TetrisInput(game, delegate), m_direction(tetris::NONE){
     
 }
 

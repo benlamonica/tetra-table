@@ -16,7 +16,7 @@
 
 class KeyboardTetrisInput : public TetrisInput {
 public:
-    KeyboardTetrisInput(Tetris *game);
+    KeyboardTetrisInput(Tetris *game, TetrisInput::Ptr delegate);
     virtual ~KeyboardTetrisInput();
 protected:
     virtual void getNextMove(std::vector<tetris::Move> &moves);

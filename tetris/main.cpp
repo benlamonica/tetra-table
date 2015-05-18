@@ -23,13 +23,15 @@ int main(int argc, const char * argv[]) {
     std::shared_ptr<TetrisAudio> audio = std::make_shared<SDLAudio>();
     std::shared_ptr<TetrisDisplay> display = std::make_shared<TerminalTetrisDisplay>(20,20);
     Tetris game(display, audio);
-    KeyboardTetrisInput keyboard(&game);
-    SDLJoystickTetrisInput joystick(&game);
-    keyboard.run();
-    joystick.run();
+    std::shared_ptr<TetrisInput> input;
+    std::shared_ptr<SDLJoystickTetrisInput> joystick = std::make_shared<SDLJoystickTetrisInput>(&game, input);
+    std::shared_ptr<KeyboardTetrisInput> keyboard = std::make_shared<KeyboardTetrisInput>(&game, joystick);
+    game.setInputHandler(joystick);
+    joystick->run();
+    keyboard->run();
     game.run();
-    keyboard.stop();
-    joystick.stop();
+    keyboard->stop();
+    joystick->stop();
     return 0;
 }
 

@@ -12,7 +12,7 @@
 #include "../util/CursesUtil.hpp"
 #include "../pieces/TetrisMove.hpp"
 
-KeyboardTetrisInput::KeyboardTetrisInput(Tetris *game) : m_curses(CursesUtil::instance()), super(game) {
+KeyboardTetrisInput::KeyboardTetrisInput(Tetris *game, TetrisInput::Ptr delegate) : m_curses(CursesUtil::instance()), super(game, delegate) {
 
 }
 

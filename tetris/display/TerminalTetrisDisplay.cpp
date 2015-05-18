@@ -8,6 +8,7 @@
 
 #include "TerminalTetrisDisplay.hpp"
 #include "../util/CursesUtil.hpp"
+#include "../util/TimeUtil.hpp"
 #include <curses.h>
 #include <exception>
 
@@ -83,6 +84,7 @@ void TerminalTetrisDisplay::drawRemainingLines(int remainingLines) {
 
 void TerminalTetrisDisplay::flush() {
     m_curses.flush();
+    tetris::TimeUtil::millisleep(5);
 }
 
 void TerminalTetrisDisplay::drawPoint(int x, int y, char ch, const Color& color) {

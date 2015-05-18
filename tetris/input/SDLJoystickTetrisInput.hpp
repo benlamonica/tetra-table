@@ -15,7 +15,7 @@
 class SDLJoystickTetrisInput : public TetrisInput {
 
 public:
-    SDLJoystickTetrisInput(Tetris *game);
+    SDLJoystickTetrisInput(Tetris *game, TetrisInput::Ptr delegate);
     virtual ~SDLJoystickTetrisInput();
     virtual void getNextMove(std::vector<tetris::Move>& moves) override;
     

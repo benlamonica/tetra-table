@@ -19,17 +19,22 @@ class TetrisInput {
 public:
     typedef std::shared_ptr<TetrisInput> Ptr;
     
-    TetrisInput(Tetris *game);
+    TetrisInput(Tetris *game, TetrisInput::Ptr delegate);
     void run();
     void stop();
     virtual ~TetrisInput();
+    void addMove(tetris::Move move);
 protected:
     virtual void getNextMove(std::vector<tetris::Move> &moves) = 0;
 private:
+    typedef std::vector<tetris::Move> MoveVec;
+    MoveVec m_moves;
     void dispatchMoves();
     Tetris *m_game;
     std::atomic<bool> m_isRunning;
     std::shared_ptr<std::thread> m_inputThread;
+    std::mutex m_movesMutex;
+    TetrisInput::Ptr m_delegate;
 };
 
 

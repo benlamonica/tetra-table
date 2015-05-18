@@ -20,7 +20,8 @@ enum Move {
     ROTATE_LEFT,
     ROTATE_RIGHT,
     HOLD_PIECE,
-    QUIT
+    QUIT,
+    DOWN_AUTODROP
 };
 
 }

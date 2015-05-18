@@ -18,7 +18,9 @@
 #include <atomic>
 #include "pieces/TetrisPiece.hpp"
 #include "pieces/TetrisMove.hpp"
+#include "util/TimeUtil.hpp"
 
+class TetrisInput;
 class TetrisDisplay;
 class TetrisAudio;
 
@@ -30,13 +32,14 @@ public:
     void moveRight();
     void moveDown(bool autoDrop = false);
     void drop(bool hard = false);
+    void draw(bool redraw = false);
     void rotate(tetris::Move move);
     void holdPiece();
     void run();
     void quit();
+    void setInputHandler(std::shared_ptr<TetrisInput> inputHandler);
     
 private:
-    void draw(bool redraw = false);
     void lockPiece();
     bool collisionAtLog(TetrisPiece::Ptr piece, int pieceX, int pieceY);
     bool collisionAt(TetrisPiece::Ptr piece, int pieceX, int pieceY);
@@ -49,6 +52,8 @@ private:
     void resetGame();
     void checkForLevelUp();
     void levelUp();
+    void resetDropTime(int64_t nowInNs = tetris::TimeUtil::now());
+    void resetLockTime();
 
     std::deque<TetrisPiece::Ptr> m_pieces;
     std::shared_ptr<TetrisDisplay> m_display;
@@ -71,12 +76,12 @@ private:
     std::atomic<int64_t> m_lockTime;
     std::atomic<bool> m_aboutToLock;
     std::atomic<int64_t> m_dropTime;
-    std::recursive_mutex m_eventMutex;
     std::atomic<bool> m_isGameOver;
     std::atomic<bool> m_wasLastLineClearDifficult;
     std::shared_ptr<TetrisAudio> m_audio;
     std::atomic<bool> m_locking; // true while performing a lock
     std::atomic<bool> m_swapped;
+    std::shared_ptr<TetrisInput> m_inputHandler; // used to inject movements onto the same thread as other movements
 };
 
 #endif /* defined(__tetris__Tetris__) */
