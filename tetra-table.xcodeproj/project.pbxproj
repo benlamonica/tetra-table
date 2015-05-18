@@ -148,7 +148,7 @@
 				351118911A50FA770041640B /* TetraTable.hpp */,
 			);
 			name = src;
-			path = tetris;
+			path = src;
 			sourceTree = "<group>";
 		};
 		B57E8E101AA14D1F008BF0F6 /* input */ = {
@@ -241,7 +241,7 @@
 			dependencies = (
 			);
 			name = "tetra-table";
-			productName = tetris;
+			productName = tetra-table;
 			productReference = 351118811A4DA4430041640B /* tetra-table */;
 			productType = "com.apple.product-type.tool";
 		};
