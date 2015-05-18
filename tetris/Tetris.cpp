@@ -31,7 +31,7 @@ Tetris::~Tetris() {
 
 using namespace tetris::TimeUtil;
 
-Tetris::Tetris(std::shared_ptr<TetrisDisplay> display, std::shared_ptr<TetrisAudio> audio) : m_display(display), m_isRunning(true), m_score(0), m_boardHeight(20), m_boardWidth(10), m_dropSpeed(1000 * 1000000), m_lockSpeed(1500 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false), m_audio(audio), m_locking(false) {
+Tetris::Tetris(std::shared_ptr<TetrisDisplay> display, std::shared_ptr<TetrisAudio> audio) : m_display(display), m_isRunning(true), m_score(0), m_boardHeight(22), m_boardWidth(10), m_dropSpeed(1000 * 1000000), m_lockSpeed(1500 * 1000000), m_shuffler(std::random_device()()), m_dropTime(m_dropSpeed * 1000000), m_lockTime(INT64_MAX), m_aboutToLock(false), m_audio(audio), m_locking(false) {
 
     resetGame();
 };

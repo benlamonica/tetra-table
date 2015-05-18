@@ -24,7 +24,8 @@ TetrisDisplay::~TetrisDisplay() {
 
 void TetrisDisplay::drawBoard(const BoardType &board, TetrisPiece::Ptr currentPiece, int shadowY) {
     std::string mask = currentPiece ? currentPiece->getMask() : "";
-    for (int y = 0; y < board.size(); y++) {
+    // start drawing at 2, because we have a buffer as the piece is coming down
+    for (int y = 2; y < board.size(); y++) {
         for (int x = 0; x < board.at(y).size(); x++) {
             int maskPos = 0;
             int shadowMaskPos = 0;
@@ -34,14 +35,14 @@ void TetrisDisplay::drawBoard(const BoardType &board, TetrisPiece::Ptr currentPi
             }
             if (currentPiece && x >= currentPiece->getX() && x < (currentPiece->getX()+currentPiece->getWidth())) {
                 if (y >= currentPiece->getY() && y < (currentPiece->getY()+currentPiece->getWidth()) && mask.at(maskPos) != ' ') {
-                    drawPoint(x, y, currentPiece->getRep(), currentPiece->getColor());
+                    drawPoint(x, y-2, currentPiece->getRep(), currentPiece->getColor());
                 } else if ((y >= shadowY) && (y < shadowY+currentPiece->getWidth()) && mask.at(shadowMaskPos) != ' ') {
-                    drawPoint(x, y, '.', getColor('.'));
+                    drawPoint(x, y-2, '.', getColor('.'));
                 }else {
-                    drawPoint(x, y, board.at(y).at(x), getColor(board.at(y).at(x)));
+                    drawPoint(x, y-2, board.at(y).at(x), getColor(board.at(y).at(x)));
                 }
             } else {
-                drawPoint(x, y, board.at(y).at(x), getColor(board.at(y).at(x)));
+                drawPoint(x, y-2, board.at(y).at(x), getColor(board.at(y).at(x)));
             }
         }
     }
