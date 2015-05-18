@@ -1,13 +1,13 @@
 //
 //  Curses.h
-//  tetris
+//  TetraTable
 //
 //  Created by Ben La Monica on 1/5/15.
 //  Copyright (c) 2015 Benjamin Alan La Monica. All rights reserved.
 //
 
-#ifndef __tetris__Curses__
-#define __tetris__Curses__
+#ifndef __TetraTable__Curses__
+#define __TetraTable__Curses__
 
 #include <stdio.h>
 #include <mutex>
@@ -39,4 +39,4 @@ private:
     short m_colorIdx;
 };
 
-#endif /* defined(__tetris__Curses__) */
+#endif /* defined(__TetraTable__Curses__) */

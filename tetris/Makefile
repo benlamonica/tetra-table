@@ -1,9 +1,9 @@
 CC=clang++
 SOURCES= \
-	audio/TetrisAudio.cpp \
+	audio/TetraTableAudio.cpp \
 	audio/NoSoundAudio.cpp \
 	audio/SDLAudio.cpp \
-	pieces/TetrisPiece.cpp \
+	pieces/TetraTablePiece.cpp \
 	pieces/I.cpp \
 	pieces/J.cpp \
 	pieces/L.cpp \
@@ -14,15 +14,15 @@ SOURCES= \
 	util/CursesUtil.cpp \
 	util/SDLUtil.cpp \
 	util/TimeUtil.cpp \
-	display/TerminalTetrisDisplay.cpp \
-	display/TetrisDisplay.cpp \
-	input/KeyboardTetrisInput.cpp \
-	input/TetrisInput.cpp \
-	input/SDLJoystickTetrisInput.cpp \
+	display/TerminalDisplay.cpp \
+	display/TetraTableDisplay.cpp \
+	input/KeyboardInput.cpp \
+	input/TetraTableInput.cpp \
+	input/SDLJoystickInput.cpp \
 	main.cpp \
-	Tetris.cpp 
+	TetraTable.cpp 
 
-EXECUTABLE=tetra-table
+EXECUTABLE=dist/tetra-table
 CFLAGS=-std=c++11 -F /Library/Frameworks
 LDFLAGS=-lcurses -lpthread -framework SDL2 -framework SDL2_mixer 
 OBJECTS=$(SOURCES:.cpp=.o)

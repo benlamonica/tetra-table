@@ -1,19 +1,19 @@
 //
 //  SDLAudio.h
-//  tetris
+//  TetraTable
 //
 //  Created by Ben La Monica on 3/23/15.
 //  Copyright (c) 2015 Benjamin Alan La Monica. All rights reserved.
 //
 
-#ifndef __tetris__SDLAudio__
-#define __tetris__SDLAudio__
+#ifndef __TetraTable__SDLAudio__
+#define __TetraTable__SDLAudio__
 
 #include <stdio.h>
 #include <SDL2_mixer/SDL_mixer.h>
-#include "TetrisAudio.hpp"
+#include "TetraTableAudio.hpp"
 
-class SDLAudio : public TetrisAudio {
+class SDLAudio : public TetraTableAudio {
 public:
     SDLAudio();
     virtual ~SDLAudio();
@@ -27,4 +27,4 @@ private:
 
 };
 
-#endif /* defined(__tetris__SDLAudio__) */
+#endif /* defined(__TetraTable__SDLAudio__) */

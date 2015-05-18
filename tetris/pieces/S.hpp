@@ -1,24 +1,24 @@
 //
 //  S.hpp
-//  tetris
+//  TetraTable
 //
 //  Created by Ben La Monica on 1/13/15.
 //  Copyright (c) 2015 Benjamin Alan La Monica. All rights reserved.
 //
 
-#ifndef __tetris__S__
-#define __tetris__S__
+#ifndef __TetraTable__S__
+#define __TetraTable__S__
 
 #include <stdio.h>
-#include "TetrisPiece.hpp"
+#include "TetraTablePiece.hpp"
 
-class S : public TetrisPiece {
+class S : public TetraTablePiece {
 public:
     S();
     virtual ~S();
   
 private:
-    typedef TetrisPiece super;
+    typedef TetraTablePiece super;
 
 };
-#endif /* defined(__tetris__S__) */
+#endif /* defined(__TetraTable__S__) */

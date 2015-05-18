@@ -1,13 +1,13 @@
 //
 //  SDLUtil.h
-//  tetris
+//  TetraTable
 //
 //  Created by Ben La Monica on 3/23/15.
 //  Copyright (c) 2015 Benjamin Alan La Monica. All rights reserved.
 //
 
-#ifndef __tetris__SDLUtil__
-#define __tetris__SDLUtil__
+#ifndef __TetraTable__SDLUtil__
+#define __TetraTable__SDLUtil__
 
 #include <stdio.h>
 #include <memory>
@@ -33,4 +33,4 @@ private:
 
 };
 
-#endif /* defined(__tetris__SDLUtil__) */
+#endif /* defined(__TetraTable__SDLUtil__) */

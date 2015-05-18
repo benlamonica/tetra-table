@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		351118851A4DA4430041640B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 351118841A4DA4430041640B /* main.cpp */; };
+		3511188C1A4FBC6C0041640B /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3511188B1A4FBC6C0041640B /* libncurses.dylib */; };
+		351118921A50FA770041640B /* TetraTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 351118901A50FA770041640B /* TetraTable.cpp */; };
+		B57E8E0F1AA14CCE008BF0F6 /* TetraTableDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E0D1AA14CCE008BF0F6 /* TetraTableDisplay.cpp */; };
+		B57E8E151AA14D1F008BF0F6 /* KeyboardInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E111AA14D1F008BF0F6 /* KeyboardInput.cpp */; };
+		B57E8E161AA14D1F008BF0F6 /* TetraTableInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E131AA14D1F008BF0F6 /* TetraTableInput.cpp */; };
+		B57E8E1B1AA14D51008BF0F6 /* CursesUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E191AA14D51008BF0F6 /* CursesUtil.cpp */; };
+		B57E8E211AA7CA40008BF0F6 /* TetraTableAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E1F1AA7CA40008BF0F6 /* TetraTableAudio.cpp */; };
+		B57E8E241AA7CBD3008BF0F6 /* NoSoundAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57E8E221AA7CBD3008BF0F6 /* NoSoundAudio.cpp */; };
+		B5B29D881A5B5BEB008B1F2E /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */; };
+		B5B29D9F1A65E520008B1F2E /* I.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29D9C1A65E520008B1F2E /* I.cpp */; };
+		B5B29DA21A65E558008B1F2E /* T.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA01A65E558008B1F2E /* T.cpp */; };
+		B5B29DAB1A65E73C008B1F2E /* L.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA71A65E73C008B1F2E /* L.cpp */; };
+		B5B29DAC1A65E73C008B1F2E /* J.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA81A65E73C008B1F2E /* J.cpp */; };
+		B5B29DAD1A65E73C008B1F2E /* Z.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DA91A65E73C008B1F2E /* Z.cpp */; };
+		B5B29DAE1A65E73C008B1F2E /* S.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DAA1A65E73C008B1F2E /* S.cpp */; };
+		B5B29DB11A66FED1008B1F2E /* O.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB01A66FED1008B1F2E /* O.cpp */; };
+		B5B29DB31A67370B008B1F2E /* TetraTablePiece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B29DB21A67370B008B1F2E /* TetraTablePiece.cpp */; };
+		B5C5A97D1AF985B100D9D2FC /* TimeUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5C5A97B1AF985B100D9D2FC /* TimeUtil.cpp */; };
+		B5C5A97F1AFDB68600D9D2FC /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C5A97E1AFDB68600D9D2FC /* SDL2_mixer.framework */; };
+		B5E35FCA1A940CBD00192096 /* TerminalDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5E35FC81A940CBD00192096 /* TerminalDisplay.cpp */; };
+		B5E92A911AB0F89700FBFF9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E92A901AB0F89700FBFF9D /* Foundation.framework */; };
+		B5EB73F31AC0CA1600F19E8F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EB73F21AC0CA1600F19E8F /* SDL2.framework */; };
+		B5EB73F61AC0CA8800F19E8F /* SDLAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EB73F41AC0CA8800F19E8F /* SDLAudio.cpp */; };
+		B5EB73F91AC0CAB400F19E8F /* SDLJoystickInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EB73F71AC0CAB400F19E8F /* SDLJoystickInput.cpp */; };
+		B5EB73FC1AC0CACA00F19E8F /* SDLUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EB73FA1AC0CACA00F19E8F /* SDLUtil.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3511187F1A4DA4430041640B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		351118811A4DA4430041640B /* tetra-table */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "tetra-table"; sourceTree = BUILT_PRODUCTS_DIR; };
+		351118841A4DA4430041640B /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = main.cpp; sourceTree = "<group>"; };
+		3511188B1A4FBC6C0041640B /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
+		351118901A50FA770041640B /* TetraTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetraTable.cpp; sourceTree = "<group>"; };
+		351118911A50FA770041640B /* TetraTable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TetraTable.hpp; sourceTree = "<group>"; };
+		B57E8E0D1AA14CCE008BF0F6 /* TetraTableDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TetraTableDisplay.cpp; path = display/TetraTableDisplay.cpp; sourceTree = "<group>"; };
+		B57E8E0E1AA14CCE008BF0F6 /* TetraTableDisplay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TetraTableDisplay.hpp; path = display/TetraTableDisplay.hpp; sourceTree = "<group>"; };
+		B57E8E111AA14D1F008BF0F6 /* KeyboardInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = KeyboardInput.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B57E8E121AA14D1F008BF0F6 /* KeyboardInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyboardInput.hpp; sourceTree = "<group>"; };
+		B57E8E131AA14D1F008BF0F6 /* TetraTableInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetraTableInput.cpp; sourceTree = "<group>"; };
+		B57E8E141AA14D1F008BF0F6 /* TetraTableInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TetraTableInput.hpp; sourceTree = "<group>"; };
+		B57E8E171AA14D37008BF0F6 /* TetraTableMove.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TetraTableMove.hpp; sourceTree = "<group>"; };
+		B57E8E191AA14D51008BF0F6 /* CursesUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = CursesUtil.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B57E8E1A1AA14D51008BF0F6 /* CursesUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = CursesUtil.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B57E8E1F1AA7CA40008BF0F6 /* TetraTableAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TetraTableAudio.cpp; path = audio/TetraTableAudio.cpp; sourceTree = "<group>"; };
+		B57E8E201AA7CA40008BF0F6 /* TetraTableAudio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TetraTableAudio.hpp; path = audio/TetraTableAudio.hpp; sourceTree = "<group>"; };
+		B57E8E221AA7CBD3008BF0F6 /* NoSoundAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NoSoundAudio.cpp; path = audio/NoSoundAudio.cpp; sourceTree = "<group>"; };
+		B57E8E231AA7CBD3008BF0F6 /* NoSoundAudio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = NoSoundAudio.hpp; path = audio/NoSoundAudio.hpp; sourceTree = "<group>"; };
+		B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
+		B5B29D9C1A65E520008B1F2E /* I.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = I.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B5B29D9D1A65E520008B1F2E /* I.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = I.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B5B29D9E1A65E520008B1F2E /* TetraTablePiece.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TetraTablePiece.hpp; sourceTree = "<group>"; };
+		B5B29DA01A65E558008B1F2E /* T.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = T.cpp; sourceTree = "<group>"; };
+		B5B29DA11A65E558008B1F2E /* T.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = T.hpp; sourceTree = "<group>"; };
+		B5B29DA31A65E73C008B1F2E /* L.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = L.hpp; sourceTree = "<group>"; };
+		B5B29DA41A65E73C008B1F2E /* J.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = J.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B5B29DA51A65E73C008B1F2E /* Z.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Z.hpp; sourceTree = "<group>"; };
+		B5B29DA61A65E73C008B1F2E /* S.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = S.hpp; sourceTree = "<group>"; };
+		B5B29DA71A65E73C008B1F2E /* L.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = L.cpp; sourceTree = "<group>"; };
+		B5B29DA81A65E73C008B1F2E /* J.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = J.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		B5B29DA91A65E73C008B1F2E /* Z.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Z.cpp; sourceTree = "<group>"; };
+		B5B29DAA1A65E73C008B1F2E /* S.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = S.cpp; sourceTree = "<group>"; };
+		B5B29DAF1A66FED1008B1F2E /* O.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = O.hpp; sourceTree = "<group>"; };
+		B5B29DB01A66FED1008B1F2E /* O.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = O.cpp; sourceTree = "<group>"; };
+		B5B29DB21A67370B008B1F2E /* TetraTablePiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TetraTablePiece.cpp; sourceTree = "<group>"; };
+		B5C5A97B1AF985B100D9D2FC /* TimeUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeUtil.cpp; sourceTree = "<group>"; };
+		B5C5A97E1AFDB68600D9D2FC /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
+		B5DA9E4C1ADC807B00B11CB3 /* TimeUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeUtil.hpp; sourceTree = "<group>"; };
+		B5E35FC81A940CBD00192096 /* TerminalDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TerminalDisplay.cpp; path = display/TerminalDisplay.cpp; sourceTree = "<group>"; };
+		B5E35FC91A940CBD00192096 /* TerminalDisplay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = TerminalDisplay.hpp; path = display/TerminalDisplay.hpp; sourceTree = "<group>"; };
+		B5E92A901AB0F89700FBFF9D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B5EB73F21AC0CA1600F19E8F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		B5EB73F41AC0CA8800F19E8F /* SDLAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SDLAudio.cpp; path = audio/SDLAudio.cpp; sourceTree = "<group>"; };
+		B5EB73F51AC0CA8800F19E8F /* SDLAudio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SDLAudio.hpp; path = audio/SDLAudio.hpp; sourceTree = "<group>"; };
+		B5EB73F71AC0CAB400F19E8F /* SDLJoystickInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLJoystickInput.cpp; sourceTree = "<group>"; };
+		B5EB73F81AC0CAB400F19E8F /* SDLJoystickInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLJoystickInput.hpp; sourceTree = "<group>"; };
+		B5EB73FA1AC0CACA00F19E8F /* SDLUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLUtil.cpp; sourceTree = "<group>"; };
+		B5EB73FB1AC0CACA00F19E8F /* SDLUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLUtil.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3511187E1A4DA4430041640B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5EB73F31AC0CA1600F19E8F /* SDL2.framework in Frameworks */,
+				B5C5A97F1AFDB68600D9D2FC /* SDL2_mixer.framework in Frameworks */,
+				B5E92A911AB0F89700FBFF9D /* Foundation.framework in Frameworks */,
+				B5B29D881A5B5BEB008B1F2E /* libpthread.dylib in Frameworks */,
+				3511188C1A4FBC6C0041640B /* libncurses.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		351118781A4DA4430041640B = {
+			isa = PBXGroup;
+			children = (
+				B5C5A97E1AFDB68600D9D2FC /* SDL2_mixer.framework */,
+				B5EB73F21AC0CA1600F19E8F /* SDL2.framework */,
+				B5E92A901AB0F89700FBFF9D /* Foundation.framework */,
+				B5B29D871A5B5BEB008B1F2E /* libpthread.dylib */,
+				3511188B1A4FBC6C0041640B /* libncurses.dylib */,
+				351118831A4DA4430041640B /* src */,
+				351118821A4DA4430041640B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		351118821A4DA4430041640B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				351118811A4DA4430041640B /* tetra-table */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		351118831A4DA4430041640B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B57E8E1C1AA28E59008BF0F6 /* audio */,
+				B57E8E181AA14D51008BF0F6 /* util */,
+				B57E8E101AA14D1F008BF0F6 /* input */,
+				B5E35FC71A940C9200192096 /* display */,
+				B5B29D9B1A65E520008B1F2E /* pieces */,
+				351118841A4DA4430041640B /* main.cpp */,
+				351118901A50FA770041640B /* TetraTable.cpp */,
+				351118911A50FA770041640B /* TetraTable.hpp */,
+			);
+			name = src;
+			path = tetris;
+			sourceTree = "<group>";
+		};
+		B57E8E101AA14D1F008BF0F6 /* input */ = {
+			isa = PBXGroup;
+			children = (
+				B57E8E111AA14D1F008BF0F6 /* KeyboardInput.cpp */,
+				B57E8E121AA14D1F008BF0F6 /* KeyboardInput.hpp */,
+				B57E8E131AA14D1F008BF0F6 /* TetraTableInput.cpp */,
+				B57E8E141AA14D1F008BF0F6 /* TetraTableInput.hpp */,
+				B5EB73F71AC0CAB400F19E8F /* SDLJoystickInput.cpp */,
+				B5EB73F81AC0CAB400F19E8F /* SDLJoystickInput.hpp */,
+			);
+			path = input;
+			sourceTree = "<group>";
+		};
+		B57E8E181AA14D51008BF0F6 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				B57E8E191AA14D51008BF0F6 /* CursesUtil.cpp */,
+				B57E8E1A1AA14D51008BF0F6 /* CursesUtil.hpp */,
+				B5EB73FA1AC0CACA00F19E8F /* SDLUtil.cpp */,
+				B5EB73FB1AC0CACA00F19E8F /* SDLUtil.hpp */,
+				B5DA9E4C1ADC807B00B11CB3 /* TimeUtil.hpp */,
+				B5C5A97B1AF985B100D9D2FC /* TimeUtil.cpp */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		B57E8E1C1AA28E59008BF0F6 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				B57E8E1F1AA7CA40008BF0F6 /* TetraTableAudio.cpp */,
+				B57E8E201AA7CA40008BF0F6 /* TetraTableAudio.hpp */,
+				B57E8E221AA7CBD3008BF0F6 /* NoSoundAudio.cpp */,
+				B57E8E231AA7CBD3008BF0F6 /* NoSoundAudio.hpp */,
+				B5EB73F41AC0CA8800F19E8F /* SDLAudio.cpp */,
+				B5EB73F51AC0CA8800F19E8F /* SDLAudio.hpp */,
+			);
+			name = audio;
+			sourceTree = "<group>";
+		};
+		B5B29D9B1A65E520008B1F2E /* pieces */ = {
+			isa = PBXGroup;
+			children = (
+				B57E8E171AA14D37008BF0F6 /* TetraTableMove.hpp */,
+				B5B29DA81A65E73C008B1F2E /* J.cpp */,
+				B5B29DA41A65E73C008B1F2E /* J.hpp */,
+				B5B29DA71A65E73C008B1F2E /* L.cpp */,
+				B5B29DA31A65E73C008B1F2E /* L.hpp */,
+				B5B29D9C1A65E520008B1F2E /* I.cpp */,
+				B5B29D9D1A65E520008B1F2E /* I.hpp */,
+				B5B29DB01A66FED1008B1F2E /* O.cpp */,
+				B5B29DAF1A66FED1008B1F2E /* O.hpp */,
+				B5B29DAA1A65E73C008B1F2E /* S.cpp */,
+				B5B29DA61A65E73C008B1F2E /* S.hpp */,
+				B5B29DA01A65E558008B1F2E /* T.cpp */,
+				B5B29DA11A65E558008B1F2E /* T.hpp */,
+				B5B29D9E1A65E520008B1F2E /* TetraTablePiece.hpp */,
+				B5B29DB21A67370B008B1F2E /* TetraTablePiece.cpp */,
+				B5B29DA91A65E73C008B1F2E /* Z.cpp */,
+				B5B29DA51A65E73C008B1F2E /* Z.hpp */,
+			);
+			path = pieces;
+			sourceTree = "<group>";
+		};
+		B5E35FC71A940C9200192096 /* display */ = {
+			isa = PBXGroup;
+			children = (
+				B57E8E0D1AA14CCE008BF0F6 /* TetraTableDisplay.cpp */,
+				B57E8E0E1AA14CCE008BF0F6 /* TetraTableDisplay.hpp */,
+				B5E35FC81A940CBD00192096 /* TerminalDisplay.cpp */,
+				B5E35FC91A940CBD00192096 /* TerminalDisplay.hpp */,
+			);
+			name = display;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		351118801A4DA4430041640B /* tetra-table */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 351118881A4DA4430041640B /* Build configuration list for PBXNativeTarget "tetra-table" */;
+			buildPhases = (
+				3511187D1A4DA4430041640B /* Sources */,
+				3511187E1A4DA4430041640B /* Frameworks */,
+				3511187F1A4DA4430041640B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "tetra-table";
+			productName = tetris;
+			productReference = 351118811A4DA4430041640B /* tetra-table */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		351118791A4DA4430041640B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Benjamin Alan La Monica";
+				TargetAttributes = {
+					351118801A4DA4430041640B = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 3511187C1A4DA4430041640B /* Build configuration list for PBXProject "tetra-table" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 351118781A4DA4430041640B;
+			productRefGroup = 351118821A4DA4430041640B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				351118801A4DA4430041640B /* tetra-table */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3511187D1A4DA4430041640B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B57E8E151AA14D1F008BF0F6 /* KeyboardInput.cpp in Sources */,
+				B57E8E0F1AA14CCE008BF0F6 /* TetraTableDisplay.cpp in Sources */,
+				B5C5A97D1AF985B100D9D2FC /* TimeUtil.cpp in Sources */,
+				B57E8E1B1AA14D51008BF0F6 /* CursesUtil.cpp in Sources */,
+				B5B29DAD1A65E73C008B1F2E /* Z.cpp in Sources */,
+				B57E8E241AA7CBD3008BF0F6 /* NoSoundAudio.cpp in Sources */,
+				B5B29DAB1A65E73C008B1F2E /* L.cpp in Sources */,
+				B5B29DAE1A65E73C008B1F2E /* S.cpp in Sources */,
+				B5B29DB11A66FED1008B1F2E /* O.cpp in Sources */,
+				B5B29DB31A67370B008B1F2E /* TetraTablePiece.cpp in Sources */,
+				351118851A4DA4430041640B /* main.cpp in Sources */,
+				B5EB73FC1AC0CACA00F19E8F /* SDLUtil.cpp in Sources */,
+				B5B29DA21A65E558008B1F2E /* T.cpp in Sources */,
+				B5B29D9F1A65E520008B1F2E /* I.cpp in Sources */,
+				351118921A50FA770041640B /* TetraTable.cpp in Sources */,
+				B57E8E161AA14D1F008BF0F6 /* TetraTableInput.cpp in Sources */,
+				B5EB73F61AC0CA8800F19E8F /* SDLAudio.cpp in Sources */,
+				B57E8E211AA7CA40008BF0F6 /* TetraTableAudio.cpp in Sources */,
+				B5EB73F91AC0CAB400F19E8F /* SDLJoystickInput.cpp in Sources */,
+				B5E35FCA1A940CBD00192096 /* TerminalDisplay.cpp in Sources */,
+				B5B29DAC1A65E73C008B1F2E /* J.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		351118861A4DA4430041640B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		351118871A4DA4430041640B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		351118891A4DA4430041640B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "-ObjC++";
+				PRODUCT_NAME = "tetra-table";
+			};
+			name = Debug;
+		};
+		3511188A1A4DA4430041640B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				OTHER_LDFLAGS = "-ObjC++";
+				PRODUCT_NAME = "tetra-table";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3511187C1A4DA4430041640B /* Build configuration list for PBXProject "tetra-table" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				351118861A4DA4430041640B /* Debug */,
+				351118871A4DA4430041640B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		351118881A4DA4430041640B /* Build configuration list for PBXNativeTarget "tetra-table" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				351118891A4DA4430041640B /* Debug */,
+				3511188A1A4DA4430041640B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 351118791A4DA4430041640B /* Project object */;
+}

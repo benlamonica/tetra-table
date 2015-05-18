@@ -1,6 +1,6 @@
 //
 //  Curses.cpp
-//  tetris
+//  TetraTable
 //
 //  Created by Ben La Monica on 1/5/15.
 //  Copyright (c) 2015 Benjamin Alan La Monica. All rights reserved.
@@ -12,7 +12,7 @@
 #include <utility>
 #include <syslog.h>
 #include "CursesUtil.hpp"
-#include "../pieces/TetrisPiece.hpp"
+#include "../pieces/TetraTablePiece.hpp"
 #include "../pieces/J.hpp"
 #include "../pieces/L.hpp"
 #include "../pieces/I.hpp"

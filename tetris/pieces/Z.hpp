@@ -1,24 +1,24 @@
 //
 //  Z.h
-//  tetris
+//  TetraTable
 //
 //  Created by Ben La Monica on 1/13/15.
 //  Copyright (c) 2015 Benjamin Alan La Monica. All rights reserved.
 //
 
-#ifndef __tetris__Z__
-#define __tetris__Z__
+#ifndef __TetraTable__Z__
+#define __TetraTable__Z__
 
 #include <stdio.h>
-#include "TetrisPiece.hpp"
+#include "TetraTablePiece.hpp"
 
-class Z : public TetrisPiece {
+class Z : public TetraTablePiece {
 public:
     Z();
     virtual ~Z();
 
 private:
-    typedef TetrisPiece super;
+    typedef TetraTablePiece super;
     
 };
-#endif /* defined(__tetris__Z__) */
+#endif /* defined(__TetraTable__Z__) */
