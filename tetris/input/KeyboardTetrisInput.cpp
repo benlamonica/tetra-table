@@ -7,10 +7,10 @@
 //
 
 #include <curses.h>
-#include <time.h>
 #include "KeyboardTetrisInput.hpp"
 #include "../util/CursesUtil.hpp"
 #include "../pieces/TetrisMove.hpp"
+#include "../util/TimeUtil.hpp"
 
 KeyboardTetrisInput::KeyboardTetrisInput(Tetris *game, TetrisInput::Ptr delegate) : m_curses(CursesUtil::instance()), super(game, delegate) {
 
@@ -55,7 +55,6 @@ void KeyboardTetrisInput::getNextMove(std::vector<tetris::Move> &moves) {
         }
     } else {
         // sleep for 50 ms
-        struct timespec sleepTime = {0,50000000};
-        nanosleep(&sleepTime, NULL);
+        tetris::TimeUtil::millisleep(30);
     }
 }

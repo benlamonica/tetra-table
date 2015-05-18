@@ -71,6 +71,6 @@ void SDLJoystickTetrisInput::getNextMove(std::vector<tetris::Move>& moves) {
             moves.push_back(m_direction.load());
         }
         // sleep for 50 ms, so that we don't spam in a given direction too fast
-        tetris::TimeUtil::millisleep(50);
+        tetris::TimeUtil::millisleep(30);
     }
 }
