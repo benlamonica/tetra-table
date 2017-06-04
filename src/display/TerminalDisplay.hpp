@@ -28,7 +28,6 @@ public:
 protected:
     virtual void drawPoint(int x, int y, char ch, const Color& color) override;
 private:
-    void drawPiece(TetraTablePiece::Ptr piece, int x, int y);
     CursesUtil &m_curses;
     int m_xOffset;
     int m_yOffset;

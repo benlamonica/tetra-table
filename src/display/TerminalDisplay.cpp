@@ -37,31 +37,6 @@ void TerminalDisplay::redraw() {
     m_curses.redraw();
 }
 
-void TerminalDisplay::drawPiece(TetraTablePiece::Ptr piece, int xOffset, int yOffset) {
-    int width = 3;
-    std::string mask = "         ";
-    Color c(0,0,0);
-    if (piece) {
-        TetraTablePiece p = *piece; // make a copy
-        p.setRotation(0);
-        mask = p.getMask();
-        width = p.getWidth();
-        c = p.getColor();
-    }
-    
-    for (int x = 0; x < 4; x++) {
-        for (int y = 0; y < 4; y++) {
-            int pos = x+(y*width);
-            if (pos < mask.size() && x < width && mask.at(pos) != ' ') {
-                drawPoint(x+xOffset, y+yOffset, ' ', c);
-            } else {
-                drawPoint(x+xOffset, y+yOffset, ' ', Color(0,0,0));
-            }
-        }
-    }
-
-}
-
 void TerminalDisplay::drawNextPiece(TetraTablePiece::Ptr nextPiece) {
     drawPiece(nextPiece, 12, 2);
 }

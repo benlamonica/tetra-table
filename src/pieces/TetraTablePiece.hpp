@@ -20,6 +20,7 @@ public:
     uint8_t r;
     uint8_t g;
     uint8_t b;
+    void writeTo(uint8_t *buf) const { *buf = r; *(buf+1) = g; *(buf+2) = b; }
     int key() const { return ((r << 16) | (g << 8) | b); }
 };
 

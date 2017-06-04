@@ -14,8 +14,10 @@ SOURCES= \
 	src/util/CursesUtil.cpp \
 	src/util/SDLUtil.cpp \
 	src/util/TimeUtil.cpp \
+        src/util/Base64.cpp \
 	src/display/TerminalDisplay.cpp \
 	src/display/TetraTableDisplay.cpp \
+        src/display/HyperionDisplay.cpp \
 	src/input/KeyboardInput.cpp \
 	src/input/TetraTableInput.cpp \
 	src/input/SDLJoystickInput.cpp \

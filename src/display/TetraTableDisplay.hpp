@@ -17,6 +17,7 @@ typedef std::deque<std::string> BoardType;
 class TetraTableDisplay {
 public:
     void drawBoard(const BoardType &board, TetraTablePiece::Ptr currentPiece, int shadowY);
+    void drawPiece(TetraTablePiece::Ptr piece, int xOffset, int yOffset);
     virtual void drawNextPiece(TetraTablePiece::Ptr nextPiece) = 0;
     virtual void drawHeldPiece(TetraTablePiece::Ptr heldPiece) = 0;
     virtual void drawScore(int score) = 0;

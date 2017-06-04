@@ -15,13 +15,14 @@
 #include "audio/SDLAudio.hpp"
 #include "util/SDLUtil.hpp"
 #include "display/TerminalDisplay.hpp"
-
+#include "display/HyperionDisplay.hpp"
 
 int main(int argc, const char * argv[]) {
     syslog(LOG_INFO, "starting");
     SDLUtil::instance();
     std::shared_ptr<TetraTableAudio> audio = std::make_shared<SDLAudio>();
     std::shared_ptr<TetraTableDisplay> display = std::make_shared<TerminalDisplay>(20,20);
+//    std::shared_ptr<TetraTableDisplay> display = std::make_shared<HyperionDisplay>(10,20);
     TetraTable game(display, audio);
     std::shared_ptr<TetraTableInput> input;
     std::shared_ptr<SDLJoystickInput> joystick = std::make_shared<SDLJoystickInput>(&game, input);
